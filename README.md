@@ -1,3 +1,3 @@
 # jphill01.github.io
 
-Welcome to my GitHub website!
+Hello! I'm Jarrett! Welcome to my GitHub website!
