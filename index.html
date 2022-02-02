@@ -32,7 +32,7 @@
   <ul>
     <li> Developing methods to estimate likely required specimen sample sizes for genetic diversity assessment within species using DNA barcoding </li>
     <ul>
-      <li> Practical sample sizes for DNA barcoding typically range between 5-10 indvisduals per species, but required levels of sampling depth are highly 
+      <li> Practical sample sizes for DNA barcoding typically range between 5-10 indviduals per species, but required levels of sampling depth are highly 
       dependent on the evolutionary history and ecology of the species under study, as well as species rarity and overall project costs. </li>
       <li> I created <a href = "https://cran.r-project.org/web/packages/HACSim/index.html">HACSim</a> (Haplotype Accumulation Curve Simulator), a novel nonparametric stochastic (Monte Carlo) local search optimization algorithm, which has been 
       developed to better estimate likely required specimen sample sizes based on asymptotic behaviour seen in species' haplotype accumulation curves. </li>
@@ -41,11 +41,11 @@
          </ul>
     <li> Developing methods for better visualization and inference of the DNA barcode gap
       <ul>
-        <li> The DNA barcode gap &#8212; the difference between genetic variation observed with and among species is most often visualized using histograms; however, 
+        <li> The DNA barcode gap &#8212;, the difference between genetic variation observed with and among species, is most often visualized using histograms; however, 
         these plots can be misleading due to dependence on user-defined parameters, thus greatly affecting the overall shape of probability distributions. </li> 
         <li> I propose Kernel density estimation provides a better path forward when it comes to establishing the efficacy of DNA barcoding as a molecular identification
         tool. </li>
-        <li> I also propose the use of nonparametric bootstrapping, specifically the <i>m</i>-out-of-<i>n</i> boostrap, can be used to estimate the sampling distributions of quantities 
+        <li> I also propose the use of nonparametric bootstrapping, specifically the <i>m</i>-out-of-<i>n</i> boostrap, which can be used to estimate the sampling distributions of quantities 
         of interest in DNA barcoding, particularly extreme order statistics like the minimum interspecific and maximum intraspecific genetic distances, in addition 
         to the DNA barcode gap. </li>
       </ul>
@@ -56,7 +56,7 @@
   <ul>
     <li> Constructing the largest DNA barcode reference sequence library for North American butterflies </li>
     <ul>
-      <li> Butterflies are some on the most genetically and morpohologically diverse insects on the planet. One aspect of my work involved generating a DNA barcode 
+      <li> Butterflies are some on the most genetically and morpohologically diverse insects on the planet. One aspect of my work involves generating a DNA barcode 
         library for over 97% (>800 species) of known butterfly species found in North America </li> 
       <li> Current work using this dataset involves correlating species' genetic diversity with geographical covariates (such as latitude and longitude) 
       using semiparametric and nonparametric regression approaches including Generalized Additive Models (GAMs) and Local Regression (LOESS) </li>
@@ -66,7 +66,7 @@
      Development of R Software Packages and R Shiny Web Apps for Molecular Biodiversity Assessment
     </h3>
   <ul>
-    <li> HACSim is available for download as an R package through the Comprehensive R Archive Network (CRAN) and as an R Shiny web application at <a href = "https://hacsim.shinyapps.io/hacsim-rshiny-app/">shinyapps.io</a>
+    <li> HACSim is available for download as an R package through the Comprehensive R Archive Network (CRAN) and as an R Shiny web application at <a href = "https://jphill01.shinyapps.io/HACSim/">shinyapps.io</a>
        </li>
   <li> <a href = "http://cran.nexr.com/web/packages/VLF/index.html">VLF</a> is an R package to detect very low frequency variants (VLFs), such as sequencing and PCR errors, and compute error rates at second codon positions in DNA sequences. The package is on CRAN.
   </li>
@@ -79,7 +79,7 @@
         Within many scientific publications that employ R, lack of proper citation of R versions and packages employed within analyses is rampant
       </li>
       <li>
-        We mine article metadata spanning five different ecological journals for publications appearing in 2019 and find significant variation in how R is being reported
+        We mine article metadata spanning five different ecological journals for publications appearing in 2019 and find significant variation in how R is currently being reported
       </li>
       <li>
         We propose a simple way of standardizing reporting for future studies that will help mitigate biases in future studies
