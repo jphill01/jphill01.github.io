@@ -4,7 +4,7 @@
 Reads  index.html and the CV PDF it links to (the "Download CV" button).
 Writes wordcloud.png and data/wordcloud-terms.json.
 
-The vocabulary (which terms can appear) lives in .github/wordcloud/terms.py.
+The vocabulary (which terms can appear) lives in terms.py, normally .github/wordcloud/terms.py.
 Word area is proportional to how often a term is mentioned. If the counts have
 not changed since the last build, nothing is redrawn.
 
@@ -31,8 +31,13 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.patches import Rectangle
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / ".github" / "wordcloud"))
-import terms  # noqa: E402  (the editable vocabulary)
+# The editable vocabulary is .github/wordcloud/terms.py. It is looked up by file name so that a folder
+# spelled "word cloud" (with a space) or anything else under .github also works.
+_found = sorted((ROOT / ".github").glob("*/terms.py"), key=lambda p: (p.parent.name != "wordcloud", p.parent.name))
+if not _found:
+    raise SystemExit("terms.py not found: it should be at .github/wordcloud/terms.py")
+sys.path.insert(0, str(_found[0].parent))
+import terms  # noqa: E402
 
 INDEX = ROOT / "index.html"
 OUT_PNG = ROOT / "wordcloud.png"
