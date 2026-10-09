@@ -229,6 +229,30 @@ dl.interests dt { font-weight: 600; }
 dl.interests dd { margin: 0; color: var(--muted); }
 
 /* ------------------------------------------------------------------
+   About: tools I mainly use
+   ------------------------------------------------------------------ */
+.uses { margin: 2.5rem 0 0; }
+.uses h3 { margin-bottom: .75rem; }
+.uses-row {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr)); gap: 0 2rem;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.uses-row li { padding: 1.1rem 0; }
+.use { display: flex; align-items: center; gap: 1rem; color: inherit; text-decoration: none; border-radius: 8px; }
+.use:hover .use-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.use-mark {
+  flex: none; display: grid; place-items: center;
+  width: 4.5rem; height: 4.5rem;
+  background: #fff; border: 1px solid var(--rule); border-radius: 8px;
+}
+.use-mark img { display: block; width: auto; height: auto; max-width: 3.1rem; max-height: 3.1rem; }
+.use-mark.missing { display: none; }
+.use-name { display: block; font: 500 1.4rem/1.2 var(--serif); }
+.use-desc { display: block; font-size: .9375rem; line-height: 1.45; color: var(--muted); }
+.uses-note { margin: .75rem 0 0; font-size: .8125rem; color: var(--muted); }
+
+/* ------------------------------------------------------------------
    About: figure
    ------------------------------------------------------------------ */
 .fig {
@@ -481,6 +505,33 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
         <p>I am a highly motivated and passionate bioinformatician, data scientist and statistician naturally driven by curiosity to use mathematical, statistical and computational methods to answer fundamental and applied research questions in biodiversity science, evolutionary biology, ecology, genomics and bioinformatics, particularly related to molecular species identification and discovery through DNA barcoding, environmental DNA (eDNA) and other DNA-based approaches.</p>
         <p>My academic work and research interests can best be described as computational molecular biodiversity science. Biodiversity is under threat in a rapidly changing world, where mitigation requires innovative and collaborative solutions from multiple disciplines. DNA-based specimen identification and species discovery through techniques like DNA barcoding and environmental DNA (eDNA) offer promising ways forward, yet produce overwhelming amounts of data.</p>
       </div>
+
+      <!-- Tools I mainly use. Logo files are optional: if one is missing, that tile simply shows the name.
+           Save the official logos next to this file as Rlogo.svg and stan-logo.png (change the src below if yours differ). -->
+      <section class="uses" aria-labelledby="uses-title">
+        <h3 id="uses-title">Tools I mainly use</h3>
+        <ul class="uses-row">
+          <li>
+            <a class="use" href="https://www.r-project.org/">
+              <span class="use-mark"><img src="Rlogo.svg" alt="" onload="document.getElementById('uses-note').hidden=false" onerror="this.parentNode.classList.add('missing')"></span>
+              <span>
+                <span class="use-name">R</span>
+                <span class="use-desc">Statistics, R packages on CRAN, and Shiny web apps</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="use" href="https://mc-stan.org/">
+              <span class="use-mark"><img src="stan-logo.png" alt="" onload="document.getElementById('uses-note').hidden=false" onerror="this.parentNode.classList.add('missing')"></span>
+              <span>
+                <span class="use-name">Stan</span>
+                <span class="use-desc">Bayesian computing and statistics, alongside R</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <p class="uses-note" id="uses-note" hidden>R logo &copy; R Foundation, used under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>. The Stan name and logo are trademarks of NumFOCUS.</p>
+      </section>
 
       <!-- Interactive figure: how the histogram's bin width changes the picture of the DNA barcode gap -->
       <figure class="fig" id="gapfig" aria-labelledby="gapfig-title">
