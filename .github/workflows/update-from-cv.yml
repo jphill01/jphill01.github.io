@@ -1,18 +1,16 @@
-name: Update word cloud
+name: Update site from CV
 
-# Rebuilds wordcloud.png and data/wordcloud-terms.json when you edit index.html or the
-# word cloud files by hand. (When you push a new CV, "Update site from CV" does this
-# step itself.) If the term counts did not change, nothing is redrawn and nothing is
-# committed. The vocabulary is in .github/wordcloud/terms.py.
-# You can also run it by hand: Actions tab > Update word cloud > Run workflow.
+# When a CV PDF is pushed (or this is run by hand), read it and rewrite the CV-driven parts of
+# index.html: latest publications, publications, appointments, education, funding, teaching,
+# supervision, service, volunteering, peer review and the CV download links. Then redraw the
+# word cloud and commit everything in one step.
+# To run it by hand: Actions tab > Update site from CV > Run workflow.
 on:
   push:
     paths:
-      - "index.html"
-      - ".github/wordcloud/**"
-      - ".github/word cloud/**"
-      - ".github/scripts/build_wordcloud.py"
-      - ".github/workflows/update-wordcloud.yml"
+      - "*.pdf"
+      - ".github/scripts/build_from_cv.py"
+      - ".github/workflows/update-from-cv.yml"
   workflow_dispatch:
 
 permissions:
@@ -42,18 +40,21 @@ jobs:
       - name: Install Python packages
         run: pip install numpy pillow matplotlib
 
-      - name: Rebuild the word cloud
+      - name: Read the CV and rewrite index.html
+        run: python .github/scripts/build_from_cv.py
+
+      - name: Redraw the word cloud
         run: python .github/scripts/build_wordcloud.py
 
-      - name: Commit the new picture and term list
+      - name: Commit the changes
         run: |
-          git add wordcloud.png data/wordcloud-terms.json
+          git add index.html data/cv.json wordcloud.png data/wordcloud-terms.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update word cloud"
+          git commit -m "Update site from CV"
           git pull --rebase
           git push
