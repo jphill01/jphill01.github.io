@@ -1,1 +1,37 @@
+name: Update CRAN download data
 
+# Refreshes data/cran-downloads.json every day. The plots on the Software tab
+# read that file. You can also run it by hand: Actions tab > Update CRAN
+# download data > Run workflow (do this once after adding these files).
+on:
+  schedule:
+    - cron: "17 8 * * *"   # every day at 08:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cran-downloads
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch download counts from the CRAN logs
+        run: python3 .github/scripts/update_cran_downloads.py
+
+      - name: Commit the new data
+        run: |
+          git add data/cran-downloads.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update CRAN download data"
+          git push
