@@ -1,0 +1,56 @@
+name: Update word cloud
+
+# Rebuilds wordcloud.png and data/wordcloud-terms.json whenever the text of the
+# site or the CV changes. If the term counts did not change, nothing is redrawn
+# and nothing is committed. The vocabulary is in .github/wordcloud/terms.py.
+# You can also run it by hand: Actions tab > Update word cloud > Run workflow.
+on:
+  push:
+    paths:
+      - "index.html"
+      - "CV*.pdf"
+      - ".github/wordcloud/**"
+      - ".github/scripts/build_wordcloud.py"
+      - ".github/workflows/update-wordcloud.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wordcloud
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install fonts and the PDF text tool
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-crosextra-caladea poppler-utils
+
+      - name: Install Python packages
+        run: pip install numpy pillow matplotlib
+
+      - name: Rebuild the word cloud
+        run: python .github/scripts/build_wordcloud.py
+
+      - name: Commit the new picture and term list
+        run: |
+          git add wordcloud.png data/wordcloud-terms.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update word cloud"
+          git pull --rebase
+          git push
