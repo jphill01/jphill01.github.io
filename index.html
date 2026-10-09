@@ -410,7 +410,7 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
   .plate .affil { font-size: .8125rem; }
   .actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; gap: .6rem 1.1rem; }
   .actions .cvdate { flex-basis: 100%; }
-  .plate-links { display: none; }
+  .plate-links { grid-column: 1 / -1; margin: 0; padding-top: .9rem; font-size: .9375rem; gap: .5rem 1.25rem; }
   .panel { scroll-margin-top: 3.5rem; }
   .tab { padding-top: .95rem; }
   .yearblock h3 { top: 4rem; }
@@ -443,7 +443,8 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
   .plate { position: static; height: auto; background: none; color: #000; padding: 0 0 1rem; display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; }
   .plate a { color: #000; }
   .plate .pron, .plate .affil, .actions .cvdate { color: #333; }
-  .btn, .plate-links, .tabbar, .chips, .skip, .fig-controls, .fig details { display: none !important; }
+  .btn, .tabbar, .chips, .skip, .fig-controls, .fig details { display: none !important; }
+  .plate-links { grid-column: 1 / -1; margin: 0; padding-top: .5rem; border-top-color: #bbb; }
   .panel, .panel[hidden] { display: block !important; max-width: none; padding: 1rem 0; break-before: auto; }
   .panel-title { position: static !important; width: auto !important; height: auto !important; margin: 0 0 1rem !important; clip: auto !important; overflow: visible !important; }
   .pubgroup[hidden] { display: block !important; }
@@ -480,11 +481,14 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
       <p class="cvdate">CV last updated October 2026</p>
     </div>
 
-    <ul class="plate-links">
+    <ul class="plate-links" aria-label="Elsewhere on the web">
+      <li><a href="https://www.uoguelph.ca/profile/jarrett-phillips">University of Guelph faculty profile</a></li>
       <li><a href="https://scholar.google.ca/citations?user=2YE-Y4cAAAAJ&amp;hl=en">Google Scholar</a></li>
       <li><a href="https://orcid.org/0000-0001-8390-386X">ORCID</a></li>
       <li><a href="https://github.com/jphill01">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/jarrettdphillips/">LinkedIn</a></li>
+      <li><a href="https://www.researchgate.net/profile/Jarrett-Phillips">ResearchGate</a></li>
+      <li><a href="https://twitter.com/JarrettDPhilli1">Twitter/X</a></li>
     </ul>
   </header>
 
@@ -516,13 +520,13 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
       </div>
 
       <!-- Tools I mainly use. Logo files are optional: if one is missing, that tile simply shows the name.
-           Save the official logos next to this file as R-logo.png and stan-logo.png (change the src below if yours differ). -->
+           Save the official logos next to this file as R-logo.svg and stan-logo.png (change the src below if yours differ). -->
       <section class="uses" aria-labelledby="uses-title">
         <h3 id="uses-title">Tools I mainly use</h3>
         <ul class="uses-row">
           <li>
             <a class="use" href="https://www.r-project.org/">
-              <span class="use-mark"><img src="R-logo.png" alt="" onload="document.getElementById('uses-note').hidden=false" onerror="this.parentNode.classList.add('missing')"></span>
+              <span class="use-mark"><img src="R-logo.svg" alt="" onload="document.getElementById('uses-note').hidden=false" onerror="this.parentNode.classList.add('missing')"></span>
               <span>
                 <span class="use-name">R</span>
                 <span class="use-desc">Statistics, R packages on CRAN, and Shiny web apps</span>
@@ -1245,18 +1249,6 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
         <p style="margin:0 0 1rem"><a href="CV_October_2026_-_Phillips__Jarrett.pdf">Download my CV (PDF)</a>, last updated October 2026.</p>
       </div>
 
-      <div class="sec">
-        <h3>Elsewhere</h3>
-        <ul class="contact-list">
-          <li><a href="https://www.uoguelph.ca/profile/jarrett-phillips">University of Guelph faculty profile</a><span class="host">uoguelph.ca</span></li>
-          <li><a href="https://github.com/jphill01">GitHub</a><span class="host">github.com/jphill01</span></li>
-          <li><a href="https://scholar.google.ca/citations?user=2YE-Y4cAAAAJ&amp;hl=en">Google Scholar</a><span class="host">scholar.google.ca</span></li>
-          <li><a href="https://orcid.org/0000-0001-8390-386X">ORCID</a><span class="host">0000-0001-8390-386X</span></li>
-          <li><a href="https://www.linkedin.com/in/jarrettdphillips/">LinkedIn</a><span class="host">linkedin.com/in/jarrettdphillips</span></li>
-          <li><a href="https://www.researchgate.net/profile/Jarrett-Phillips">ResearchGate</a><span class="host">researchgate.net</span></li>
-          <li><a href="https://twitter.com/JarrettDPhilli1">Twitter/X</a><span class="host">twitter.com/JarrettDPhilli1</span></li>
-        </ul>
-      </div>
     </section>
 
   </main>
