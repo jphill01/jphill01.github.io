@@ -1,0 +1,717 @@
+{
+ "date": "October 2026",
+ "source": "CV_October_2026_-_Phillips__Jarrett.pdf",
+ "research_areas": "Computational statistics · Data science · Machine learning · Statistical modelling · Biodiversity informatics · eDNA and DNA barcoding",
+ "appointments": [
+  {
+   "title": "Adjunct Professor, School of Computer Science",
+   "date": "2023–Present",
+   "lines": [
+    "University of Guelph"
+   ]
+  },
+  {
+   "title": "Affiliated Faculty, One Health Institute",
+   "date": "2026",
+   "lines": [
+    "University of Guelph"
+   ]
+  }
+ ],
+ "education": [
+  {
+   "degree": "Ph.D. in Computational Sciences, University of Guelph",
+   "date": "2022",
+   "lines": [
+    "Co-Advisors: Dr. Daniel Gillis and Dr. Robert Hanner",
+    "Advisory Committee Members: Dr. Deborah Stacey and Dr. Graham Taylor",
+    "Dissertation: A Novel Statistical Framework for Assessment of Intraspecific Haplotype Sampling Completeness: Implications for DNA Barcode Gap Estimation"
+   ]
+  },
+  {
+   "degree": "Master of Bioinformatics, University of Guelph",
+   "date": "2014",
+   "lines": [
+    "Co-Advisors: Dr. Robert Hanner and Dr. Daniel Ashlock",
+    "Major Paper: Assessing DNA Barcode Haplotype Sampling Diversity in the Ray-finned Fishes (Chordata: Actinopterygii)"
+   ]
+  },
+  {
+   "degree": "BSc. (Hons.) in Biological Science, University of Guelph",
+   "date": "2013",
+   "lines": [
+    "Coursework in bioinformatics, ecology, evolutionary biology, comparative animal physiology, genetics, mathematics, and statistics"
+   ]
+  }
+ ],
+ "experience": [
+  {
+   "title": "Postdoctoral Fellow",
+   "date": "2023–Present",
+   "lines": [
+    "University of Guelph",
+    "GBADs Informatics Team",
+    "Stacey Lab, School of Computer Science",
+    "Supervisor: Dr. Deborah Stacey"
+   ]
+  },
+  {
+   "title": "Postdoctoral Fellow",
+   "date": "2023–Present",
+   "lines": [
+    "University of Guelph",
+    "Gillis Lab, School of Computer Science",
+    "Hanner Lab, Department of Integrative Biology",
+    "Supervisors: Drs. Daniel Gillis and Robert Hanner"
+   ]
+  },
+  {
+   "title": "Postdoctoral Fellow",
+   "date": "2022",
+   "lines": [
+    "University of Guelph",
+    "Hanner Lab, Department of Integrative Biology",
+    "Supervisor: Dr. Robert Hanner"
+   ]
+  }
+ ],
+ "funding": [
+  {
+   "group": "Completed",
+   "name": "Food From Thought Advancing Research Impact (ARIF) Fund – Livestock Innovation Grant",
+   "date": "2024",
+   "institution": "University of Guelph",
+   "amount": "$40,000 CAD",
+   "title": "A Modular Decision- and Policy-Making Tool for Global Livestock Disease Burden Assessment",
+   "role": "Co-applicant"
+  },
+  {
+   "group": "Completed",
+   "name": "Food From Thought Advancing Research Impact (ARIF) Fund",
+   "date": "2023",
+   "institution": "University of Guelph",
+   "amount": "$30,000 CAD",
+   "title": "Forecasting Seafood Fraud Occurrence in the Supply Chain Within Major Canadian Cities Using Bayesian Hierarchical Binary Logistic Time-Series Regression Modeling",
+   "role": "HQP"
+  },
+  {
+   "group": "Completed",
+   "name": "SoCS Travel Grant",
+   "date": "2019",
+   "institution": "University of Guelph",
+   "amount": "$1,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Completed",
+   "name": "Arthur D. Latornell Graduate Travel Grant",
+   "date": "2019",
+   "institution": "University of Guelph",
+   "amount": "$500 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Completed",
+   "name": "Graduate Teaching Assistantships",
+   "date": "2016–2020",
+   "institution": "University of Guelph",
+   "amount": "$35,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Completed",
+   "name": "Graduate Research Assistantships",
+   "date": "2017–2019",
+   "institution": "University of Guelph",
+   "amount": "$11,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Completed",
+   "name": "CPES Graduate Dean’s Scholarship",
+   "date": "2017",
+   "institution": "University of Guelph",
+   "amount": "$3,500 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Completed",
+   "name": "CPES Graduate Excellence Entrance (GEE) Scholarship",
+   "date": "2016",
+   "institution": "University of Guelph",
+   "amount": "$30,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Submitted",
+   "name": "NSERC Discovery Grant",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "amount": "Amount $TBD CAD",
+   "title": "Computational Statistical Methods for Specimen Sampling Sufficiency and Species Genetic Diversity Assessment",
+   "role": "Principal Investigator"
+  },
+  {
+   "group": "Submitted",
+   "name": "NSERC Alliance Society Grant",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "amount": "$2.5 million CAD",
+   "title": "AI-Driven Biodiversity Restoration: Scalable Solutions for Ecosystem Monitoring and Conservation",
+   "role": "Collaborator"
+  },
+  {
+   "group": "Submitted",
+   "name": "NSERC CREATE Grant",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "amount": "$9.9 million CAD",
+   "title": "AI-Driven Training of Next-Generation Conservation Scientists",
+   "role": "Collaborator"
+  },
+  {
+   "group": "To be Submitted",
+   "name": "Advancing Research Impact Fund: “Quick Wins” Knowledge Mobilization Fund",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "amount": "$20,000 CAD",
+   "title": "GBADs ModelBuilder as a Tool to Teach Livestock Population Dynamics and Disease Burden Risk Estimation",
+   "role": "Co-applicant"
+  }
+ ],
+ "software": {
+  "total": "98,000+ software downloads through the Comprehensive R Archive Network (CRAN)",
+  "tools": [
+   "Seafood Fraud Modelling App · Python web application · URL: https://dynamics-between-seafood-fraudsters-and-buyers.streamlit.app",
+   "GBADs ModelBuilder · R Shiny web application · URL: https://animalhealthmetrics.org/2025/10/14/introduction-to-gbads-new-model-builder-prototype/",
+   "RulesTools · R package · >3000 downloads · DOI: 10.32614/CRAN.package.RulesTools",
+   "Frequentist/Bayesian DNA barcode gap coalescent-informed estimators · R scripts",
+   "VLF (Very Low Frequency) · R package · >40000 downloads · DOI: 10.32614/CRAN.package.VLF",
+   "HACSim (Haplotype Accumulation Curve Simulator) · R package · R Shiny web application · >50000 downloads · DOI: 10.32614/CRAN.package.HACSim"
+  ]
+ },
+ "supervision": {
+  "intro": "Mentored/co-supervised 18 undergraduate and graduate students across computer science, bioinformatics, statistics, and biology.",
+  "students": [
+   {
+    "group": "Undergraduate",
+    "name": "*Brendan Carl Rosario",
+    "date": "2025",
+    "detail": "Undergraduate Student Volunteer · Supervised Machine Learning for eDNA spatiotemporal sampling"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Richard Cui",
+    "date": "2025",
+    "detail": "Summer Undergraduate Research Assistant (URA) · Dynamical modelling of seafood fraud in the supply chain"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Nikolett Toth",
+    "date": "2024–2025",
+    "detail": "CIS*4900/4910 · Mining association rules for eDNA spatiotemporal sampling"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Nikolett Toth",
+    "date": "2024",
+    "detail": "Summer Undergraduate Research Assistant (URA) · Mining association rules for eDNA spatiotemporal sampling"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Fynn De Vuono-Fraser",
+    "date": "2024",
+    "detail": "CIS*4900/4910 · Bayesian modelling of seafood fraud in the Canadian supply chain"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Zaid Al-Gayyali",
+    "date": "2023",
+    "detail": "Summer Undergraduate Research Assistant (URA) · Seafood Fraud Visualization Tool Shiny app"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Fynn De Vuono-Fraser",
+    "date": "2023",
+    "detail": "STAT*4600 · Bayesian modelling of seafood fraud in the Canadian supply chain"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Navdeep Singh",
+    "date": "2021",
+    "detail": "CIS*4900 · HACSim R Shiny web application"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Scarlett Bootsma",
+    "date": "2020–2021",
+    "detail": "CIS*4900/4910 · HACSim simulation study"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "**Maya Persram",
+    "date": "2020",
+    "detail": "Hanner Lab volunteer · R reporting ecological meta-analysis"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "**Ashley Chen",
+    "date": "2020",
+    "detail": "Hanner Lab volunteer · R reporting ecological meta-analysis"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "**Olivia Friesen Kroeker",
+    "date": "2020",
+    "detail": "Hanner Lab volunteer · R reporting ecological meta-analysis"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "*Steven French",
+    "date": "2018",
+    "detail": "CIS*4900/4910 · HACSim R package"
+   },
+   {
+    "group": "Undergraduate",
+    "name": "**Julia Harvie",
+    "date": "2018–2019",
+    "detail": "MCB*4500/4510 · Data mining GenBank and BOLD"
+   },
+   {
+    "group": "Graduate",
+    "name": "**Nathan Zeinstra",
+    "date": "2024",
+    "detail": "IBIO*6070 · Bayesian habitat occupancy modelling for sea lamprey detection using eDNA"
+   },
+   {
+    "group": "Graduate",
+    "name": "**Amina Asif",
+    "date": "2022",
+    "detail": "BINF*6999 · DNA barcode gap analysis of Canadian disease vectors and agricultural pests"
+   },
+   {
+    "group": "Graduate",
+    "name": "**Danielle St. Jean (withdrawn)",
+    "date": "2018–2019",
+    "detail": "MSc. thesis (Mathematics) · DNA barcode sequence classification with machine learning"
+   },
+   {
+    "group": "Graduate",
+    "name": "**Christina Fragel",
+    "date": "2018–2019",
+    "detail": "BINF*6999 · DNA barcode sequence classification with machine learning"
+   },
+   {
+    "group": "Graduate",
+    "name": "**Jiaojia (Paula) Yu",
+    "date": "2018–2019",
+    "detail": "BINF*6999 · MDMAPR R Shiny app"
+   },
+   {
+    "group": "Graduate",
+    "name": "**Ankita Bhanderi",
+    "date": "2018",
+    "detail": "BINF*6999 · Data mining GenBank and BOLD"
+   }
+  ]
+ },
+ "teaching": [
+  {
+   "title": "Course Instructor",
+   "date": "2025",
+   "institution": "University of Guelph",
+   "courses": [
+    {
+     "text": "CIS*1910 – Discrete Structures in Computing I",
+     "date": ""
+    }
+   ]
+  },
+  {
+   "title": "Graduate Teaching Assistant (GTA)",
+   "date": "2016–2020",
+   "institution": "University of Guelph",
+   "courses": [
+    {
+     "text": "CIS*3130 – System Modelling and Simulation",
+     "date": "2020"
+    },
+    {
+     "text": "CIS*1910 – Discrete Structures in Computing I",
+     "date": "2017"
+    },
+    {
+     "text": "CIS*2460 – Modelling of Computer Systems",
+     "date": "2016–2019"
+    }
+   ]
+  }
+ ],
+ "service": [
+  {
+   "name": "Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) Conference",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Conference organizer and volunteer"
+   ]
+  },
+  {
+   "name": "39th Canadian Artificial Intelligence Conference",
+   "date": "2026",
+   "institution": "Simon Fraser University",
+   "bullets": [
+    "Program committee reviewer for Long and Short Papers Track"
+   ]
+  },
+  {
+   "name": "GBADs Informatics Technical Workshop",
+   "date": "2023",
+   "institution": "University of Liverpool",
+   "bullets": [
+    "Workshop organizer"
+   ]
+  },
+  {
+   "name": "Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) Conference",
+   "date": "2023",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Conference organizer and volunteer"
+   ]
+  },
+  {
+   "name": "School of Computer Science (SoCS) Faculty Search Committee",
+   "date": "2018",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Member of hiring panel for Associate Professor in Cybersecurity"
+   ]
+  },
+  {
+   "name": "School of Computer Science (SoCS) Faculty Search Committee",
+   "date": "2017–2018",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Member of hiring panel for 2-year Contractually Limited Assistant Professor in Cybersecurity"
+   ]
+  }
+ ],
+ "talks": [
+  {
+   "event": "The VII AMMCS International Conference (student oral presentation)",
+   "date": "2026",
+   "location": "Wilfrid Laurier University, Canada",
+   "authors": "*Cui, R.C., Yodzis, M.P., and Phillips, J.D.",
+   "title": "Modelling the Interplay between IUU Fishing, Wholesaler Fraud, and Consumer Awareness in the Seafood Supply Chain"
+  },
+  {
+   "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (oral presentation)",
+   "date": "2026",
+   "location": "University of Guelph, Canada",
+   "authors": "Phillips, J.D.",
+   "title": "Association rule mining for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling"
+  },
+  {
+   "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (student poster presentation)",
+   "date": "2026",
+   "location": "University of Guelph, Canada",
+   "authors": "*Toth, N., Antonie, M.L. and Phillips, J.D.",
+   "title": "To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets"
+  },
+  {
+   "event": "39th Canadian Conference on Artificial Intelligence (short paper and student poster presentation)",
+   "date": "2026",
+   "location": "Simon Fraser University, Canada",
+   "authors": "*Toth, N., Antonie, M.L. and Phillips, J.D.",
+   "title": "To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets."
+  },
+  {
+   "event": "SoCS Undergraduate Summer Project Show and Tell (student oral presentation)",
+   "date": "2025",
+   "location": "University of Guelph, Canada",
+   "authors": "*Cui, R.C., Yodzis, M.P., and Phillips, J.D.",
+   "title": "The Importance in Design as a Computer Scientist"
+  },
+  {
+   "event": "CEPS Undergraduate Student Poster Day (student poster presentation)",
+   "date": "2024",
+   "location": "University of Guelph, Canada",
+   "authors": "*Toth N. and Phillips, J.D.",
+   "title": "Association Rule Mining of eDNA Datasets"
+  },
+  {
+   "event": "CBS Undergraduate Poster Session (student poster presentation)",
+   "date": "2024",
+   "location": "University of Guelph, Canada",
+   "authors": "*Toth N. and Phillips, J.D.",
+   "title": "Association Rule Mining of eDNA Datasets"
+  },
+  {
+   "event": "9th International Barcode of Life Conference (poster presentation)",
+   "date": "2024",
+   "location": "Estação das Docas, Belem, Brazil",
+   "authors": "Phillips, J.D.",
+   "title": "A Measure of the DNA Barcode Gap for Applied and Basic Research (abstract accepted, not attended)"
+  },
+  {
+   "event": "GBADs Informatics Technical Workshop (oral presentation)",
+   "date": "2023",
+   "location": "University of Liverpool, England",
+   "authors": "Phillips, J.D.",
+   "title": "The GBADs R Package (and Why We Need It!)"
+  },
+  {
+   "event": "CEPS Student Research Day (student poster presentation)",
+   "date": "2023",
+   "location": "University of Guelph, Canada",
+   "authors": "*De Vuono-Fraser, F.A. and Phillips, J.D.",
+   "title": "Estimating Seafood Mislabelling Rates in Canada Using Bayesian Modelling"
+  },
+  {
+   "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (poster presentation)",
+   "date": "2023",
+   "location": "University of Guelph, Canada",
+   "authors": "Phillips, J.D.",
+   "title": "Haplotype diversity reveals challenges and opportunities for developing targeted detection assays for COI in Canadian freshwater fishes"
+  },
+  {
+   "event": "8th International Barcode of Life Conference (oral presentation)",
+   "date": "2019",
+   "location": "NTNU University Museum and Norwegian Biodiversity Information Centre, Norway",
+   "authors": "Phillips, J.D.",
+   "title": "HACSim: Iterative extrapolation of haplotype accumulation curves for assessment of intraspecific COI DNA barcode sampling completeness"
+  },
+  {
+   "event": "Guelph BioMathematics and Statistics (BioM&S) Symposium",
+   "date": "2019",
+   "location": "University of Guelph, Canada",
+   "authors": "",
+   "title": "Artificial Intelligence and Machine Learning in Biology (attended)"
+  },
+  {
+   "event": "CEPS Undergraduate Student Poster Day (student poster presentation)",
+   "date": "2018",
+   "location": "University of Guelph, Canada",
+   "authors": "*French, S.H. and Phillips, J.D.",
+   "title": "Estimating Sampling Size Using Haplotype Accumulation Curves and Semiparametric Models"
+  },
+  {
+   "event": "7th International Barcode of Life Conference (oral presentation)",
+   "date": "2017",
+   "location": "University of Johannesburg, South Africa",
+   "authors": "Phillips, J.D.",
+   "title": "Intraspecific sample size estimation for DNA barcoding: Are current sampling levels enough?"
+  },
+  {
+   "event": "6th International Barcode of Life Conference (poster presentation)",
+   "date": "2015",
+   "location": "University of Guelph, Canada",
+   "authors": "Phillips, J.D.",
+   "title": "An exploration of sufficient sampling effort to describe intraspecific DNA barcode haplotype diversity: examples from the ray-finned fishes (Chordata: Actinopterygii)."
+  }
+ ],
+ "refereed": {
+  "record": "Publication record: 9 peer-reviewed journal articles (7 first-author, 2 co-author) and 2 book chapters (1 first-author, 1 co-author), plus 3 first-author manuscripts in preprint or to be submitted. Senior (last) author on 2 student-led manuscripts",
+  "entries": [
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D. and *De Vuono-Fraser, F.A. (2026). Swimming in deep uncertainty: How proper statistical modelling can help expose seafood product mislabeling. CHANCE, 3. DOI: 10.1080/09332480.2026.2725526"
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D. and *De Vuono-Fraser, F.A. (2026). Statistical modelling of seafood fraud highlights uncertainties in products from Metro Vancouver, British Columbia, Canada: Revisiting Hu et al. (2018). Journal of Food Science, 91: e71201. DOI: 10.1111/1750-3841.71201"
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Raymond, K., Sobkowich, K.E., Phillips, J.D., Nguyen, L., McKechnie, I., Mohideen, R.N., Fitzjohn, W., Szurkowski, M., Davidson, J., Rushton, J., Stacey, D.A., and Bernardo T.M. (2024). GBADs informatics strategy: User-centric tools, data quality, and model interoperability. WOAH Scientific and Technical Review, 43: 96–107. DOI: 10.20506/rst.43.3522."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Athey, T.B.T., Hanner, R.H., and McNicholas, P.D. (2023). VLF: An R package for the analysis of very low frequency variants in DNA sequences. Biodiversity Data Journal, e96480. DOI: 10.3897/BDJ.11.e96480."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Gillis, D.J., and Hanner, R.H. (2022). Lack of statistical rigor in DNA barcoding likely invalidates the presence of a true species’ barcode gap. Frontiers in Ecology and Evolution, 10: 859099. DOI: 10.3389/fevo.2022.859099."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "D’Ercole, J., Dincă, V., Opler, P.A., Kondla, N.G., Schmidt, C.B., Phillips, J.D., Robbins, R., Burns, J.M., Miller, S.E., Grishin, N., Zakharov, E.V., deWaard, J.R., Ratnasingham, S., and Hebert, P.D.N. (2021). A DNA barcode library for the butterflies of North America. PeerJ, 9: e11157. DOI: 10.7717/peerj.11157."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., *French, S.H., Hanner, R.H., and Gillis, D.J. (2020). HACSim: An R package to estimate intraspecific sample sizes for genetic diversity assessment using haplotype accumulation curves. PeerJ Computer Science, 6(192): 1–37. DOI: 10.7717/peerj-cs.243. Top 5 most viewed article in category “Optimzation Theory and Computation\"."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Gillis, D.J., and Hanner, R.H. (2019). Incomplete estimates of genetic diversity within species: Implications for DNA barcoding. Ecology and Evolution, 9(5): 2996–3010. DOI: 10.1002/ece3.4757."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Gwiazdowski, R.A., Ashlock, D., and Hanner, R. (2015). An exploration of sufficient sampling effort to describe intraspecific DNA barcode haplotype diversity: examples from the ray-finned fishes (Chordata: Actinopterygii). DNA Barcodes, 3: 66–73. DOI: 10.1515/dna-2015-0008."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Preprints",
+    "text": "*Toth, N., Antonie, L., Hanner, R.H., Gillis, D.J., and Phillips, J.D. Mining association rules for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling. bioRxiv. DOI: 10.64898/2026.09.16.752056."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Preprints",
+    "text": "Phillips, J.D., Hubert, N., and Hanner, R.H. (2025). A Bayesian coalescent model of the DNA barcode gap. Authorea. DOI: 10.22541/au.174073683.37707806/v1"
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Preprints",
+    "text": "Phillips, J.D. and *De Vuono-Fraser, F.A. (2024). Statistical modelling of seafood fraud in the Canadian supply chain. bioRxiv. DOI: 10.1101/2024.02.05.578947."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "Submitted or Under Revision",
+    "text": "*Toth, N., Antonie, L., Hanner, R.H., Gillis, D.J., and Phillips, J.D. Mining association rules for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling. Submitted to Oikos."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "To Be Submitted",
+    "text": "Phillips, J.D., Hubert, N., and Hanner, R.H. A Bayesian-informed coalescent model of the DNA barcode gap. Targeted to Methods in Ecology and Evolution."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "In Preparation (Selected)",
+    "text": "*Cui, R.C., Yodzis, M.P., and Phillips, J.D. The influence of wholesaler fraud and consumer perception on IUU fishing in a model of the seafood supply chain. Targeted to Proceedings of the National Academy of Sciences."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "In Preparation (Selected)",
+    "text": "Diao, J., Elliott, T.A., Phillips, J.D., You, J., and Adamowicz, S.J. Benchmarking imputation methods for insect trait data across missingness mechanisms and trait types. Targeted to Methods in Ecology and Evolution."
+   },
+   {
+    "parent": "Journal Articles",
+    "group": "In Preparation (Selected)",
+    "text": "D’Ercole, J., Dapporto, L., Phillips, J.D., Dincă, V.E., Vila, R., Talavera, G., and Hebert, P.D.N. Macrogenetics of North American butterflies – The impact of Quaternary climatic fluctuations. Targeted to Proceedings of the National Academy of Sciences ."
+   },
+   {
+    "parent": "Book Chapters",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Griswold, C.K., Young, R.G., Hubert, N., and Hanner, R.H. (2024). A Measure of the DNA Barcode Gap for Applied and Basic Research. In: DeSalle, R. (eds) DNA Barcoding. Methods in Molecular Biology, vol 2744. Humana, New York, NY. URL: https://link.springer.com/protocol/10.1007/978-1-0716-3581-0_24"
+   },
+   {
+    "parent": "Book Chapters",
+    "group": "Published or Accepted",
+    "text": "Hubert, N., Phillips, J.D., and Hanner, R.H. (2024). Delimiting Species with Single-Locus DNA Sequences. In: DeSalle, R. (eds) DNA Barcoding. Methods in Molecular Biology, vol 2744. Humana, New York, NY. URL: https://link.springer.com/protocol/10.1007/978-1-0716-3581-0_3"
+   },
+   {
+    "parent": "Book Chapters",
+    "group": "Submitted or Under Revision",
+    "text": "*Cui, R.C., Yodzis, M.P., and Phillips, J.D. Modelling the Interplay between IUU Fishing, Wholesaler Fraud, and Consumer Awareness in the Seafood Supply Chain. VII AMMCS International Conference, Springer Nature."
+   },
+   {
+    "parent": "Conference Proceedings",
+    "group": "Published or Accepted",
+    "text": "*Toth, N., Antonie, M.L., and Phillips, J.D. To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets. 39th Canadian Conference on Artificial Intelligence, 318: 1012–1019. Short paper and poster."
+   },
+   {
+    "parent": "Conference Proceedings",
+    "group": "Published or Accepted",
+    "text": "Morey, K., Loeza-Quintana, T., Phillips, J., and Hanner R. (2023). Haplotype diversity reveals challenges and opportunities for developing targeted detection assays for COI in Canadian freshwater fishes. Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) Conference. Poster."
+   },
+   {
+    "parent": "Conference Proceedings",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Gillis, D., and Hanner, R. (2019). HACSim: Iterative extrapolation of haplotype accumulation curves for assessment of intraspecific COI DNA barcode sampling completeness. Scientific abstracts from the 8th International Barcode of Life Conference, Trondheim, Norway (ed. Torbjørn Ekrem), Genome, 62(6): 349–453. Oral presentation."
+   },
+   {
+    "parent": "Conference Proceedings",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Gillis, D., and Hanner, R. (2017). Intraspecific sample size estimation for DNA barcoding: Are current sampling levels enough? Scientific abstracts from the 7th International Barcode of Life Conference, Johannesburg, South Africa (ed. M. van der Bank), Genome, 60(11): 881–1019. Oral presentation."
+   },
+   {
+    "parent": "Conference Proceedings",
+    "group": "Published or Accepted",
+    "text": "Phillips, J.D., Gwiazdowski, R.A., Ashlock, D., and Hanner, R. (2015). An exploration of sufficient sampling effort to describe intraspecific haplotype diversity in the ray-finned fishes (Chordata: Actinopterygii). Scientific abstracts from the 6th International Barcode of Life Conference, Guelph, ON., Canada (ed. S.J. Adamowicz), Genome, 58(5): 163–303. Poster."
+   }
+  ]
+ },
+ "nonref": {
+  "thesis": "Phillips, J.D. (2022). A Novel Statistical Framework for Assessment of Intraspecific Haplotype Sampling Completeness: Implications for DNA Barcode Gap Estimation. University of Guelph Atrium. URL: https://atrium.lib.uoguelph.ca/items/8addfcc5-f21c-4691-89b7-c4db051892eb",
+  "entries": [
+   "*Cui, R.C. and Phillips, J.D. (2026). Student-contributed poster for University of Guelph March Open House",
+   "*Toth, N. and Phillips, J.D. (2026). Student-contributed poster for University of Guelph March Open House",
+   "*Cui, R.C. and Phillips, J.D. (2025). The Importance in Design as a Computer Scientist. Student-contributed SoCS Show and Tell video URL: https://github.com/RichaCui70/Dynamics-between-Seafood-Fraudsters-and-Buyers/tree/main/misc_resources",
+   "Phillips, J.D., *De Vuono-Fraser, F.A., Gillis, D.J., and Hanner, R.H. (2024). Statistical modelling of seafood fraud. Whiteboard explainer video. URL: https://www.youtube.com/watch?v=4jU8cU8M70U",
+   "*Toth, N. and Phillips, J.D. (2024). eDNA Collection Gets a Tech Update. Student-contributed CEPS Research Highlights article. URL: https://www.uoguelph.ca/ceps/news/2024/07/edna-collection-gets-tech-upgrade",
+   "*Toth, N. and Phillips, J.D. (2024). Unravelling eDNA with Association Rule Mining. Contributed guest post to the Science Borealis-syndicated blog of Dr. Daniel Gillis. URL: https://danielgillis.wordpress.com/2024/08/15/unravelling-edna-with-association-rule-mining/",
+   "Phillips, J.D. (2024). Summer URA Position. Contributed guest post to the Science Borealis-syndicated blog of Dr. Daniel Gillis. URL: https://danielgillis.wordpress.com/2024/02/07/summer-ura-position-2/",
+   "Phillips, J.D. (2022). Mind the Gap – The DNA Barcode Gap, That Is. Contributed CEPS Research Highlights article. URL: https://www.uoguelph.ca/ceps/news/2022/08/mind-gap-%E2%80%93-dna-barcode-gap",
+   "Phillips, J.D. (2020). Barcode Cracking. Contributed CEPS Research Highlights article. URL: https://www.uoguelph.ca/ceps/news/2020/02/barcode-cracking",
+   "Phillips, J.D. (2020). Protecting Biodiversity Through the Lens of Genetic Diversity. Contributed guest post to the Science Borealis-syndicated blog of Dr. Daniel Gillis. URL: https://danielgillis.wordpress.com/2020/01/30/protecting-biodiversity-through-the-lens-of-genetic-diversity/",
+   "Phillips, J.D. (2019). IBOL8 and the Midnight Sun. Contributed guest post to the Science Borealis-syndicated blog of Dr. Daniel Gillis. URL: https://danielgillis.wordpress.com/2019/07/02/reflections-ibol8-and-the-midnight-sun/",
+   "Phillips, J.D. (2017). The Big Five and IBOL7. Contributed guest post to the Science Borealis-syndicated blog of Dr. Daniel Gillis. URL: https://danielgillis.wordpress.com/2017/12/06/reflections-the-big-five-and-ibol7/",
+   "Phillips, J.D. (2016). Sample size estimation for DNA barcoding: Are current sampling levels enough? Contributed guest post to the DNA Barcoding Blog of Dr. Dirk Steinke. URL: http://dna-barcoding.blogspot.com/2016/01/guest-post-sample-size-estimation-for.html",
+   "Phillips, J.D. (2016). Sample size estimation for DNA barcoding of ray-finned fishes: Are current sampling levels enough? Contributed newsletter article to the Barcode Bulletin, 7(1). URL: https://journal.lib.uoguelph.ca/index.php/ibol/issue/view/345"
+  ]
+ },
+ "peer_review": "Ecology and Evolution, F1000 Research, Frontiers in Ecology and Evolution, Lifestyle Genomics, Mitochondrial DNA Part A, Molecular Ecology Resources, Molecular Biology Reports, Methods in Ecology and Evolution, Nature Communications",
+ "volunteer": [
+  {
+   "name": "CEPS Student Research Connections Networking Night",
+   "date": "2025",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Connected with undergraduate students for summer URA project recruitment"
+   ]
+  },
+  {
+   "name": "CIS*3750 Wireframing session",
+   "date": "2021–Present",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Graded students on mobile app prototypes for various community partners using Qualtrics surveys"
+   ]
+  }
+ ],
+ "_sections_found": [
+  "appointments",
+  "education",
+  "experience",
+  "funding",
+  "nonref",
+  "peer_review",
+  "refereed",
+  "research_areas",
+  "service",
+  "software",
+  "supervision",
+  "talks",
+  "teaching",
+  "volunteer"
+ ],
+ "counts": {
+  "appointments": 5,
+  "education": 3,
+  "funding": 12,
+  "supervision": 20,
+  "teaching": 2,
+  "service": 6,
+  "talks": 16,
+  "publications": 25,
+  "outreach": 15,
+  "volunteer": 2,
+  "peer_review_journals": 9
+ }
+}
