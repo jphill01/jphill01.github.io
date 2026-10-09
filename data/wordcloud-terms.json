@@ -1,0 +1,293 @@
+{
+ "sources": {
+  "site": "index.html",
+  "cv": "CV_October_2026_-_Phillips__Jarrett.pdf"
+ },
+ "terms": [
+  {
+   "label": "sampling",
+   "type": "topic",
+   "n": 51
+  },
+  {
+   "label": "DNA barcoding",
+   "type": "topic",
+   "n": 49
+  },
+  {
+   "label": "seafood fraud",
+   "type": "topic",
+   "n": 40
+  },
+  {
+   "label": "modelling",
+   "type": "topic",
+   "n": 37
+  },
+  {
+   "label": "eDNA",
+   "type": "topic",
+   "n": 34
+  },
+  {
+   "label": "DNA barcode gap",
+   "type": "topic",
+   "n": 29
+  },
+  {
+   "label": "statistics",
+   "type": "topic",
+   "n": 27
+  },
+  {
+   "label": "R",
+   "type": "tool",
+   "n": 26
+  },
+  {
+   "label": "association rules",
+   "type": "topic",
+   "n": 24
+  },
+  {
+   "label": "genetic diversity",
+   "type": "topic",
+   "n": 23
+  },
+  {
+   "label": "species",
+   "type": "topic",
+   "n": 23
+  },
+  {
+   "label": "intraspecific",
+   "type": "topic",
+   "n": 21
+  },
+  {
+   "label": "GBADs",
+   "type": "topic",
+   "n": 18
+  },
+  {
+   "label": "biodiversity",
+   "type": "topic",
+   "n": 17
+  },
+  {
+   "label": "supply chain",
+   "type": "topic",
+   "n": 16
+  },
+  {
+   "label": "fishes",
+   "type": "topic",
+   "n": 15
+  },
+  {
+   "label": "Bayesian",
+   "type": "topic",
+   "n": 13
+  },
+  {
+   "label": "ecology",
+   "type": "topic",
+   "n": 13
+  },
+  {
+   "label": "haplotype accumulation",
+   "type": "topic",
+   "n": 13
+  },
+  {
+   "label": "statistical modelling",
+   "type": "topic",
+   "n": 13
+  },
+  {
+   "label": "DNA sequences",
+   "type": "topic",
+   "n": 12
+  },
+  {
+   "label": "HACSim",
+   "type": "tool",
+   "n": 12
+  },
+  {
+   "label": "data mining",
+   "type": "topic",
+   "n": 11
+  },
+  {
+   "label": "Shiny",
+   "type": "tool",
+   "n": 11
+  },
+  {
+   "label": "spatiotemporal",
+   "type": "topic",
+   "n": 11
+  },
+  {
+   "label": "machine learning",
+   "type": "topic",
+   "n": 10
+  },
+  {
+   "label": "livestock",
+   "type": "topic",
+   "n": 8
+  },
+  {
+   "label": "simulation",
+   "type": "topic",
+   "n": 8
+  },
+  {
+   "label": "species identification",
+   "type": "topic",
+   "n": 8
+  },
+  {
+   "label": "web apps",
+   "type": "tool",
+   "n": 8
+  },
+  {
+   "label": "agent-based models",
+   "type": "topic",
+   "n": 7
+  },
+  {
+   "label": "bioinformatics",
+   "type": "topic",
+   "n": 7
+  },
+  {
+   "label": "butterflies",
+   "type": "topic",
+   "n": 7
+  },
+  {
+   "label": "coalescent",
+   "type": "topic",
+   "n": 7
+  },
+  {
+   "label": "CRAN",
+   "type": "tool",
+   "n": 7
+  },
+  {
+   "label": "nonparametric",
+   "type": "topic",
+   "n": 7
+  },
+  {
+   "label": "VLF",
+   "type": "tool",
+   "n": 7
+  },
+  {
+   "label": "classification",
+   "type": "topic",
+   "n": 6
+  },
+  {
+   "label": "disease burden",
+   "type": "topic",
+   "n": 6
+  },
+  {
+   "label": "regression",
+   "type": "topic",
+   "n": 6
+  },
+  {
+   "label": "sequencing errors",
+   "type": "topic",
+   "n": 5
+  },
+  {
+   "label": "data science",
+   "type": "topic",
+   "n": 4
+  },
+  {
+   "label": "evolutionary biology",
+   "type": "topic",
+   "n": 4
+  },
+  {
+   "label": "genomics",
+   "type": "topic",
+   "n": 4
+  },
+  {
+   "label": "optimization",
+   "type": "topic",
+   "n": 4
+  },
+  {
+   "label": "time series",
+   "type": "topic",
+   "n": 4
+  },
+  {
+   "label": "artificial intelligence",
+   "type": "topic",
+   "n": 3
+  },
+  {
+   "label": "bootstrap",
+   "type": "topic",
+   "n": 3
+  },
+  {
+   "label": "kernel density estimation",
+   "type": "topic",
+   "n": 3
+  },
+  {
+   "label": "metadata",
+   "type": "topic",
+   "n": 3
+  },
+  {
+   "label": "Python",
+   "type": "tool",
+   "n": 3
+  },
+  {
+   "label": "RulesTools",
+   "type": "tool",
+   "n": 3
+  },
+  {
+   "label": "Stan",
+   "type": "tool",
+   "n": 3
+  },
+  {
+   "label": "conservation",
+   "type": "topic",
+   "n": 2
+  },
+  {
+   "label": "Gaussian processes",
+   "type": "topic",
+   "n": 2
+  },
+  {
+   "label": "generalized additive models",
+   "type": "topic",
+   "n": 2
+  },
+  {
+   "label": "genetic algorithms",
+   "type": "topic",
+   "n": 2
+  }
+ ]
+}
