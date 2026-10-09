@@ -309,6 +309,34 @@ dl.interests dd { margin: 0; color: var(--muted); }
 .cloud-key .k-topic { background: #0D366B; }
 .cloud-key .k-tool { background: #C2410C; }
 
+/* Software: CRAN downloads (drawn in the browser; tokens make it follow light and dark) */
+.usage-lede { margin: 0 0 .25rem; max-width: 40rem; color: var(--muted); }
+.ucard { margin: 1.25rem 0 0; padding: 1.1rem 1.25rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+.ucard-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem 1.5rem; margin-bottom: .8rem; }
+.ucard h4 { margin: 0; font: 500 1.4rem/1.2 var(--serif); }
+.ucard h4 a { color: inherit; text-decoration: none; }
+.ucard h4 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.ustats { display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; margin: 0; }
+.ustats dt { font-size: .8125rem; color: var(--muted); }
+.ustats dd { margin: 0; font: 600 1.1rem/1.3 var(--sans); font-variant-numeric: tabular-nums; min-width: 2ch; }
+.uplots { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .9rem 1.5rem; }
+.uplot { margin: 0; min-width: 0; }
+.uplot figcaption { margin: 0 0 .2rem; font: 600 .875rem/1.3 var(--sans); }
+.uhost { position: relative; min-height: 13.5rem; }
+.uhost svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.uhost text { font: 400 11.5px var(--sans); fill: var(--chart-text); }
+.uhost .grid { stroke: var(--rule); stroke-width: 1; }
+.uhost .axis { stroke: var(--axis); stroke-width: 1; }
+.uhost .line { fill: none; stroke: var(--s1); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+.uhost .cross { stroke: var(--text); stroke-opacity: .4; stroke-width: 1; }
+.uhost .dot { fill: var(--s1); stroke: var(--surface); stroke-width: 2; }
+.usage details { margin-top: 1.1rem; font-size: .875rem; }
+.usage summary { cursor: pointer; color: var(--accent); width: fit-content; }
+.usage .tablewrap { background: var(--surface); }
+.usage-table th:not(:first-child), .usage-table td:not(:first-child) { text-align: right; }
+.usage-failed .uplots, .usage-failed .ustats { display: none; }
+.usage .fig-note { margin-top: 1rem; }
+
 /* ------------------------------------------------------------------
    News
    ------------------------------------------------------------------ */
@@ -443,7 +471,7 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
   .plate { position: static; height: auto; background: none; color: #000; padding: 0 0 1rem; display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; }
   .plate a { color: #000; }
   .plate .pron, .plate .affil, .actions .cvdate { color: #333; }
-  .btn, .tabbar, .chips, .skip, .fig-controls, .fig details { display: none !important; }
+  .btn, .tabbar, .chips, .skip, .fig-controls, .fig details, .usage { display: none !important; }
   .plate-links { grid-column: 1 / -1; margin: 0; padding-top: .5rem; border-top-color: #bbb; }
   .panel, .panel[hidden] { display: block !important; max-width: none; padding: 1rem 0; break-before: auto; }
   .panel-title { position: static !important; width: auto !important; height: auto !important; margin: 0 0 1rem !important; clip: auto !important; overflow: visible !important; }
@@ -1149,6 +1177,66 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
           </div>
         </article>
       </div>
+
+      <!-- CRAN downloads. Drawn in the browser from data/cran-downloads.json, which the "Update CRAN download data"
+           GitHub Action rewrites every day (.github/workflows). If that file is missing, the page asks the CRAN logs API directly. -->
+      <div class="sec usage" id="usage" aria-labelledby="usage-title">
+        <h3 id="usage-title">CRAN downloads</h3>
+        <p class="usage-lede">Daily and cumulative downloads of each package, refreshed every day. <span id="usage-through">Loading the latest counts&hellip;</span></p>
+        <noscript><p class="muted small">The plots need JavaScript. The same counts are on each package's CRAN page.</p></noscript>
+
+        <article class="ucard" data-pkg="HACSim">
+          <div class="ucard-head">
+            <h4><a href="https://cran.r-project.org/web/packages/HACSim/index.html">HACSim</a></h4>
+            <dl class="ustats">
+              <div><dt>Total</dt><dd data-stat="total">&nbsp;</dd></div>
+              <div><dt>Last 30 days</dt><dd data-stat="last30">&nbsp;</dd></div>
+              <div><dt>Latest day</dt><dd data-stat="latest">&nbsp;</dd></div>
+            </dl>
+          </div>
+          <div class="uplots">
+            <figure class="uplot"><figcaption>Daily count</figcaption><div class="uhost" data-kind="daily"></div></figure>
+            <figure class="uplot"><figcaption>Cumulative count</figcaption><div class="uhost" data-kind="cum"></div></figure>
+          </div>
+        </article>
+
+        <article class="ucard" data-pkg="VLF">
+          <div class="ucard-head">
+            <h4><a href="https://cran.r-project.org/web/packages/VLF/index.html">VLF</a></h4>
+            <dl class="ustats">
+              <div><dt>Total</dt><dd data-stat="total">&nbsp;</dd></div>
+              <div><dt>Last 30 days</dt><dd data-stat="last30">&nbsp;</dd></div>
+              <div><dt>Latest day</dt><dd data-stat="latest">&nbsp;</dd></div>
+            </dl>
+          </div>
+          <div class="uplots">
+            <figure class="uplot"><figcaption>Daily count</figcaption><div class="uhost" data-kind="daily"></div></figure>
+            <figure class="uplot"><figcaption>Cumulative count</figcaption><div class="uhost" data-kind="cum"></div></figure>
+          </div>
+        </article>
+
+        <article class="ucard" data-pkg="RulesTools">
+          <div class="ucard-head">
+            <h4><a href="https://cran.r-project.org/web/packages/RulesTools/index.html">RulesTools</a></h4>
+            <dl class="ustats">
+              <div><dt>Total</dt><dd data-stat="total">&nbsp;</dd></div>
+              <div><dt>Last 30 days</dt><dd data-stat="last30">&nbsp;</dd></div>
+              <div><dt>Latest day</dt><dd data-stat="latest">&nbsp;</dd></div>
+            </dl>
+          </div>
+          <div class="uplots">
+            <figure class="uplot"><figcaption>Daily count</figcaption><div class="uhost" data-kind="daily"></div></figure>
+            <figure class="uplot"><figcaption>Cumulative count</figcaption><div class="uhost" data-kind="cum"></div></figure>
+          </div>
+        </article>
+
+        <details class="usage-table" id="usage-table" hidden>
+          <summary>View yearly totals as a table</summary>
+          <div class="tablewrap"><table></table></div>
+        </details>
+
+        <p class="fig-note">Counts come from the download logs of the RStudio CRAN mirror, through the <a href="https://cranlogs.r-pkg.org">cranlogs</a> service that the R package packageRank also uses. They include automated downloads, such as package checks and mirrors.</p>
+      </div>
     </section>
 
 
@@ -1617,6 +1705,284 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
   if (window.ResizeObserver) new ResizeObserver(onResize).observe(plot);
   else window.addEventListener('resize', onResize);
   render();
+})();
+
+/* ====================================================================
+   CRAN downloads (Software tab).
+   Reads data/cran-downloads.json, which the "Update CRAN download data"
+   GitHub Action rewrites every day, and draws two plots per package: the
+   daily count and the cumulative count. If that file is missing, it asks
+   the CRAN logs API directly. The plots always end on the newest day that
+   has data (the logs trail by a day or two).
+   ==================================================================== */
+(function () {
+  var root = document.getElementById('usage');
+  if (!root) return;
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var SNAPSHOT = 'data/cran-downloads.json';
+  var LIVE = 'https://cranlogs.r-pkg.org/downloads/daily/';
+  // first day to plot for each package (used only when asking the API directly)
+  var FIRST = { HACSim: '2019-05-09', VLF: '2013-11-19', RulesTools: '2025-01-28' };
+  var DAY = 86400000;
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var nf = new Intl.NumberFormat('en-CA');
+  var model = null;        // { through, pkgs: { name: { start, counts, cum } } }, days as whole days since 1970
+  var started = false;
+
+  /* ---- dates (all UTC, as in the CRAN logs) ---- */
+  function dayIndex(s) { var p = s.split('-'); return Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / DAY); }
+  function dayDate(i) { return new Date(i * DAY); }
+  function isoDay(i) { return dayDate(i).toISOString().slice(0, 10); }
+  function dayLabel(i) { var d = dayDate(i); return MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear(); }
+
+  /* ---- data ---- */
+  function names() {
+    return [].map.call(root.querySelectorAll('.ucard'), function (c) { return c.getAttribute('data-pkg'); });
+  }
+  function makePkg(startStr, counts) {
+    var cum = new Array(counts.length), s = 0, i;
+    for (i = 0; i < counts.length; i++) { s += counts[i]; cum[i] = s; }
+    return { start: dayIndex(startStr), counts: counts, cum: cum };
+  }
+  function finish(pkgs) {
+    var through = Infinity;
+    Object.keys(pkgs).forEach(function (k) {
+      through = Math.min(through, pkgs[k].start + pkgs[k].counts.length - 1);
+    });
+    Object.keys(pkgs).forEach(function (k) {         // every plot ends on the same day
+      var p = pkgs[k], n = through - p.start + 1;
+      p.counts = p.counts.slice(0, n); p.cum = p.cum.slice(0, n);
+    });
+    return { through: through, pkgs: pkgs };
+  }
+  function fromSnapshot(doc) {
+    var pkgs = {};
+    names().forEach(function (n) {
+      var p = doc && doc.packages && doc.packages[n];
+      if (!p || typeof p.from !== 'string' || !Array.isArray(p.counts) || !p.counts.length) throw new Error('bad snapshot');
+      pkgs[n] = makePkg(p.from, p.counts.map(Number));
+    });
+    return finish(pkgs);
+  }
+  function fromLive() {
+    return Promise.all(names().map(function (n) {
+      return fetch(LIVE + FIRST[n] + ':last-day/' + n).then(function (r) {
+        if (!r.ok) throw new Error('live ' + r.status);
+        return r.json();
+      }).then(function (arr) {
+        var rows = arr[0].downloads, by = {}, last = 0, counts = [], d;
+        rows.forEach(function (r) { by[r.day] = +r.downloads; last = Math.max(last, dayIndex(r.day)); });
+        for (d = dayIndex(FIRST[n]); d <= last; d++) counts.push(by[isoDay(d)] || 0);
+        return [n, makePkg(FIRST[n], counts)];
+      });
+    })).then(function (list) {
+      var pkgs = {};
+      list.forEach(function (x) { pkgs[x[0]] = x[1]; });
+      return finish(pkgs);
+    });
+  }
+  function load() {
+    return fetch(SNAPSHOT, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('snapshot ' + r.status); return r.json(); })
+      .then(fromSnapshot)
+      .catch(fromLive);
+  }
+
+  /* ---- numbers and text on the page ---- */
+  function fillStats() {
+    Object.keys(model.pkgs).forEach(function (n) {
+      var card = root.querySelector('.ucard[data-pkg="' + n + '"]'), p = model.pkgs[n];
+      var len = p.counts.length, last30 = 0, i;
+      for (i = Math.max(0, len - 30); i < len; i++) last30 += p.counts[i];
+      function set(key, v) { var e = card.querySelector('[data-stat="' + key + '"]'); if (e) e.textContent = nf.format(v); }
+      set('total', p.cum[len - 1]);
+      set('last30', last30);
+      set('latest', p.counts[len - 1]);
+    });
+    document.getElementById('usage-through').textContent =
+      'The plots run through ' + dayLabel(model.through) + ', the newest day in the CRAN logs.';
+  }
+  function fillTable() {
+    var box = document.getElementById('usage-table'), table = box.querySelector('table');
+    var list = Object.keys(model.pkgs), y1 = dayDate(model.through).getUTCFullYear(), y0 = y1;
+    var sums = {}, y, k, i;
+    list.forEach(function (n) {
+      var p = model.pkgs[n], s = {};
+      y0 = Math.min(y0, dayDate(p.start).getUTCFullYear());
+      for (i = 0; i < p.counts.length; i++) {
+        y = dayDate(p.start + i).getUTCFullYear();
+        s[y] = (s[y] || 0) + p.counts[i];
+      }
+      sums[n] = s;
+    });
+    function cell(tag, text, scope) {
+      var c = document.createElement(tag);
+      c.textContent = text;
+      if (scope) c.setAttribute('scope', scope);
+      return c;
+    }
+    table.textContent = '';
+    var thead = table.createTHead().insertRow();
+    thead.appendChild(cell('th', 'Year', 'col'));
+    list.forEach(function (n) { thead.appendChild(cell('th', n, 'col')); });
+    var tbody = table.createTBody();
+    for (y = y0; y <= y1; y++) {
+      var tr = tbody.insertRow();
+      tr.appendChild(cell('th', y === y1 ? y + ' (to ' + dayLabel(model.through).replace(/, \d+$/, '') + ')' : String(y), 'row'));
+      list.forEach(function (n) { tr.appendChild(cell('td', sums[n][y] === undefined ? '–' : nf.format(sums[n][y]))); });
+    }
+    var all = tbody.insertRow();
+    all.appendChild(cell('th', 'All years', 'row'));
+    list.forEach(function (n) { var p = model.pkgs[n]; all.appendChild(cell('td', nf.format(p.cum[p.cum.length - 1]))); });
+    box.hidden = false;
+  }
+
+  /* ---- drawing ---- */
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function niceStep(max, count) {
+    var raw = max / count, pow = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), f = raw / pow;
+    var m = f <= 1 ? 1 : f <= 2 ? 2 : (f <= 2.5 && pow >= 10) ? 2.5 : f <= 5 ? 5 : 10;
+    return Math.max(1, m * pow);
+  }
+  function tickText(v, big) {
+    if (v === 0 || !big) return nf.format(v);
+    var k = v / 1000;
+    return (k % 1 ? k.toFixed(1) : k) + 'k';
+  }
+  function xTicks(start, n, plotW) {
+    var months = n / 30.44, maxTicks = Math.max(2, Math.floor(plotW / 64));
+    var steps = [1, 2, 3, 6, 12, 24, 60], step = 60, i;
+    for (i = 0; i < steps.length; i++) if (months / steps[i] <= maxTicks) { step = steps[i]; break; }
+    var first = dayDate(start), idx = first.getUTCFullYear() * 12 + first.getUTCMonth(), end = start + n - 1, out = [];
+    for (; ; idx++) {
+      var yy = Math.floor(idx / 12), mm = idx % 12, di = Math.round(Date.UTC(yy, mm, 1) / DAY);
+      if (di > end) break;
+      if (di < start) continue;
+      if (step >= 12 ? (mm === 0 && yy % (step / 12) === 0) : (mm % step === 0)) {
+        out.push({ i: di - start, text: step >= 12 ? String(yy) : MONTHS[mm] + ' ' + yy });
+      }
+    }
+    return out;
+  }
+
+  function draw(host, name) {
+    var p = model && model.pkgs[name];
+    var kind = host.getAttribute('data-kind');
+    var W = Math.round(host.clientWidth);
+    if (!p || W < 120) return;                        // hidden tab or not loaded yet
+    var vals = kind === 'cum' ? p.cum : p.counts, n = vals.length;
+    var H = 216, L = 40, R = 8, T = 8, B = 26, plotW = W - L - R, plotH = H - T - B;
+    var max = 0, i;
+    for (i = 0; i < n; i++) if (vals[i] > max) max = vals[i];
+    var step = niceStep(max || 1, 4), yTop = Math.ceil((max || 1) / step) * step, big = yTop >= 10000;
+    function X(k) { return L + (n > 1 ? k / (n - 1) : 0) * plotW; }
+    function Y(v) { return T + (1 - v / yTop) * plotH; }
+
+    host.textContent = '';
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img' }, host);
+    var peak = 0, peakAt = 0;
+    for (i = 0; i < n; i++) if (vals[i] > peak) { peak = vals[i]; peakAt = i; }
+    svg.setAttribute('aria-label', name + (kind === 'cum' ? ', cumulative downloads' : ', daily downloads') +
+      ' from ' + dayLabel(p.start) + ' to ' + dayLabel(p.start + n - 1) + '. ' +
+      (kind === 'cum' ? 'The total reaches ' + nf.format(vals[n - 1]) + '.' :
+        'The busiest day was ' + dayLabel(p.start + peakAt) + ' with ' + nf.format(peak) + ' downloads.') +
+      ' The table below lists yearly totals.');
+
+    var v;
+    for (v = 0; v <= yTop + 1e-9; v += step) {
+      el('line', { 'class': v === 0 ? 'axis' : 'grid', x1: L, x2: L + plotW, y1: Y(v), y2: Y(v) }, svg);
+      el('text', { x: L - 6, y: Y(v), dy: '.32em', 'text-anchor': 'end' }, svg).textContent = tickText(v, big);
+    }
+    xTicks(p.start, n, plotW).forEach(function (t) {
+      var x = X(t.i);
+      if (x < L + 14 || x > L + plotW - 14) return;
+      el('line', { 'class': 'axis', x1: x, x2: x, y1: Y(0), y2: Y(0) + 4 }, svg);
+      el('text', { x: x, y: H - 6, 'text-anchor': 'middle' }, svg).textContent = t.text;
+    });
+
+    var d = new Array(n);
+    for (i = 0; i < n; i++) d[i] = (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(vals[i]).toFixed(1);
+    el('path', { 'class': 'line', d: d.join('') }, svg);
+
+    // hover: crosshair, dot and a tooltip with the date and the value
+    var cross = el('line', { 'class': 'cross', y1: T, y2: T + plotH, visibility: 'hidden' }, svg);
+    var dot = el('circle', { 'class': 'dot', r: 4, visibility: 'hidden' }, svg);
+    var hit = el('rect', { x: L, y: T, width: plotW, height: plotH, fill: 'transparent' }, svg);
+    var tip = document.createElement('div');
+    tip.className = 'tip'; tip.hidden = true; tip.setAttribute('aria-hidden', 'true');
+    host.appendChild(tip);
+
+    function show(ev) {
+      var r = svg.getBoundingClientRect(), k = Math.round(((ev.clientX - r.left) * (W / r.width) - L) / plotW * (n - 1));
+      k = Math.max(0, Math.min(n - 1, k));
+      var x = X(k), y = Y(vals[k]), sc = r.width / W;
+      cross.setAttribute('x1', x); cross.setAttribute('x2', x); cross.setAttribute('visibility', 'visible');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('visibility', 'visible');
+      tip.textContent = '';
+      tip.appendChild(document.createTextNode(dayLabel(p.start + k)));
+      tip.appendChild(document.createElement('br'));
+      var strong = document.createElement('strong');
+      strong.textContent = nf.format(vals[k]);
+      tip.appendChild(strong);
+      tip.appendChild(document.createTextNode(kind === 'cum' ? ' in total' : (vals[k] === 1 ? ' download' : ' downloads')));
+      tip.hidden = false;
+      var tx = x * sc + 12;
+      if (tx + tip.offsetWidth > host.clientWidth) tx = x * sc - 12 - tip.offsetWidth;
+      tip.style.left = Math.max(0, tx) + 'px';
+      tip.style.top = Math.max(0, y * sc - 44) + 'px';
+    }
+    function hide() { cross.setAttribute('visibility', 'hidden'); dot.setAttribute('visibility', 'hidden'); tip.hidden = true; }
+    hit.addEventListener('pointermove', show);
+    hit.addEventListener('pointerdown', show);
+    hit.addEventListener('pointerleave', hide);
+    hit.addEventListener('pointercancel', hide);
+  }
+
+  function hostName(host) { return host.closest('.ucard').getAttribute('data-pkg'); }
+  function drawAll() {
+    [].forEach.call(root.querySelectorAll('.uhost'), function (h) { draw(h, hostName(h)); });
+  }
+
+  /* ---- start when the Software tab is first shown ---- */
+  function start() {
+    if (started) return;
+    started = true;
+    load().then(function (m) {
+      model = m;
+      fillStats();
+      fillTable();
+      drawAll();
+    }).catch(function () {
+      root.classList.add('usage-failed');
+      document.getElementById('usage-through').textContent =
+        "The download counts couldn't be loaded just now. Each package's CRAN page has the latest numbers.";
+    });
+  }
+  if (window.ResizeObserver) {
+    var widths = new WeakMap();
+    // the section has a width only once the Software tab is showing: load the data then
+    new ResizeObserver(function (entries) {
+      if (entries.some(function (e) { return e.contentRect.width > 0; })) start();
+    }).observe(root);
+    // each plot host: draw when it first has a width, and redraw when the window is resized
+    var hostRO = new ResizeObserver(function (entries) {
+      entries.forEach(function (e) {
+        var w = Math.round(e.contentRect.width);
+        if (w && widths.get(e.target) !== w) { widths.set(e.target, w); draw(e.target, hostName(e.target)); }
+      });
+    });
+    [].forEach.call(root.querySelectorAll('.uhost'), function (h) { hostRO.observe(h); });
+  } else {
+    start();
+    window.addEventListener('resize', drawAll);
+    window.addEventListener('hashchange', function () { setTimeout(drawAll, 50); });
+  }
 })();
 </script>
 </body>
