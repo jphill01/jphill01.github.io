@@ -300,6 +300,15 @@ dl.interests dd { margin: 0; color: var(--muted); }
 .tablewrap th, .tablewrap td { text-align: left; padding: .4rem .75rem; border-bottom: 1px solid var(--rule); }
 .tablewrap thead th { position: sticky; top: 0; background: var(--surface); }
 
+/* About: word cloud (reuses the .fig card, summary and table styles above) */
+.cloud-img { margin: 0; padding: .35rem; background: #fff; border: 1px solid var(--rule); border-radius: 6px; }
+.cloud-img img { display: block; width: 100%; height: auto; }
+.cloud-key { display: flex; flex-wrap: wrap; gap: .35rem 1.5rem; margin: .8rem 0 0; padding: 0; list-style: none; font-size: .9375rem; }
+.cloud-key li { display: flex; align-items: center; gap: .5rem; }
+.cloud-key i { flex: none; width: .8rem; height: .8rem; border-radius: 2px; }
+.cloud-key .k-topic { background: #0D366B; }
+.cloud-key .k-tool { background: #C2410C; }
+
 /* ------------------------------------------------------------------
    News
    ------------------------------------------------------------------ */
@@ -532,6 +541,93 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
         </ul>
         <p class="uses-note" id="uses-note" hidden>R logo &copy; R Foundation, used under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>. The Stan name and logo are trademarks of NumFOCUS.</p>
       </section>
+
+      <!-- Word cloud: terms from this site and the CV, sized by how often they appear.
+           Save wordcloud.png next to this file. The table below lists the same terms for screen readers and anyone who wants the counts. -->
+      <figure class="fig" id="cloudfig" aria-labelledby="cloudfig-title">
+        <h3 class="fig-title" id="cloudfig-title">My research in words</h3>
+        <p class="fig-lede">The terms that come up most on this site and in my CV. The more often a term appears, the larger it is.</p>
+
+        <div class="cloud-img">
+          <img src="wordcloud.png" width="2400" height="1420" loading="lazy" decoding="async"
+               alt="Word cloud of research terms from this site and my CV. The largest are DNA barcoding, sampling, modelling, seafood fraud, eDNA and statistics. Software and tools, such as R, Shiny, HACSim and web apps, are set in orange bold type.">
+        </div>
+
+        <ul class="cloud-key" aria-label="Key">
+          <li><i class="k-topic" aria-hidden="true"></i>Research topics and methods</li>
+          <li><i class="k-tool" aria-hidden="true"></i>Software and tools, in bold</li>
+        </ul>
+
+        <details>
+          <summary>View the terms as a table</summary>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th scope="col">Term</th><th scope="col">Mentions</th><th scope="col">Type</th></tr></thead>
+              <tbody>
+                <tr><td>DNA barcoding</td><td>33</td><td>Topic or method</td></tr>
+                <tr><td>sampling</td><td>30</td><td>Topic or method</td></tr>
+                <tr><td>modelling</td><td>25</td><td>Topic or method</td></tr>
+                <tr><td>seafood fraud</td><td>24</td><td>Topic or method</td></tr>
+                <tr><td>eDNA</td><td>22</td><td>Topic or method</td></tr>
+                <tr><td>statistics</td><td>18</td><td>Topic or method</td></tr>
+                <tr><td>R</td><td>17</td><td>Software or tool</td></tr>
+                <tr><td>DNA barcode gap</td><td>16</td><td>Topic or method</td></tr>
+                <tr><td>association rules</td><td>15</td><td>Topic or method</td></tr>
+                <tr><td>biodiversity</td><td>14</td><td>Topic or method</td></tr>
+                <tr><td>species</td><td>14</td><td>Topic or method</td></tr>
+                <tr><td>genetic diversity</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>GBADs</td><td>11</td><td>Topic or method</td></tr>
+                <tr><td>intraspecific</td><td>11</td><td>Topic or method</td></tr>
+                <tr><td>DNA sequences</td><td>10</td><td>Topic or method</td></tr>
+                <tr><td>supply chain</td><td>10</td><td>Topic or method</td></tr>
+                <tr><td>data mining</td><td>9</td><td>Topic or method</td></tr>
+                <tr><td>ecology</td><td>9</td><td>Topic or method</td></tr>
+                <tr><td>fishes</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>HACSim</td><td>8</td><td>Software or tool</td></tr>
+                <tr><td>machine learning</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>Shiny</td><td>8</td><td>Software or tool</td></tr>
+                <tr><td>agent-based models</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>Bayesian</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>haplotype accumulation</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>spatiotemporal</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>species identification</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>classification</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>nonparametric</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>statistical modelling</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>web apps</td><td>6</td><td>Software or tool</td></tr>
+                <tr><td>butterflies</td><td>5</td><td>Topic or method</td></tr>
+                <tr><td>livestock</td><td>5</td><td>Topic or method</td></tr>
+                <tr><td>regression</td><td>5</td><td>Topic or method</td></tr>
+                <tr><td>simulation</td><td>5</td><td>Topic or method</td></tr>
+                <tr><td>VLF</td><td>5</td><td>Software or tool</td></tr>
+                <tr><td>bioinformatics</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>disease burden</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>artificial intelligence</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>coalescent</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>data science</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>evolutionary biology</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>genomics</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>metadata</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>optimization</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>sequencing errors</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>time series</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>bootstrap</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>conservation</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>CRAN</td><td>2</td><td>Software or tool</td></tr>
+                <tr><td>Gaussian processes</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>generalized additive models</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>genetic algorithms</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>kernel density estimation</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>Python</td><td>2</td><td>Software or tool</td></tr>
+                <tr><td>RulesTools</td><td>2</td><td>Software or tool</td></tr>
+                <tr><td>Stan</td><td>1</td><td>Software or tool</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <p class="fig-note">Counts come from the text of this site and my CV. Names, venues and very general words are left out. <a href="wordcloud.png">Open the full-size image</a>.</p>
+      </figure>
 
       <!-- Interactive figure: how the histogram's bin width changes the picture of the DNA barcode gap -->
       <figure class="fig" id="gapfig" aria-labelledby="gapfig-title">
