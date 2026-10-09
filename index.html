@@ -575,14 +575,16 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
       </section>
 
       <!-- Word cloud: terms from this site and the CV, sized by how often they appear.
-           Save wordcloud.png next to this file. The table below lists the same terms for screen readers and anyone who wants the counts. -->
+           wordcloud.png and data/wordcloud-terms.json are rebuilt by the "Update word cloud" GitHub Action whenever
+           index.html or the CV changes. The table lists the same terms for screen readers and anyone who wants the counts;
+           the rows below are a fallback that the script at the end of the page replaces with the current ones. -->
       <figure class="fig" id="cloudfig" aria-labelledby="cloudfig-title">
         <h3 class="fig-title" id="cloudfig-title">My research in words</h3>
         <p class="fig-lede">The terms that come up most on this site and in my CV. The more often a term appears, the larger it is.</p>
 
         <div class="cloud-img">
           <img src="wordcloud.png" width="2400" height="1420" loading="lazy" decoding="async"
-               alt="Word cloud of research terms from this site and my CV. The largest are DNA barcoding, sampling, modelling, seafood fraud, eDNA and statistics. Software and tools, such as R, Shiny, HACSim and web apps, are set in orange bold type.">
+               alt="Word cloud of research terms from this site and my CV. The largest are sampling, DNA barcoding, seafood fraud, modelling, eDNA and DNA barcode gap. Software and tools, such as R, HACSim, Shiny and web apps, are set in orange bold type.">
         </div>
 
         <ul class="cloud-key" aria-label="Key">
@@ -595,64 +597,64 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
           <div class="tablewrap">
             <table>
               <thead><tr><th scope="col">Term</th><th scope="col">Mentions</th><th scope="col">Type</th></tr></thead>
-              <tbody>
-                <tr><td>DNA barcoding</td><td>33</td><td>Topic or method</td></tr>
-                <tr><td>sampling</td><td>30</td><td>Topic or method</td></tr>
-                <tr><td>modelling</td><td>25</td><td>Topic or method</td></tr>
-                <tr><td>seafood fraud</td><td>24</td><td>Topic or method</td></tr>
-                <tr><td>eDNA</td><td>22</td><td>Topic or method</td></tr>
-                <tr><td>statistics</td><td>18</td><td>Topic or method</td></tr>
-                <tr><td>R</td><td>17</td><td>Software or tool</td></tr>
-                <tr><td>DNA barcode gap</td><td>16</td><td>Topic or method</td></tr>
-                <tr><td>association rules</td><td>15</td><td>Topic or method</td></tr>
-                <tr><td>biodiversity</td><td>14</td><td>Topic or method</td></tr>
-                <tr><td>species</td><td>14</td><td>Topic or method</td></tr>
-                <tr><td>genetic diversity</td><td>13</td><td>Topic or method</td></tr>
-                <tr><td>GBADs</td><td>11</td><td>Topic or method</td></tr>
-                <tr><td>intraspecific</td><td>11</td><td>Topic or method</td></tr>
-                <tr><td>DNA sequences</td><td>10</td><td>Topic or method</td></tr>
-                <tr><td>supply chain</td><td>10</td><td>Topic or method</td></tr>
-                <tr><td>data mining</td><td>9</td><td>Topic or method</td></tr>
-                <tr><td>ecology</td><td>9</td><td>Topic or method</td></tr>
-                <tr><td>fishes</td><td>8</td><td>Topic or method</td></tr>
-                <tr><td>HACSim</td><td>8</td><td>Software or tool</td></tr>
-                <tr><td>machine learning</td><td>8</td><td>Topic or method</td></tr>
-                <tr><td>Shiny</td><td>8</td><td>Software or tool</td></tr>
+              <tbody id="cloud-rows">
+                <tr><td>sampling</td><td>51</td><td>Topic or method</td></tr>
+                <tr><td>DNA barcoding</td><td>49</td><td>Topic or method</td></tr>
+                <tr><td>seafood fraud</td><td>40</td><td>Topic or method</td></tr>
+                <tr><td>modelling</td><td>37</td><td>Topic or method</td></tr>
+                <tr><td>eDNA</td><td>34</td><td>Topic or method</td></tr>
+                <tr><td>DNA barcode gap</td><td>29</td><td>Topic or method</td></tr>
+                <tr><td>statistics</td><td>27</td><td>Topic or method</td></tr>
+                <tr><td>R</td><td>26</td><td>Software or tool</td></tr>
+                <tr><td>association rules</td><td>24</td><td>Topic or method</td></tr>
+                <tr><td>genetic diversity</td><td>23</td><td>Topic or method</td></tr>
+                <tr><td>species</td><td>23</td><td>Topic or method</td></tr>
+                <tr><td>intraspecific</td><td>21</td><td>Topic or method</td></tr>
+                <tr><td>GBADs</td><td>18</td><td>Topic or method</td></tr>
+                <tr><td>biodiversity</td><td>17</td><td>Topic or method</td></tr>
+                <tr><td>supply chain</td><td>16</td><td>Topic or method</td></tr>
+                <tr><td>fishes</td><td>15</td><td>Topic or method</td></tr>
+                <tr><td>Bayesian</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>ecology</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>haplotype accumulation</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>statistical modelling</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>DNA sequences</td><td>12</td><td>Topic or method</td></tr>
+                <tr><td>HACSim</td><td>12</td><td>Software or tool</td></tr>
+                <tr><td>data mining</td><td>11</td><td>Topic or method</td></tr>
+                <tr><td>Shiny</td><td>11</td><td>Software or tool</td></tr>
+                <tr><td>spatiotemporal</td><td>11</td><td>Topic or method</td></tr>
+                <tr><td>machine learning</td><td>10</td><td>Topic or method</td></tr>
+                <tr><td>livestock</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>simulation</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>species identification</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>web apps</td><td>8</td><td>Software or tool</td></tr>
                 <tr><td>agent-based models</td><td>7</td><td>Topic or method</td></tr>
-                <tr><td>Bayesian</td><td>7</td><td>Topic or method</td></tr>
-                <tr><td>haplotype accumulation</td><td>7</td><td>Topic or method</td></tr>
-                <tr><td>spatiotemporal</td><td>7</td><td>Topic or method</td></tr>
-                <tr><td>species identification</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>bioinformatics</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>butterflies</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>coalescent</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>CRAN</td><td>7</td><td>Software or tool</td></tr>
+                <tr><td>nonparametric</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>VLF</td><td>7</td><td>Software or tool</td></tr>
                 <tr><td>classification</td><td>6</td><td>Topic or method</td></tr>
-                <tr><td>nonparametric</td><td>6</td><td>Topic or method</td></tr>
-                <tr><td>statistical modelling</td><td>6</td><td>Topic or method</td></tr>
-                <tr><td>web apps</td><td>6</td><td>Software or tool</td></tr>
-                <tr><td>butterflies</td><td>5</td><td>Topic or method</td></tr>
-                <tr><td>livestock</td><td>5</td><td>Topic or method</td></tr>
-                <tr><td>regression</td><td>5</td><td>Topic or method</td></tr>
-                <tr><td>simulation</td><td>5</td><td>Topic or method</td></tr>
-                <tr><td>VLF</td><td>5</td><td>Software or tool</td></tr>
-                <tr><td>bioinformatics</td><td>4</td><td>Topic or method</td></tr>
-                <tr><td>disease burden</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>disease burden</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>regression</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>sequencing errors</td><td>5</td><td>Topic or method</td></tr>
+                <tr><td>data science</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>evolutionary biology</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>genomics</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>optimization</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>time series</td><td>4</td><td>Topic or method</td></tr>
                 <tr><td>artificial intelligence</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>coalescent</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>data science</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>evolutionary biology</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>genomics</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>bootstrap</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>kernel density estimation</td><td>3</td><td>Topic or method</td></tr>
                 <tr><td>metadata</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>optimization</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>sequencing errors</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>time series</td><td>3</td><td>Topic or method</td></tr>
-                <tr><td>bootstrap</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>Python</td><td>3</td><td>Software or tool</td></tr>
+                <tr><td>RulesTools</td><td>3</td><td>Software or tool</td></tr>
+                <tr><td>Stan</td><td>3</td><td>Software or tool</td></tr>
                 <tr><td>conservation</td><td>2</td><td>Topic or method</td></tr>
-                <tr><td>CRAN</td><td>2</td><td>Software or tool</td></tr>
                 <tr><td>Gaussian processes</td><td>2</td><td>Topic or method</td></tr>
                 <tr><td>generalized additive models</td><td>2</td><td>Topic or method</td></tr>
                 <tr><td>genetic algorithms</td><td>2</td><td>Topic or method</td></tr>
-                <tr><td>kernel density estimation</td><td>2</td><td>Topic or method</td></tr>
-                <tr><td>Python</td><td>2</td><td>Software or tool</td></tr>
-                <tr><td>RulesTools</td><td>2</td><td>Software or tool</td></tr>
-                <tr><td>Stan</td><td>1</td><td>Software or tool</td></tr>
               </tbody>
             </table>
           </div>
@@ -1983,6 +1985,46 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
     window.addEventListener('resize', drawAll);
     window.addEventListener('hashchange', function () { setTimeout(drawAll, 50); });
   }
+})();
+
+/* ====================================================================
+   Word cloud (About tab). The picture itself is rebuilt by a GitHub Action
+   whenever index.html or the CV changes; the same run writes
+   data/wordcloud-terms.json. This keeps the table and the alt text in step
+   with the picture. If the file cannot be read, the static versions stay.
+   ==================================================================== */
+(function () {
+  var fig = document.getElementById('cloudfig');
+  if (!fig || !window.fetch) return;
+
+  function listOf(a) {
+    return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+  }
+  fetch('data/wordcloud-terms.json', { cache: 'no-cache' }).then(function (r) {
+    if (!r.ok) throw new Error('terms ' + r.status);
+    return r.json();
+  }).then(function (doc) {
+    var list = doc && doc.terms;
+    if (!Array.isArray(list) || !list.length) return;
+    var nf = new Intl.NumberFormat('en-CA');
+    var tbody = document.getElementById('cloud-rows');
+    if (tbody) {
+      tbody.textContent = '';
+      list.forEach(function (t) {
+        var tr = tbody.insertRow();
+        tr.insertCell().textContent = t.label;
+        tr.insertCell().textContent = nf.format(t.n);
+        tr.insertCell().textContent = t.type === 'tool' ? 'Software or tool' : 'Topic or method';
+      });
+    }
+    var topics = list.filter(function (t) { return t.type !== 'tool'; }).slice(0, 6).map(function (t) { return t.label; });
+    var tools = list.filter(function (t) { return t.type === 'tool'; }).slice(0, 4).map(function (t) { return t.label; });
+    var img = fig.querySelector('.cloud-img img');
+    if (img && topics.length) {
+      img.alt = 'Word cloud of research terms from this site and my CV. The largest are ' + listOf(topics) + '.' +
+        (tools.length ? ' Software and tools, such as ' + listOf(tools) + ', are set in orange bold type.' : '');
+    }
+  }).catch(function () { /* keep the static table and alt text */ });
 })();
 </script>
 </body>
