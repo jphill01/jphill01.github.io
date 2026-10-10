@@ -78,8 +78,11 @@ REWRITES = [
 ]
 
 # DOIs that should link somewhere other than https://doi.org/<doi>.
+# (The link text still reads "DOI: ...". Use a file in the top folder of the repo or a permanent web address,
+# not a temporary signed link, which stops working after a few hours.)
 DOI_LINKS = {
     "10.64898/2026.09.16.752056": "https://www.biorxiv.org/content/10.64898/2026.09.16.752056v1",
+    "10.1515/dna-2015-0008": "Phillips_et_al_2015.pdf",   # the DOI no longer resolves to the article
 }
 
 # Link text for a web address (first match wins; the last rule is the fallback).
