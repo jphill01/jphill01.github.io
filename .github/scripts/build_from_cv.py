@@ -1092,14 +1092,17 @@ def check_against_previous(cv, n):
         old = json.loads(DATA_FILE.read_text(encoding="utf-8")).get("counts", {})
     except ValueError:
         return
+    long_lists = {"funding", "supervision", "talks", "publications", "outreach"}
     for k, was in old.items():
         now = n.get(k, 0)
-        if was >= 3 and now < 0.7 * was:
+        # a long list that suddenly shrinks a lot usually means the layout changed and it was only half read
+        if k in long_lists and was >= 8 and now < 0.6 * was:
             fail(f"The CV now has {now} {k} entries, down from {was}. This usually means the layout changed "
                  f"and a section could not be read. Nothing was changed on the site. If the drop is real, "
                  f"delete data/cv.json and run this again.")
         if was >= 1 and now == 0:
-            fail(f"The {k} section is empty in this CV but had {was} entries last time. Nothing was changed on the site.")
+            fail(f"The {k} section is empty in this CV but had {was} entries last time. Nothing was changed on the site. "
+                 f"If that is intended, delete data/cv.json and run this again.")
 
 
 def regions(cv):
