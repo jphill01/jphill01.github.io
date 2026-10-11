@@ -112,6 +112,12 @@ PUB_FIGURES = {
         alt="Diagram of the GBADs TAIL search: a user types 'Cows in Canada', language processing recognises the "
             "terms, an ontology suggests related terms (cow, cattle, bovine, dairy) to refine, and the enriched "
             "search is run against a graph database and Semantic Scholar to return data and literature metadata."),
+    "10.1007/978-1-0716-3581-0_3": dict(             # Hubert et al. (2024), "Delimiting Species with Single-Locus..."
+        file="hubert-2024-species-delimitation.jpg", w=320, h=186,
+        alt="Workflow for delimiting species from single-locus DNA sequences: aligned sequences (or haplotypes) go "
+            "through distance- and network-based methods (ABGD, ASAP, BOLD), tree-based Poisson tree process "
+            "methods and generalized mixed Yule coalescent methods, and the results are combined into "
+            "molecular operational taxonomic units (MOTUs) by majority-rule consensus."),
     "10.1007/978-1-0716-3581-0_24": dict(            # Phillips et al. (2024), "A Measure of the DNA Barcode Gap..."
         file="phillips-2024-barcode-gap-overlap.png", w=320, h=119,
         alt="Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and "
@@ -745,7 +751,8 @@ FIGURES_USED = set()
 def pub_li(p, tag=""):
     """A publication row, with its picture beside it when PUB_FIGURES has one for its DOI."""
     inner = f"<p>{pub_html(p, tag)}</p>"
-    key = next((k for k in PUB_FIGURES if k == p["doi"] or (p["url"] and k in p["url"])), None)
+    key = next((k for k in PUB_FIGURES if k == p["doi"]
+                or (p["url"] and re.search(re.escape(k) + r"(?![0-9A-Za-z])", p["url"]))), None)
     if not key:
         return li(pub_year(p), inner)
     f = PUB_FIGURES[key]
