@@ -82,7 +82,8 @@ REWRITES = [
 # not a temporary signed link, which stops working after a few hours.)
 DOI_LINKS = {
     "10.64898/2026.09.16.752056": "https://www.biorxiv.org/content/10.64898/2026.09.16.752056v1",
-    "10.1515/dna-2015-0008": "Phillips_et_al_2015.pdf",   # the DOI no longer resolves to the article
+    # the DOI no longer resolves to the article, so link to its permanent archived copy (the same address the CV uses)
+    "10.1515/dna-2015-0008": "https://access.portico.org/Portico/auView?auId=ark:%2F27927%2Fphx3c2h5xq1",
 }
 
 # Pictures shown beside a publication in the Publications tab. The key is the publication's DOI,
