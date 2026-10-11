@@ -86,7 +86,8 @@ DOI_LINKS = {
 }
 
 # Pictures shown beside a publication in the Publications tab. The key is the publication's DOI,
-# so the picture follows the entry wherever it sits in the CV. Put the files in the folder img/pubs/:
+# so the picture follows the entry wherever it sits in the CV. (For a book chapter that lists a web address
+# instead of a DOI, use the DOI that appears inside that address.) Put the files in the folder img/pubs/:
 #   <file>                  the full-size picture (opens in a new tab when it is clicked)
 #   <file>-thumb.<ext>      the small copy shown beside the entry, w x h pixels (for example
 #                           dercole-2021-sampling-map-thumb.jpg)
@@ -106,6 +107,10 @@ PUB_FIGURES = {
         file="phillips-2019-haplotype-network.png", w=320, h=335,
         alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
             "each joined to it by a short branch."),
+    "10.1007/978-1-0716-3581-0_24": dict(            # Phillips et al. (2024), "A Measure of the DNA Barcode Gap..."
+        file="phillips-2024-barcode-gap-overlap.png", w=320, h=119,
+        alt="Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and "
+            "the between-species distances (yellow) mostly larger, with the shaded area where they overlap marked."),
     "10.7717/peerj-cs.243": dict(                    # Phillips et al. (2020), HACSim, PeerJ Computer Science
         file="phillips-2020-haplotype-network.jpg", w=320, h=317,
         alt="Haplotype network with haplotypes labelled 1 to 5 by frequency: a very large central haplotype (1) "
@@ -735,10 +740,11 @@ FIGURES_USED = set()
 def pub_li(p, tag=""):
     """A publication row, with its picture beside it when PUB_FIGURES has one for its DOI."""
     inner = f"<p>{pub_html(p, tag)}</p>"
-    f = PUB_FIGURES.get(p["doi"]) if p["doi"] else None
-    if not f:
+    key = next((k for k in PUB_FIGURES if k == p["doi"] or (p["url"] and k in p["url"])), None)
+    if not key:
         return li(pub_year(p), inner)
-    FIGURES_USED.add(p["doi"])
+    f = PUB_FIGURES[key]
+    FIGURES_USED.add(key)
     stem, ext = Path(f["file"]).stem, Path(f["file"]).suffix
     full, thumb = f"img/pubs/{f['file']}", f"img/pubs/{stem}-thumb{ext}"
     for rel in (full, thumb):
