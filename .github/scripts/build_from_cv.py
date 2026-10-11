@@ -91,6 +91,7 @@ DOI_LINKS = {
 #   <file>-thumb.<ext>      the small copy shown beside the entry, w x h pixels (for example
 #                           dercole-2021-sampling-map-thumb.jpg)
 # To move a picture to another paper, change the DOI in front of it. To remove one, delete its block.
+# (Two papers can also share one file: give both entries the same file name.)
 PUB_FIGURES = {
     "10.7717/peerj.11157": dict(
         file="dercole-2021-sampling-map.jpg", w=320, h=279,
@@ -100,6 +101,10 @@ PUB_FIGURES = {
         file="phillips-2019-haplotype-network.png", w=320, h=335,
         alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
             "each joined to it by a short branch."),
+    "10.7717/peerj-cs.243": dict(                    # Phillips et al. (2020), HACSim, PeerJ Computer Science
+        file="phillips-2020-haplotype-network.jpg", w=320, h=317,
+        alt="Haplotype network with haplotypes labelled 1 to 5 by frequency: a very large central haplotype (1) "
+            "with many small haplotypes joined to it by short branches; haplotypes 2, 3 and 4 are a little larger."),
     "10.3389/fevo.2022.859099": dict(
         file="phillips-2022-barcode-gap.jpg", w=320, h=227,
         alt="Scatter plot of each species' largest within-species distance against its distance to the nearest "
