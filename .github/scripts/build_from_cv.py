@@ -108,6 +108,11 @@ PUB_FIGURES = {
         file="phillips-2019-haplotype-network.png", w=320, h=335,
         alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
             "each joined to it by a short branch."),
+    "10.1080/09332480.2026.2725526": dict(           # Phillips and De Vuono-Fraser (2026), "Swimming in deep uncertainty", CHANCE
+        file="phillips-2026-chance-illustration.jpg", w=320, h=196,
+        alt="Illustration: a Canadian flag on a map of North America above a picnic table holding a price tag "
+            "(snapper $22/lb, tilapia $7/lb), a magnifying glass over two fish, a plate with a fish, a "
+            "thermometer reading 102.5 and a wallet."),
     "10.1515/dna-2015-0008": dict(                   # Phillips et al. (2015), DNA Barcodes
         file="phillips-2015-haplotype-accumulation.jpg", w=320, h=165,
         alt="Eight small plots for four fish species: for each, a haplotype accumulation curve (unique haplotypes "
