@@ -308,6 +308,12 @@ SECTION_KEYS = [  # (key, pattern on the heading); first match wins
 def split_sections(rows, left):
     secs, cur, unknown = {}, None, []
     for r in rows:
+        # "Conference Proceedings" is a publication list. Whether the CV puts it under Refereed Work or at the
+        # end of the Conference Presentation section, its entries belong with the refereed work.
+        if (cur == "talks" and not r["right"] and abs(r["x0"] - left) < 3
+                and re.fullmatch(r"Conference Proceedings", r["text"].strip(), re.I)):
+            cur = "refereed"
+            secs.setdefault(cur, [])
         if not r["right"] and abs(r["x0"] - left) < 3 and re.fullmatch(r"[A-Z][A-Z &/,\-–]{3,}", r["text"]):
             key = next((k for k, pat in SECTION_KEYS if re.search(pat, r["text"])), None)
             if key is None:
@@ -473,11 +479,15 @@ def parse_funding(rows, left):
     out = []
     for e in entries:
         p = e["paras"]
-        inst = p[1]["text"] if len(p) > 1 else ""
-        amount = p[1]["right"] if len(p) > 1 else ""
-        role = next((x["text"][5:].strip() for x in p[2:] if x["text"].startswith("Role:")), "")
-        title = " ".join(x["text"] for x in p[2:] if not x["text"].startswith("Role:"))
-        out.append(dict(group=e["group"] or "", name=p[0]["text"], date=p[0]["right"].strip(),
+        # A long grant name wraps onto a second line. The institution line is the one with the amount on the
+        # right (the heading line carries the date), so anything between the two belongs to the name.
+        k = next((i for i in range(1, len(p)) if p[i]["right"]), 1)
+        name = " ".join(x["text"] for x in p[:k])
+        inst = p[k]["text"] if len(p) > k else ""
+        amount = p[k]["right"] if len(p) > k else ""
+        role = next((x["text"][5:].strip() for x in p[k + 1:] if x["text"].startswith("Role:")), "")
+        title = " ".join(x["text"] for x in p[k + 1:] if not x["text"].startswith("Role:"))
+        out.append(dict(group=e["group"] or "", name=name, date=p[0]["right"].strip(),
                         institution=inst, amount=amount, title=title, role=role))
     return out
 
