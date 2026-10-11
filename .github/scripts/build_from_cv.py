@@ -85,6 +85,27 @@ DOI_LINKS = {
     "10.1515/dna-2015-0008": "Phillips_et_al_2015.pdf",   # the DOI no longer resolves to the article
 }
 
+# Pictures shown beside a publication in the Publications tab. The key is the publication's DOI,
+# so the picture follows the entry wherever it sits in the CV. Put the files in the folder img/pubs/:
+#   <file>                  the full-size picture (opens in a new tab when it is clicked)
+#   <file>-thumb.<ext>      the small copy shown beside the entry, w x h pixels (for example
+#                           dercole-2021-sampling-map-thumb.jpg)
+# To move a picture to another paper, change the DOI in front of it. To remove one, delete its block.
+PUB_FIGURES = {
+    "10.7717/peerj.11157": dict(
+        file="dercole-2021-sampling-map.jpg", w=320, h=279,
+        alt="Map of North America with circles showing where the butterfly specimens were collected; "
+            "bigger circles mean more specimens."),
+    "10.1002/ece3.4757": dict(
+        file="phillips-2019-haplotype-network.png", w=320, h=335,
+        alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
+            "each joined to it by a short branch."),
+    "10.3389/fevo.2022.859099": dict(
+        file="phillips-2022-barcode-gap.jpg", w=320, h=227,
+        alt="Scatter plot of each species' largest within-species distance against its distance to the nearest "
+            "other species, with a red 1:1 line; nearly all points lie above the line."),
+}
+
 # Link text for a web address (first match wins; the last rule is the fallback).
 LINK_LABELS = [
     (r"youtube\.com|youtu\.be", "YouTube"),
@@ -693,8 +714,33 @@ def pub_html(p, tag=""):
     return rewrite(" ".join(parts))
 
 
-def li(when_text, inner, extra=""):
-    return f'<li><span class="when">{esc(when_text)}</span>{inner}{extra}</li>'
+def li(when_text, inner, extra="", cls=""):
+    c = f' class="{cls}"' if cls else ""
+    return f'<li{c}><span class="when">{esc(when_text)}</span>{inner}{extra}</li>'
+
+
+FIGURES_USED = set()
+
+
+def pub_li(p, tag=""):
+    """A publication row, with its picture beside it when PUB_FIGURES has one for its DOI."""
+    inner = f"<p>{pub_html(p, tag)}</p>"
+    f = PUB_FIGURES.get(p["doi"]) if p["doi"] else None
+    if not f:
+        return li(pub_year(p), inner)
+    FIGURES_USED.add(p["doi"])
+    stem, ext = Path(f["file"]).stem, Path(f["file"]).suffix
+    full, thumb = f"img/pubs/{f['file']}", f"img/pubs/{stem}-thumb{ext}"
+    for rel in (full, thumb):
+        if not (ROOT / rel).exists():
+            warn(f"The picture {rel} is not in the repo yet (it is hidden on the page until you add it).")
+    fig = (f'<figure class="pubfig"><a href="{attr(full)}" target="_blank" rel="noopener" '
+           f'aria-label="{attr("Enlarge figure: " + f["alt"])}">'
+           f'<img src="{attr(thumb)}" width="{f["w"]}" height="{f["h"]}" alt="{attr(f["alt"])}" '
+           f'loading="lazy" decoding="async" '
+           f"onerror=\"var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()\">"
+           f'</a></figure>')
+    return li(pub_year(p), inner, fig, "has-fig")
 
 
 def norm_title(t):
@@ -746,7 +792,7 @@ def build_publications(cv, cv_year):
     for kp, st, p in rest:
         if kp == "articles":
             if st == "published":
-                groups["articles"].append(li(pub_year(p), f"<p>{pub_html(p)}</p>"))
+                groups["articles"].append(pub_li(p))
             elif st == "preprint":
                 tag = ""
                 s = sub_titles.get(norm_title(p["title"]))
@@ -756,9 +802,9 @@ def build_publications(cv, cv_year):
                     tag = f"{m.group(1)} to <i>{esc(m.group(2))}</i>." if m else ""
                 preprints.append((pub_year(p), p, tag))
         elif kp == "chapters" and st == "published":
-            groups["chapters"].append(li(pub_year(p), f"<p>{pub_html(p)}</p>"))
+            groups["chapters"].append(pub_li(p))
         elif kp == "proceedings" and st == "published":
-            groups["proceedings"].append(li(pub_year(p), f"<p>{pub_html(p)}</p>"))
+            groups["proceedings"].append(pub_li(p))
     man = [li(y, f"<p>{pub_html(p, tag)}</p>") for y, p, tag in preprints]
     for kp, st, p in rest:
         label = {"submitted": "Submitted", "tobesubmitted": "To submit", "inprep": "In prep."}.get(st)
@@ -771,6 +817,10 @@ def build_publications(cv, cv_year):
         elif kp == "articles":
             man.append(li(label, f"<p>{pub_html(p)}</p>"))
     groups["manuscripts"] = man
+    for doi in PUB_FIGURES:
+        if doi not in FIGURES_USED:
+            warn(f"PUB_FIGURES has a picture for DOI {doi}, but no published entry with that DOI is in the CV, "
+                 f"so the picture is not shown.")
 
     # outreach and other writing
     nr = cv["nonref"]
