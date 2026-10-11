@@ -97,6 +97,11 @@ PUB_FIGURES = {
         file="dercole-2021-sampling-map.jpg", w=320, h=279,
         alt="Map of North America with circles showing where the butterfly specimens were collected; "
             "bigger circles mean more specimens."),
+    "10.3897/BDJ.11.e96480": dict(                   # Phillips et al. (2023), VLF, Biodiversity Data Journal
+        file="phillips-2023-vlf-sliding-window.jpg", w=320, h=272,
+        alt="Line plot of very low frequency variants per position along a DNA barcode, in a sliding window: "
+            "the blue line (single) starts above 3 at the start of the barcode, falls below 1 by about the "
+            "15th percentile and rises again at the very end; the red line (shared) stays between 0 and 1."),
     "10.1002/ece3.4757": dict(
         file="phillips-2019-haplotype-network.png", w=320, h=335,
         alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
