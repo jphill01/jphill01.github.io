@@ -822,11 +822,27 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
       <div class="sec">
         <h3>Current projects</h3>
 
+        <p class="muted" style="max-width:38rem; margin-bottom:1.75rem">My research program treats specimen sampling sufficiency as a computational and statistical problem: how many specimens are needed to capture a target proportion (<i>e.g.</i>, 95%) of a species&rsquo; standing genetic diversity, and how certain can we be of that number? The projects below build on that question, from methods for sampling sufficiency and the DNA barcode gap to applications in eDNA monitoring and seafood fraud. Methods are released as open-source software with documented workflows.</p>
+
         <div class="project">
           <h4>Agent-based, equation-based, and individual-based models for animal disease burden</h4>
           <ul>
-            <li>Developing a deterministic discrete-time dynamical system of seafood fraud in the supply chain using Python.</li>
             <li>Developing an age- and sex-structured compartmentalized equation-based model in R to assess disease burden in livestock species such as cattle, small ruminants (<i>e.g.</i>, sheep and goats), and poultry in developing countries like Ethiopia.</li>
+            <li>Building <a href="https://animalhealthmetrics.org/2025/10/14/introduction-to-gbads-new-model-builder-prototype/">GBADs ModelBuilder</a>, a modular R Shiny web application for livestock disease burden assessment, with the Global Burden of Animal Diseases (GBADs) Informatics Team. The informatics approach behind GBADs (user-centric tools, data quality, and model interoperability) is described in <a href="https://doi.org/10.20506/rst.43.3522">Raymond <i>et al.</i> (2024)</a>.</li>
+            <li>Developing deterministic, discrete-time dynamical (difference equation) models in Python of the bioeconomic and behavioural interactions among seafood buyers and fraudsters in the supply chain, including wholesaler fraud, consumer awareness, and illegal, unreported, and unregulated (IUU) fishing. Data for parameterizing these models are limited, so simulation and sensitivity analysis are used to handle uncertainty. An interactive <a href="https://dynamics-between-seafood-fraudsters-and-buyers.streamlit.app">Seafood Fraud Modelling App</a> is available.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>Statistical modelling of seafood fraud</h4>
+          <ul>
+            <li>Developed frequentist and Bayesian logistic regression models in R and Stan to estimate, predict, and classify finfish mislabeling in Metro Vancouver from product source (grocery store, restaurant, sushi bar), state, appearance, form, and colour, revisiting data from Hu <i>et al.</i> (2018) (<a href="https://doi.org/10.1111/1750-3841.71201"><i>Journal of Food Science</i></a>; <a href="https://doi.org/10.1080/09332480.2026.2725526"><i>CHANCE</i></a>; <a href="https://doi.org/10.1101/2024.02.05.578947">preprint</a>).
+              <ul>
+                <li>Results are consistent with earlier studies, especially for altered products, but the Bayesian model is sensitive to the choice of prior, and credible and confidence intervals differ markedly, which shows how uncertain true mislabeling rates remain.</li>
+                <li>This work paves the way for statistical modelling to complement laboratory DNA identification by showing where, when, and how mislabeling occurs in the supply chain.</li>
+              </ul>
+            </li>
+            <li>Next, integrating sequence reference data, sampling sufficiency, and statistical classification (from association rule mining, below) to improve DNA-based authentication, since inadequate representation of a species&rsquo; standing haplotype diversity can bias specimen identification.</li>
           </ul>
         </div>
 
@@ -839,6 +855,7 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
                 <li>I created <a href="https://cran.r-project.org/web/packages/HACSim/index.html">HACSim</a> (Haplotype Accumulation Curve Simulator), a novel nonparametric stochastic (Monte Carlo) local search optimization algorithm, to better estimate likely required specimen sample sizes based on asymptotic behaviour seen in species' haplotype accumulation curves.</li>
                 <li>HACSim has been shown to work well for a variety of species of socioeconomic relevance, such as fishes, insects and arachnids, based on extensive simulation studies.</li>
                 <li>The publication of HACSim in <i>PeerJ Computer Science</i> was one of the top 5 most viewed articles in the category &ldquo;Optimization Theory and Computation&rdquo;.</li>
+                <li>The computational cost of HACSim grows rapidly with sample size because many possible sampling configurations (assignments of haplotypes to sampled specimens) must be explored. I plan to develop more efficient algorithms, including alternative representations of the search space, new stochastic search and convergence strategies, and memory-efficient data structures.</li>
               </ul>
             </li>
             <li>Developing methods for better visualization and inference of the DNA barcode gap.
@@ -846,9 +863,28 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
                 <li>The DNA barcode gap, the difference between genetic variation observed within and among species, is most often visualized using histograms. These plots can be misleading because they depend on user-defined parameters, which greatly affect the overall shape of the probability distributions.</li>
                 <li>I propose that kernel density estimation provides a better path forward for establishing the efficacy of DNA barcoding as a molecular identification tool.</li>
                 <li>I also propose nonparametric bootstrapping, specifically the <i>m</i>-out-of-<i>n</i> bootstrap, to estimate the sampling distributions of quantities of interest in DNA barcoding. These include extreme order statistics like the minimum interspecific and maximum intraspecific genetic distances, in addition to the DNA barcode gap.</li>
-                <li>We are currently developing a population genetic model of the DNA barcode gap based on the multispecies coalescent (<a href="https://doi.org/10.22541/au.174073683.37707806/v1">preprint</a>).</li>
+                <li>With colleagues, I developed a set of nonparametric metrics that quantify the proportional overlap between a species&rsquo; within-species and among-species genetic distance distributions (<a href="https://link.springer.com/protocol/10.1007/978-1-0716-3581-0_24">Phillips <i>et al.</i>, 2024</a>). They are based on a simple count of overlapping records and need only a matrix of pairwise genetic distances, and they treat the barcode gap as a continuous quantity with measurable uncertainty rather than a yes/no property. In a case study of the predatory diving beetle genus <i>Agabus</i>, target species and their nearest neighbours were tightly clustered and difficult to distinguish.</li>
+                <li>We are extending this work to a Bayesian coalescent model of the DNA barcode gap (<a href="https://doi.org/10.22541/au.174073683.37707806/v1">preprint</a>). A binomial-count model with conjugate beta priors quantifies uncertainty in barcode gap separation, and hierarchical priors and mixture models in Stan will share information across taxa and sampling regimes to improve estimates for rare and data-poor species. A further goal is to test whether these statistics can improve estimates of population genetic parameters such as effective population size and divergence time.</li>
               </ul>
             </li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>Data mining for environmental DNA (eDNA) sampling design</h4>
+          <ul>
+            <li>Applying association rule mining (ARM) to identify the environmental conditions associated with successful eDNA detection, so that surveys and metadata collection can be targeted (<a href="https://www.biorxiv.org/content/10.64898/2026.09.16.752056v1">preprint</a>). ARM is multivariate, distribution-free, and produces human-readable IF&ndash;THEN rules, which suits small, noisy eDNA datasets where standard correlation tests are unreliable. To our knowledge, this is the first application of ARM to eDNA detection surveys.</li>
+            <li>Created <a href="https://cran.r-project.org/web/packages/RulesTools/index.html">RulesTools</a>, an R package for mining association rules from eDNA and electrofishing datasets with aquatic physicochemical metadata (<i>e.g.</i>, temperature and pH). It covers preparing the data (discretizing and imputing), setting thresholds and pruning rules, and visualizing the results (<i>e.g.</i>, heatmaps and Euler diagrams).</li>
+            <li>In a brook trout (<i>Salvelinus fontinalis</i>) case study of 126 observations and eight physicochemical variables, the Bonferroni correction removed several ecologically interesting associations that survived the Benjamini&ndash;Hochberg correction, so we favour Benjamini&ndash;Hochberg for small exploratory eDNA datasets (Toth <i>et al.</i>, 2026, <i>Proceedings of Machine Learning Research</i> 318).</li>
+            <li>Next, benchmarking grid and random search for tuning the key ARM hyperparameters (minimum support and minimum confidence), exploring fuzzy rule systems that avoid discretizing continuous variables, and using ARM to select covariates for site occupancy and detection models for invasive and at-risk species, which have often been chosen ad hoc.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>Missing data imputation for insect trait data</h4>
+          <ul>
+            <li>Benchmarking imputation methods for insect ecological trait data across missingness mechanisms (missing completely at random, at random, and not at random) and trait types, using a dataset of more than 1,400 species and 90 traits (<i>e.g.</i>, habitat and diet).</li>
+            <li>ARM is compared with k-nearest neighbours and random forests across missingness rates from 5% to 50% with replicated simulations. Continuous traits are scored by normalized root mean square error and categorical traits by macro F1.</li>
           </ul>
         </div>
 
@@ -859,6 +895,7 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
               <ul>
                 <li>Butterflies are some of the most genetically and morphologically diverse insects on the planet. One aspect of my work involves generating a DNA barcode library for over 97% (more than 800 species) of known butterfly species found in North America (<a href="https://doi.org/10.7717/peerj.11157">D&rsquo;Ercole <i>et al.</i>, 2021</a>).</li>
                 <li>Current work using this dataset correlates species&rsquo; genetic diversity with geographical covariates (such as latitude and longitude) using semiparametric and nonparametric regression approaches, including Generalized Additive Models (GAMs) and Local Regression (LOESS).</li>
+                <li>A manuscript in preparation examines how Quaternary climatic fluctuations shaped the macrogenetics of North American butterflies.</li>
               </ul>
             </li>
           </ul>
@@ -867,7 +904,9 @@ ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; colu
         <div class="project">
           <h4>R software packages and R Shiny web apps for molecular biodiversity assessment</h4>
           <ul>
-            <li>HACSim, VLF and RulesTools are available through the Comprehensive R Archive Network (CRAN). See the <a href="#software">Software</a> tab for details and links.</li>
+            <li>HACSim, VLF and RulesTools are available through the Comprehensive R Archive Network (CRAN). See the <a href="#software">Software</a> tab for details, links, and download counts.</li>
+            <li><a href="https://cran.r-project.org/web/packages/VLF/index.html">VLF</a> (Very Low Frequency variants) automatically detects, quantifies, and visualizes rare nucleotides and codons in large DNA sequence alignments (by default, those occurring at a frequency of 0.001 or below) so that potential sequencing errors can be scrutinized. It builds on an earlier Excel-based approach that was slow and error-prone, and was demonstrated on bird DNA barcodes and on seafood species (<a href="https://bdj.pensoft.net/article/96480/">Phillips <i>et al.</i>, 2023</a>).</li>
+            <li>Interactive web applications accompany several of these tools, including GBADs ModelBuilder (R Shiny) and the Seafood Fraud Modelling App (Python).</li>
           </ul>
         </div>
 
