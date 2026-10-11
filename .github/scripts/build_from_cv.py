@@ -87,7 +87,8 @@ DOI_LINKS = {
 
 # Pictures shown beside a publication in the Publications tab. The key is the publication's DOI,
 # so the picture follows the entry wherever it sits in the CV. (For a book chapter that lists a web address
-# instead of a DOI, use the DOI that appears inside that address.) Put the files in the folder img/pubs/:
+# instead of a DOI, use the DOI that appears inside that address. For a paper with neither, write "title:"
+# followed by the start of its title, for example "title:To correct or not to correct".) Put the files in the folder img/pubs/:
 #   <file>                  the full-size picture (opens in a new tab when it is clicked)
 #   <file>-thumb.<ext>      the small copy shown beside the entry, w x h pixels (for example
 #                           dercole-2021-sampling-map-thumb.jpg)
@@ -107,6 +108,19 @@ PUB_FIGURES = {
         file="phillips-2019-haplotype-network.png", w=320, h=335,
         alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
             "each joined to it by a short branch."),
+    "10.1515/dna-2015-0008": dict(                   # Phillips et al. (2015), DNA Barcodes
+        file="phillips-2015-haplotype-accumulation.jpg", w=320, h=165,
+        alt="Eight small plots for four fish species: for each, a haplotype accumulation curve (unique haplotypes "
+            "against specimens sampled, with error bars) beside a bar chart of how many specimens carry each haplotype."),
+    "title:To correct or not to correct": dict(      # Toth et al. (2026), Canadian AI proceedings (no DOI listed)
+        file="toth-2026-multiple-comparisons.jpg", w=320, h=174,
+        alt="Scatter plots of rule significance (minus log10 p) against rule confidence and rule length for "
+            "high eDNA concentration, uncorrected and after Benjamini-Hochberg and Bonferroni corrections; "
+            "far fewer rules stay above the red significance line after correction."),
+    "10.1111/1750-3841.71201": dict(                 # Phillips and De Vuono-Fraser (2026), J. Food Science (Hu et al. 2018)
+        file="phillips-2026-mcmc-trace-plots.jpg", w=320, h=160,
+        alt="Trace plots of four Markov chains for nine model coefficients (intercept, source, state, appearance, "
+            "form and colour); the chains overlap and mix well across 1,000 iterations."),
     "10.20506/rst.43.3522": dict(                    # Raymond et al. (2024), GBADs informatics, WOAH Sci. Tech. Rev.
         file="raymond-2024-gbads-tail.jpg", w=320, h=422,
         alt="Diagram of the GBADs TAIL search: a user types 'Cows in Canada', language processing recognises the "
@@ -751,8 +765,14 @@ FIGURES_USED = set()
 def pub_li(p, tag=""):
     """A publication row, with its picture beside it when PUB_FIGURES has one for its DOI."""
     inner = f"<p>{pub_html(p, tag)}</p>"
-    key = next((k for k in PUB_FIGURES if k == p["doi"]
-                or (p["url"] and re.search(re.escape(k) + r"(?![0-9A-Za-z])", p["url"]))), None)
+    title = norm_title(p["title"]) if p["title"] else ""
+
+    def matches(k):
+        if k.startswith("title:"):
+            return bool(title) and title.startswith(norm_title(k[6:]))
+        return k == p["doi"] or bool(p["url"] and re.search(re.escape(k) + r"(?![0-9A-Za-z])", p["url"]))
+
+    key = next((k for k in PUB_FIGURES if matches(k)), None)
     if not key:
         return li(pub_year(p), inner)
     f = PUB_FIGURES[key]
