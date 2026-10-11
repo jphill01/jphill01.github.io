@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jarrett D. Phillips | Computational molecular biodiversity science</title>
+<meta name="description" content="Jarrett D. Phillips is an Adjunct Professor in the School of Computer Science at the University of Guelph. His research uses statistics, machine learning and data science to identify and discover species from DNA.">
+<meta name="theme-color" content="#0B2D52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B2D52'/%3E%3Cpath fill='%23EEF4FA' d='M6 7h3v18H6zM11 7h1.5v18H11zM14.5 7h4v18h-4zM20.5 7H22v18h-1.5zM24 7h2v18h-2z'/%3E%3C/svg%3E">
+
+<!-- Fonts: Newsreader (headings and prose) and Atkinson Hyperlegible Next (interface and lists).
+     If these fail to load, the page falls back to Charter/Georgia and the system sans. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&amp;display=swap">
+
+<style>
+/* ------------------------------------------------------------------
+   Tokens. Light is a white-ground print; dark is the cyanotype itself.
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: light dark;
+
+  --bg: #F3F6F9;
+  --surface: #FFFFFF;
+  --text: #0C2238;
+  --muted: #465F78;
+  --rule: #D2DEE9;
+  --accent: #0F4C81;
+  --on-accent: #FFFFFF;
+  --wash: #E4EDF6;
+
+  --plate: #0B2D52;
+  --plate-text: #EEF4FA;
+  --plate-muted: #B1C7DC;
+  --plate-rule: rgba(238, 244, 250, .24);
+
+  /* chart: categorical slots 1 and 2 of the validated palette */
+  --s1: #2A78D6;
+  --s2: #EB6834;
+  --axis: #758DA5;
+  --chart-text: #4C657D;
+
+  --serif: "Newsreader", "Iowan Old Style", "Charter", "Bitstream Charter", Georgia, serif;
+  --sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --plate-w: 21rem;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #071A2E;
+    --surface: #0C2540;
+    --text: #E8F0F7;
+    --muted: #A6BCD0;
+    --rule: #1D3C5C;
+    --accent: #8EC5F4;
+    --on-accent: #071A2E;
+    --wash: #12365B;
+
+    --s1: #3987E5;
+    --s2: #D95926;
+    --axis: #5F82A5;
+    --chart-text: #9DB4C9;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 1rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+.skip {
+  position: absolute; left: .75rem; top: -4rem; z-index: 20;
+  background: var(--surface); color: var(--text);
+  padding: .6rem .9rem; border-radius: 6px; border: 2px solid var(--accent);
+}
+.skip:focus { top: .75rem; }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ------------------------------------------------------------------
+   Page frame: cyanotype plate on the left, tabbed content on the right
+   ------------------------------------------------------------------ */
+.site {
+  display: grid;
+  grid-template-columns: var(--plate-w) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.plate {
+  position: sticky; top: 0;
+  height: 100vh; overflow-y: auto;
+  background: var(--plate); color: var(--plate-text);
+  padding: 2.25rem 2rem 1.75rem;
+  display: flex; flex-direction: column; gap: 1.4rem;
+}
+.plate a { color: var(--plate-text); }
+.plate :focus-visible { outline-color: #fff; }
+
+.portrait {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: 3px; background: #123d6a;
+}
+.plate h1 {
+  margin: 0;
+  font: 500 2.15rem/1.08 var(--serif);
+  letter-spacing: -.012em;
+}
+.plate .pron { margin: .35rem 0 0; color: var(--plate-muted); font-size: .9375rem; }
+.plate .creds { margin: 1rem 0 .35rem; font-weight: 600; font-size: .9375rem; }
+.plate .affil { margin: 0; color: var(--plate-muted); font-size: .9375rem; line-height: 1.5; }
+
+.actions { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; }
+.btn {
+  display: inline-block; padding: .7rem 1.05rem;
+  background: var(--plate-text); color: var(--plate) !important;
+  font: 600 .9375rem/1 var(--sans); text-decoration: none;
+  border-radius: 6px;
+}
+.btn:hover { background: #fff; }
+.actions .mail { font-size: .9375rem; }
+.actions .cvdate { margin: 0; font-size: .8125rem; color: var(--plate-muted); }
+
+.plate-links {
+  list-style: none; margin: auto 0 0; padding: 1.1rem 0 0;
+  border-top: 1px solid var(--plate-rule);
+  display: flex; flex-wrap: wrap; gap: .35rem 1.1rem;
+  font-size: .875rem;
+}
+
+/* Tabs --------------------------------------------------------------- */
+.tabbar {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 var(--gutter);
+}
+.tablist {
+  display: flex; gap: .25rem;
+  overflow-x: auto; scrollbar-width: none;
+  margin: 0 -.8rem;
+  scroll-snap-type: x proximity;
+}
+.tablist::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none; display: block; scroll-snap-align: start;
+  padding: 1.05rem .8rem .9rem;
+  font: 500 .9375rem/1 var(--sans);
+  color: var(--muted); text-decoration: none; white-space: nowrap;
+  border-bottom: 3px solid transparent; margin-bottom: -1px;
+}
+.tab:hover { color: var(--text); }
+.tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+.tab:focus-visible { outline-offset: -3px; }
+
+.panel { padding: 2.5rem var(--gutter) 5rem; max-width: 52rem; scroll-margin-top: 4rem; }
+.panel-title { margin: 0 0 1.5rem; font: 500 1.9rem/1.15 var(--serif); }
+.js .panel-title {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.panel[hidden] { display: none; }
+
+/* ------------------------------------------------------------------
+   Typography inside panels
+   ------------------------------------------------------------------ */
+.panel h3 { margin: 0 0 1rem; font: 500 1.5rem/1.2 var(--serif); letter-spacing: -.005em; }
+.panel h4 { margin: 0 0 .35rem; font: 600 1rem/1.35 var(--sans); }
+.panel > .sec { margin-top: 3.25rem; padding-top: 2.75rem; border-top: 1px solid var(--rule); }
+.panel > .panel-title + .sec { margin-top: 0; padding-top: 0; border-top: 0; }
+.fig + .sec { margin-top: 3.25rem; }
+.sec > p, .sec > ul, .sec > dl, .sec > ol { margin-top: 0; }
+
+.lead {
+  margin: 0 0 1.6rem; max-width: 34rem;
+  font: 400 clamp(1.5rem, 1.1rem + 1.7vw, 2.05rem)/1.28 var(--serif);
+  letter-spacing: -.012em;
+}
+.prose p { margin: 0 0 1.1rem; max-width: 38rem; font: 400 1.125rem/1.68 var(--serif); }
+.prose p:last-child { margin-bottom: 0; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+
+.plain { list-style: none; margin: 0; padding: 0; }
+
+/* Two-column rows (year or label on the left) ------------------------ */
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows > li {
+  display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 0 1.25rem;
+  padding: .8rem 0; border-top: 1px solid var(--rule);
+  font-size: .9375rem; line-height: 1.55;
+}
+.rows > li > .when { grid-column: 1; grid-row: 1; }
+.rows > li > p { grid-column: 2; }
+.rows .when { color: var(--muted); font-size: .875rem; font-variant-numeric: tabular-nums; padding-top: .05rem; }
+.rows p { margin: 0; }
+.rows p + p { margin-top: .2rem; }
+.rows .what { color: var(--muted); }
+.rows .role { font-weight: 600; }
+
+dl.interests { margin: 0; }
+dl.interests > div {
+  display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 0 1.25rem;
+  padding: .7rem 0; border-top: 1px solid var(--rule); font-size: .9375rem; line-height: 1.5;
+}
+dl.interests dt { font-weight: 600; }
+dl.interests dd { margin: 0; color: var(--muted); }
+
+/* ------------------------------------------------------------------
+   About: tools I mainly use
+   ------------------------------------------------------------------ */
+.uses { margin: 2.5rem 0 0; }
+.uses h3 { margin-bottom: .75rem; }
+.uses-row {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr)); gap: 0 2rem;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.uses-row li { padding: 1.1rem 0; }
+.use { display: flex; align-items: center; gap: 1rem; color: inherit; text-decoration: none; border-radius: 8px; }
+.use:hover .use-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.use-mark {
+  flex: none; display: grid; place-items: center;
+  width: 4.5rem; height: 4.5rem;
+  background: #fff; border: 1px solid var(--rule); border-radius: 8px;
+}
+.use-mark img { display: block; width: auto; height: auto; max-width: 3.1rem; max-height: 3.1rem; }
+.use-mark.missing { display: none; }
+.use-name { display: block; font: 500 1.4rem/1.2 var(--serif); }
+.use-desc { display: block; font-size: .9375rem; line-height: 1.45; color: var(--muted); }
+.uses-note { margin: .75rem 0 0; font-size: .8125rem; color: var(--muted); }
+
+/* ------------------------------------------------------------------
+   About: figure
+   ------------------------------------------------------------------ */
+.fig {
+  margin: 2.5rem 0 0; padding: 1.4rem 1.4rem 1.2rem;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+}
+.fig-title { margin: 0 0 .35rem !important; }
+.fig-lede { margin: 0 0 1.1rem; max-width: 36rem; font-size: .9375rem; color: var(--muted); }
+.fig-controls { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; margin-bottom: .75rem; font-size: .9375rem; }
+.fig-controls label { font-weight: 600; }
+.fig-controls input[type="range"] { width: 13rem; max-width: 100%; accent-color: var(--accent); }
+.fig-controls output { min-width: 3.5rem; font-variant-numeric: tabular-nums; }
+.fig-plot { position: relative; min-height: 18rem; }
+.fig-plot svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.fig-plot text { font: 400 12px var(--sans); fill: var(--chart-text); }
+.fig-plot .ptitle { fill: var(--text); font-weight: 600; font-size: 13px; }
+.fig-plot .glabel { fill: var(--text); font-weight: 600; font-size: 12.5px; }
+.fig-plot .axis { stroke: var(--axis); stroke-width: 1; }
+.fig-plot .a { fill: var(--s1); }
+.fig-plot .b { fill: var(--s2); }
+.fig-plot .bar-a { fill: var(--s1); fill-opacity: .5; }
+.fig-plot .bar-b { fill: var(--s2); fill-opacity: .5; }
+.fig-plot .kde-a { fill: none; stroke: var(--s1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.fig-plot .kde-b { fill: none; stroke: var(--s2); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.fig-plot .band { fill: var(--text); fill-opacity: .08; }
+.fig-plot .bandline { stroke: var(--text); stroke-opacity: .6; stroke-width: 1; }
+.fig-plot .hl { fill: var(--text); fill-opacity: .07; }
+.tip {
+  position: absolute; z-index: 3; pointer-events: none;
+  background: var(--text); color: var(--bg);
+  padding: .45rem .65rem; border-radius: 5px;
+  font: 400 .8125rem/1.4 var(--sans); white-space: nowrap;
+}
+.tip strong { font-weight: 700; }
+
+.fig-stats { display: flex; flex-wrap: wrap; gap: .75rem 2.25rem; margin: .9rem 0 0; }
+.fig-stats > div { min-width: 0; }
+.fig-stats dt { font-size: .8125rem; color: var(--muted); }
+.fig-stats dd { margin: 0; font: 600 1.35rem/1.25 var(--sans); }
+.fig-note { margin: 1rem 0 0; font-size: .8125rem; line-height: 1.5; color: var(--muted); max-width: 40rem; }
+.fig details { margin-top: .9rem; font-size: .875rem; }
+.fig summary { cursor: pointer; color: var(--accent); width: fit-content; }
+.tablewrap { max-height: 14rem; overflow: auto; margin-top: .6rem; border: 1px solid var(--rule); border-radius: 6px; }
+.tablewrap table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.tablewrap th, .tablewrap td { text-align: left; padding: .4rem .75rem; border-bottom: 1px solid var(--rule); }
+.tablewrap thead th { position: sticky; top: 0; background: var(--surface); }
+
+/* About: word cloud (reuses the .fig card, summary and table styles above) */
+.cloud-img { margin: 0; padding: .35rem; background: #fff; border: 1px solid var(--rule); border-radius: 6px; }
+.cloud-img img { display: block; width: 100%; height: auto; }
+.cloud-key { display: flex; flex-wrap: wrap; gap: .35rem 1.5rem; margin: .8rem 0 0; padding: 0; list-style: none; font-size: .9375rem; }
+.cloud-key li { display: flex; align-items: center; gap: .5rem; }
+.cloud-key i { flex: none; width: .8rem; height: .8rem; border-radius: 2px; }
+.cloud-key .k-topic { background: #0D366B; }
+.cloud-key .k-tool { background: #C2410C; }
+
+/* Software: CRAN downloads (drawn in the browser; tokens make it follow light and dark) */
+.usage-lede { margin: 0 0 .25rem; max-width: 40rem; color: var(--muted); }
+.ucard { margin: 1.25rem 0 0; padding: 1.1rem 1.25rem 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+.ucard-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .35rem 1.5rem; margin-bottom: .8rem; }
+.ucard h4 { margin: 0; font: 500 1.4rem/1.2 var(--serif); }
+.ucard h4 a { color: inherit; text-decoration: none; }
+.ucard h4 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+.ustats { display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; margin: 0; }
+.ustats dt { font-size: .8125rem; color: var(--muted); }
+.ustats dd { margin: 0; font: 600 1.1rem/1.3 var(--sans); font-variant-numeric: tabular-nums; min-width: 2ch; }
+.uplots { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: .9rem 1.5rem; }
+.uplot { margin: 0; min-width: 0; }
+.uplot figcaption { margin: 0 0 .2rem; font: 600 .875rem/1.3 var(--sans); }
+.uhost { position: relative; min-height: 13.5rem; }
+.uhost svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.uhost text { font: 400 11.5px var(--sans); fill: var(--chart-text); }
+.uhost .grid { stroke: var(--rule); stroke-width: 1; }
+.uhost .axis { stroke: var(--axis); stroke-width: 1; }
+.uhost .line { fill: none; stroke: var(--s1); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+.uhost .cross { stroke: var(--text); stroke-opacity: .4; stroke-width: 1; }
+.uhost .dot { fill: var(--s1); stroke: var(--surface); stroke-width: 2; }
+.usage details { margin-top: 1.1rem; font-size: .875rem; }
+.usage summary { cursor: pointer; color: var(--accent); width: fit-content; }
+.usage .tablewrap { background: var(--surface); }
+.usage-table th:not(:first-child), .usage-table td:not(:first-child) { text-align: right; }
+.usage-failed .uplots, .usage-failed .ustats { display: none; }
+.usage .fig-note { margin-top: 1rem; }
+
+/* ------------------------------------------------------------------
+   News
+   ------------------------------------------------------------------ */
+.yearblock { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: 0 1rem; padding: 1.75rem 0; border-top: 1px solid var(--rule); }
+.yearblock:first-of-type { border-top: 0; padding-top: 0; }
+.yearblock h3 { margin: 0; position: sticky; top: 4.75rem; align-self: start; font-variant-numeric: lining-nums; }
+.newslist { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+.newslist time, .newslist .d { display: block; font-size: .8125rem; color: var(--muted); margin-bottom: .1rem; font-variant-numeric: tabular-nums; }
+.newslist p { margin: 0; font-size: 1rem; line-height: 1.55; max-width: 36rem; }
+
+/* ------------------------------------------------------------------
+   Research
+   ------------------------------------------------------------------ */
+.project + .project { margin-top: 2.25rem; }
+.project h4 { font: 600 1.0625rem/1.35 var(--sans); margin-bottom: .6rem; }
+.project ul { margin: 0; padding-left: 1.15rem; max-width: 40rem; }
+.project li { margin: .45rem 0; line-height: 1.55; }
+.project li ul { margin-top: .4rem; }
+.project li li { font-size: .9375rem; color: var(--muted); }
+.project li li a { color: var(--accent); }
+
+.logos { margin-top: 1.5rem; padding: 1rem 1.25rem; background: #fff; border-radius: 6px; width: fit-content; max-width: 100%; }
+.logos img { display: block; height: auto; }
+
+ul.people-grid { list-style: none; margin: 0; padding: 0; columns: 2 18rem; column-gap: 2.5rem; }
+.people-grid li { break-inside: avoid; padding: .55rem 0; border-top: 1px solid var(--rule); font-size: .9375rem; line-height: 1.45; }
+.people-grid .n { display: block; font-weight: 600; }
+.people-grid .a { display: block; color: var(--muted); font-size: .875rem; }
+
+/* ------------------------------------------------------------------
+   Publications
+   ------------------------------------------------------------------ */
+.pub-summary { margin: 0 0 1.25rem; max-width: 40rem; font: 400 1.125rem/1.6 var(--serif); }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+.chip {
+  font: 500 .875rem/1 var(--sans); padding: .6rem .9rem;
+  border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--surface); color: var(--text); cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.legend { margin: 0 0 2.25rem; font-size: .875rem; color: var(--muted); }
+.pubgroup + .pubgroup { margin-top: 2.75rem; }
+.pubgroup h3 { margin-bottom: .75rem; }
+.pubgroup .sub { margin: 1.5rem 0 .4rem; font: 600 .9375rem/1.3 var(--sans); color: var(--muted); }
+.rows.pubs > li { grid-template-columns: 4.75rem minmax(0, 1fr); }
+.pubs p { font-size: .9375rem; }
+.pubs b { font-weight: 700; }
+.pubs .where { color: var(--muted); }
+.pubs .tag { color: var(--muted); font-style: italic; }
+/* A figure beside a publication: small, with the full-size picture one click away.
+   The CV generator adds it (PUB_FIGURES in .github/scripts/build_from_cv.py). */
+.rows.pubs > li.has-fig { grid-template-columns: 4.75rem minmax(0, 1fr) 10rem; }
+.pubfig {
+  grid-column: 3; grid-row: 1 / span 2; align-self: start; margin: .15rem 0 0; padding: .3rem;
+  background: #fff; border: 1px solid var(--rule); border-radius: 6px; line-height: 0;
+}
+.pubfig a { display: block; }
+.pubfig img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.pubfig a:hover img { opacity: .88; }
+
+/* ------------------------------------------------------------------
+   Software
+   ------------------------------------------------------------------ */
+.software-lead { margin: 0 0 2rem; max-width: 34rem; font: 400 1.5rem/1.35 var(--serif); letter-spacing: -.008em; }
+.tool {
+  display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: .5rem 2rem;
+  padding: 1.5rem 0; border-top: 1px solid var(--rule);
+}
+.tool h3 { margin: 0; font-size: 1.4rem; }
+.tool .kind { margin: .2rem 0 0; font-size: .875rem; color: var(--muted); }
+.tool p { margin: 0 0 .6rem; max-width: 36rem; }
+.tool .links { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin: 0; padding: 0; list-style: none; font-size: .9375rem; }
+.tool .dl { font-size: .875rem; color: var(--muted); margin-top: .6rem; }
+
+/* ------------------------------------------------------------------
+   Teaching & Service
+   ------------------------------------------------------------------ */
+.subhead { margin: 2rem 0 .5rem; font: 600 1rem/1.3 var(--sans); }
+.sec .subhead:first-of-type { margin-top: 1.25rem; }
+.journals { max-width: 38rem; font: 400 1.0625rem/1.65 var(--serif); }
+.journals i { font-style: italic; }
+
+/* ------------------------------------------------------------------
+   Contact
+   ------------------------------------------------------------------ */
+.contact-list { list-style: none; margin: 0; padding: 0; }
+.contact-list li {
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 0 1.25rem;
+  padding: .75rem 0; border-top: 1px solid var(--rule); font-size: 1rem;
+}
+.contact-list .host { color: var(--muted); font-size: .875rem; align-self: center; overflow-wrap: anywhere; }
+
+/* ------------------------------------------------------------------
+   Small screens
+   ------------------------------------------------------------------ */
+@media (max-width: 56rem) {
+  .site { display: block; }
+  .plate {
+    position: static; height: auto; overflow: visible;
+    display: grid; grid-template-columns: 5.75rem minmax(0, 1fr);
+    gap: 1rem 1.1rem; padding: 1.25rem var(--gutter) 1.1rem;
+  }
+  .portrait { grid-column: 1; grid-row: 1; }
+  .plate .id { grid-column: 2; grid-row: 1; min-width: 0; }
+  .plate h1 { font-size: 1.65rem; }
+  .plate .pron { margin-top: .2rem; font-size: .875rem; }
+  .plate .creds { margin: .5rem 0 .2rem; font-size: .875rem; }
+  .plate .affil { font-size: .8125rem; }
+  .actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; gap: .6rem 1.1rem; }
+  .actions .cvdate { flex-basis: 100%; }
+  .plate-links { grid-column: 1 / -1; margin: 0; padding-top: .9rem; font-size: .9375rem; gap: .5rem 1.25rem; }
+  .panel { scroll-margin-top: 3.5rem; }
+  .tab { padding-top: .95rem; }
+  .yearblock h3 { top: 4rem; }
+}
+@media (max-width: 40rem) {
+  .rows > li, .rows.pubs > li, .rows.pubs > li.has-fig { grid-template-columns: 1fr; gap: .1rem; }
+  .rows > li > .when, .rows > li > p { grid-column: 1; grid-row: auto; }
+  .pubfig { grid-column: 1; grid-row: auto; width: min(100%, 13rem); margin-top: .6rem; }
+  .yearblock { grid-template-columns: 1fr; }
+  .yearblock h3 { position: static; margin-bottom: .75rem; }
+  dl.interests > div { grid-template-columns: 1fr; gap: .1rem; }
+  .tool { grid-template-columns: 1fr; }
+  .contact-list li { grid-template-columns: 1fr; }
+  .fig { padding: 1.1rem 1rem .9rem; }
+  .panel-title { font-size: 1.6rem; }
+}
+@media (max-width: 30rem) {
+  .plate .affil br + br { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+/* ------------------------------------------------------------------
+   Print: show every section, drop the chrome
+   ------------------------------------------------------------------ */
+@media print {
+  :root { --bg: #fff; --surface: #fff; --text: #000; --muted: #333; --rule: #bbb; --accent: #000; }
+  .site { display: block; }
+  .plate { position: static; height: auto; background: none; color: #000; padding: 0 0 1rem; display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; }
+  .plate a { color: #000; }
+  .plate .pron, .plate .affil, .actions .cvdate { color: #333; }
+  .btn, .tabbar, .chips, .skip, .fig-controls, .fig details, .usage { display: none !important; }
+  .plate-links { grid-column: 1 / -1; margin: 0; padding-top: .5rem; border-top-color: #bbb; }
+  .panel, .panel[hidden] { display: block !important; max-width: none; padding: 1rem 0; break-before: auto; }
+  .panel-title { position: static !important; width: auto !important; height: auto !important; margin: 0 0 1rem !important; clip: auto !important; overflow: visible !important; }
+  .pubgroup[hidden] { display: block !important; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="site">
+
+  <!-- ============================== Identity plate ============================== -->
+  <header class="plate">
+    <img class="portrait" src="img.jpg" width="300" height="400" alt="Portrait of Jarrett D. Phillips">
+
+    <div class="id">
+      <h1>Jarrett D. Phillips</h1>
+      <p class="pron">He/Him/His</p>
+      <p class="creds">BSc. (Hons.), MBinf., PhD.</p>
+      <p class="affil">
+        Adjunct Professor<br>
+        School of Computer Science<br>
+        Department of Integrative Biology<br>
+        Affiliated Faculty, One Health Institute<br>
+        University of Guelph
+      </p>
+    </div>
+
+    <div class="actions">
+      <!--cv:begin cv-button--><a class="btn" href="CV_October_2026_-_Phillips__Jarrett.pdf">Download CV</a><!--cv:end cv-button-->
+      <a class="mail" href="mailto:jphill01@uoguelph.ca">jphill01@uoguelph.ca</a>
+      <p class="cvdate">CV last updated <!--cv:begin cv-date-->October 2026<!--cv:end cv-date--></p>
+    </div>
+
+    <ul class="plate-links" aria-label="Elsewhere on the web">
+      <li><a href="https://www.uoguelph.ca/profile/jarrett-phillips">University of Guelph faculty profile</a></li>
+      <li><a href="https://scholar.google.ca/citations?user=2YE-Y4cAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://orcid.org/0000-0001-8390-386X">ORCID</a></li>
+      <li><a href="https://github.com/jphill01">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/jarrettdphillips/">LinkedIn</a></li>
+      <li><a href="https://www.researchgate.net/profile/Jarrett-Phillips">ResearchGate</a></li>
+      <li><a href="https://twitter.com/JarrettDPhilli1">Twitter/X</a></li>
+    </ul>
+  </header>
+
+  <!-- ============================== Tabs and content ============================== -->
+  <main id="main">
+
+    <nav class="tabbar" aria-label="Sections">
+      <div class="tablist" id="tablist">
+        <a class="tab" id="tab-about" href="#about">About</a>
+        <a class="tab" id="tab-news" href="#news">News</a>
+        <a class="tab" id="tab-research" href="#research">Research</a>
+        <a class="tab" id="tab-publications" href="#publications">Publications</a>
+        <a class="tab" id="tab-software" href="#software">Software</a>
+        <a class="tab" id="tab-teaching" href="#teaching">Teaching &amp; Service</a>
+        <a class="tab" id="tab-contact" href="#contact">Contact</a>
+      </div>
+    </nav>
+
+
+    <!-- ============================== ABOUT ============================== -->
+    <section class="panel" id="about" data-title="About">
+      <h2 class="panel-title">About</h2>
+
+      <p class="lead">I leverage AI/ML/Data Science/Big Data methods to help researchers find meaningful signal in a vast sea of noise.</p>
+
+      <div class="prose">
+        <p>I am a highly motivated and passionate bioinformatician, data scientist and statistician naturally driven by curiosity to use mathematical, statistical and computational methods to answer fundamental and applied research questions in biodiversity science, evolutionary biology, ecology, genomics and bioinformatics, particularly related to molecular species identification and discovery through DNA barcoding, environmental DNA (eDNA) and other DNA-based approaches.</p>
+        <p>My academic work and research interests can best be described as computational molecular biodiversity science. Biodiversity is under threat in a rapidly changing world, where mitigation requires innovative and collaborative solutions from multiple disciplines. DNA-based specimen identification and species discovery through techniques like DNA barcoding and eDNA offer promising ways forward, yet produce overwhelming amounts of data.</p>
+      </div>
+
+      <!-- Tools I mainly use. Logo files are optional: if one is missing, that tile simply shows the name.
+           Save the official logos next to this file as R-logo.png and stan-logo.png (change the src below if yours differ). -->
+      <section class="uses" aria-labelledby="uses-title">
+        <h3 id="uses-title">Tools I mainly use</h3>
+        <ul class="uses-row">
+          <li>
+            <a class="use" href="https://www.r-project.org/">
+              <span class="use-mark"><img src="R-logo.png" alt="" onload="document.getElementById('uses-note').hidden=false" onerror="this.parentNode.classList.add('missing')"></span>
+              <span>
+                <span class="use-name">R</span>
+                <span class="use-desc">Statistics, R packages on CRAN, and Shiny web apps</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="use" href="https://mc-stan.org/">
+              <span class="use-mark"><img src="stan-logo.png" alt="" onload="document.getElementById('uses-note').hidden=false" onerror="this.parentNode.classList.add('missing')"></span>
+              <span>
+                <span class="use-name">Stan</span>
+                <span class="use-desc">Bayesian computing and statistics, alongside R</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <p class="uses-note" id="uses-note" hidden>R logo &copy; R Foundation, used under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>. The Stan name and logo are trademarks of NumFOCUS.</p>
+      </section>
+
+      <!-- Word cloud: terms from this site and the CV, sized by how often they appear.
+           wordcloud.png and data/wordcloud-terms.json are rebuilt by the "Update word cloud" GitHub Action whenever
+           index.html or the CV changes. The table lists the same terms for screen readers and anyone who wants the counts;
+           the rows below are a fallback that the script at the end of the page replaces with the current ones. -->
+      <figure class="fig" id="cloudfig" aria-labelledby="cloudfig-title">
+        <h3 class="fig-title" id="cloudfig-title">My research in words</h3>
+        <p class="fig-lede">The terms that come up most on this site and in my CV. The more often a term appears, the larger it is.</p>
+
+        <div class="cloud-img">
+          <img src="wordcloud.png" width="2400" height="1420" loading="lazy" decoding="async"
+               alt="Word cloud of research terms from this site and my CV. The largest are sampling, DNA barcoding, seafood fraud, modelling, eDNA and DNA barcode gap. Software and tools, such as R, HACSim, Shiny and web apps, are set in orange bold type.">
+        </div>
+
+        <ul class="cloud-key" aria-label="Key">
+          <li><i class="k-topic" aria-hidden="true"></i>Research topics and methods</li>
+          <li><i class="k-tool" aria-hidden="true"></i>Software and tools, in bold</li>
+        </ul>
+
+        <details>
+          <summary>View the terms as a table</summary>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th scope="col">Term</th><th scope="col">Mentions</th><th scope="col">Type</th></tr></thead>
+              <tbody id="cloud-rows">
+                <tr><td>sampling</td><td>51</td><td>Topic or method</td></tr>
+                <tr><td>DNA barcoding</td><td>49</td><td>Topic or method</td></tr>
+                <tr><td>seafood fraud</td><td>40</td><td>Topic or method</td></tr>
+                <tr><td>modelling</td><td>37</td><td>Topic or method</td></tr>
+                <tr><td>eDNA</td><td>34</td><td>Topic or method</td></tr>
+                <tr><td>DNA barcode gap</td><td>29</td><td>Topic or method</td></tr>
+                <tr><td>statistics</td><td>27</td><td>Topic or method</td></tr>
+                <tr><td>R</td><td>26</td><td>Software or tool</td></tr>
+                <tr><td>association rules</td><td>24</td><td>Topic or method</td></tr>
+                <tr><td>genetic diversity</td><td>23</td><td>Topic or method</td></tr>
+                <tr><td>species</td><td>23</td><td>Topic or method</td></tr>
+                <tr><td>intraspecific</td><td>21</td><td>Topic or method</td></tr>
+                <tr><td>GBADs</td><td>18</td><td>Topic or method</td></tr>
+                <tr><td>biodiversity</td><td>17</td><td>Topic or method</td></tr>
+                <tr><td>supply chain</td><td>16</td><td>Topic or method</td></tr>
+                <tr><td>fishes</td><td>15</td><td>Topic or method</td></tr>
+                <tr><td>Bayesian</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>ecology</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>haplotype accumulation</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>statistical modelling</td><td>13</td><td>Topic or method</td></tr>
+                <tr><td>DNA sequences</td><td>12</td><td>Topic or method</td></tr>
+                <tr><td>HACSim</td><td>12</td><td>Software or tool</td></tr>
+                <tr><td>data mining</td><td>11</td><td>Topic or method</td></tr>
+                <tr><td>Shiny</td><td>11</td><td>Software or tool</td></tr>
+                <tr><td>spatiotemporal</td><td>11</td><td>Topic or method</td></tr>
+                <tr><td>machine learning</td><td>10</td><td>Topic or method</td></tr>
+                <tr><td>livestock</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>simulation</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>species identification</td><td>8</td><td>Topic or method</td></tr>
+                <tr><td>web apps</td><td>8</td><td>Software or tool</td></tr>
+                <tr><td>agent-based models</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>bioinformatics</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>butterflies</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>coalescent</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>CRAN</td><td>7</td><td>Software or tool</td></tr>
+                <tr><td>nonparametric</td><td>7</td><td>Topic or method</td></tr>
+                <tr><td>VLF</td><td>7</td><td>Software or tool</td></tr>
+                <tr><td>classification</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>disease burden</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>regression</td><td>6</td><td>Topic or method</td></tr>
+                <tr><td>sequencing errors</td><td>5</td><td>Topic or method</td></tr>
+                <tr><td>data science</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>evolutionary biology</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>genomics</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>optimization</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>time series</td><td>4</td><td>Topic or method</td></tr>
+                <tr><td>artificial intelligence</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>bootstrap</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>kernel density estimation</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>metadata</td><td>3</td><td>Topic or method</td></tr>
+                <tr><td>Python</td><td>3</td><td>Software or tool</td></tr>
+                <tr><td>RulesTools</td><td>3</td><td>Software or tool</td></tr>
+                <tr><td>Stan</td><td>3</td><td>Software or tool</td></tr>
+                <tr><td>conservation</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>Gaussian processes</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>generalized additive models</td><td>2</td><td>Topic or method</td></tr>
+                <tr><td>genetic algorithms</td><td>2</td><td>Topic or method</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <p class="fig-note">Counts come from the text of this site and my CV. Names, venues and very general words are left out. <a href="wordcloud.png">Open the full-size image</a>.</p>
+      </figure>
+
+      <!-- Interactive figure: how the histogram's bin width changes the picture of the DNA barcode gap -->
+      <figure class="fig" id="gapfig" aria-labelledby="gapfig-title">
+        <h3 class="fig-title" id="gapfig-title">The DNA barcode gap depends on the bin width</h3>
+        <p class="fig-lede">These are simulated distances between DNA barcodes. Change the bin width and watch the gap between the two groups open and close.</p>
+
+        <div class="fig-controls">
+          <label for="gap-bw">Histogram bin width</label>
+          <input id="gap-bw" type="range" min="0" max="5" step="1" value="1">
+          <output id="gap-bw-out" for="gap-bw">0.5%</output>
+        </div>
+
+        <div class="fig-plot">
+          <noscript><p class="muted small">This figure needs JavaScript to draw.</p></noscript>
+        </div>
+
+        <dl class="fig-stats">
+          <div><dt>Largest within-species distance</dt><dd id="gap-max-intra">&nbsp;</dd></div>
+          <div><dt>Smallest between-species distance</dt><dd id="gap-min-inter">&nbsp;</dd></div>
+          <div><dt>Gap between them</dt><dd id="gap-size">&nbsp;</dd></div>
+        </dl>
+
+        <details>
+          <summary>View the bins as a table</summary>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th scope="col">Bin (% distance)</th><th scope="col">Within species</th><th scope="col">Between species</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </details>
+
+        <p class="fig-note">Simulated data for illustration, not measurement. The DNA barcode gap is the distance between the largest within-species genetic distance and the smallest between-species genetic distance, and those two values do not change with the bin width. The curves are kernel density estimates. For the argument behind this figure, see <a href="https://doi.org/10.3389/fevo.2022.859099">Phillips, Gillis and Hanner (2022)</a>.</p>
+      </figure>
+
+      <div class="sec">
+        <h3>Latest publications</h3>
+        <ul class="rows pubs">
+          <!--cv:begin latest-publications-->
+          <li><span class="when">2026</span><p><b>Phillips, J.D.</b> and *De Vuono-Fraser, F.A. (2026). Swimming in deep uncertainty: How proper statistical modelling can help expose seafood product mislabeling. <i>CHANCE</i>, 3. <a href="https://doi.org/10.1080/09332480.2026.2725526">DOI: 10.1080/09332480.2026.2725526</a></p></li>
+          <li><span class="when">2026</span><p><b>Phillips, J.D.</b> and *De Vuono-Fraser, F.A. (2026). Statistical modelling of seafood fraud highlights uncertainties in products from Metro Vancouver, British Columbia, Canada: Revisiting Hu et al. (2018). <i>Journal of Food Science</i>, 91: e71201. <a href="https://doi.org/10.1111/1750-3841.71201">DOI: 10.1111/1750-3841.71201</a></p></li>
+          <li><span class="when">2026</span><p>*Toth, N., Antonie, L., Hanner, R.H., Gillis, D.J., and <b>Phillips, J.D.</b> Mining association rules for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling. <i>bioRxiv</i>. <a href="https://www.biorxiv.org/content/10.64898/2026.09.16.752056v1">DOI: 10.64898/2026.09.16.752056</a>. <span class="tag">Submitted to <i>Oikos</i>.</span></p></li>
+          <!--cv:end latest-publications-->
+        </ul>
+        <p class="small muted" style="margin-top:1rem"><a href="#publications">See all publications</a></p>
+      </div>
+
+      <div class="sec">
+        <h3>Research interests</h3>
+        <p class="muted" style="max-width:38rem"><!--cv:begin research-areas-->Computational statistics, data science, machine learning, statistical modelling, biodiversity informatics, and eDNA and DNA barcoding.<!--cv:end research-areas--></p>
+        <dl class="interests">
+          <div><dt>Agent-based and individual-based modelling</dt><dd>in R and Python</dd></div>
+          <div><dt>Bayesian computing and statistics</dt><dd>in R and Stan</dd></div>
+          <div><dt>Biodiversity informatics</dt><dd><i>e.g.</i>, DNA barcoding, environmental DNA (eDNA), DNA sequence analysis</dd></div>
+          <div><dt>Data science and machine learning</dt><dd><i>e.g.</i>, association rule generation, clustering, classification, and dimensionality reduction of (e)DNA sequence data and related metadata</dd></div>
+          <div><dt>Nonparametric statistics</dt><dd><i>e.g.</i>, bootstrap resampling, local regression, kernel methods</dd></div>
+          <div><dt>Spatiotemporal modelling</dt><dd><i>e.g.</i>, conditionally autoregressive models (CARs), Gaussian processes (GPs)/Kriging, generalized additive models (GAMs), time series</dd></div>
+          <div><dt>Stochastic optimization</dt><dd><i>e.g.</i>, random search algorithms, genetic algorithms (GAs), simulated annealing</dd></div>
+        </dl>
+      </div>
+
+      <div class="sec">
+        <h3>Appointments</h3>
+        <ul class="rows">
+          <!--cv:begin appointments-->
+          <li><span class="when">2026</span><p><span class="role">Affiliated Faculty, One Health Institute</span><br>University of Guelph</p></li>
+          <li><span class="when">2023–present</span><p><span class="role">Adjunct Professor, School of Computer Science</span><br>University of Guelph</p></li>
+          <li><span class="when">2023–present</span><p><span class="role">Postdoctoral Fellow</span><br>GBADs Informatics Team, Stacey Lab, School of Computer Science, University of Guelph</p><p class="what">Supervisor: Dr. Deborah Stacey</p></li>
+          <li><span class="when">2023–present</span><p><span class="role">Postdoctoral Fellow</span><br>Gillis Lab, School of Computer Science; Hanner Lab, Department of Integrative Biology; University of Guelph</p><p class="what">Supervisors: Drs. Daniel Gillis and Robert Hanner</p></li>
+          <li><span class="when">2022</span><p><span class="role">Postdoctoral Fellow</span><br>Hanner Lab, Department of Integrative Biology, University of Guelph</p><p class="what">Supervisor: Dr. Robert Hanner</p></li>
+          <!--cv:end appointments-->
+        </ul>
+      </div>
+
+      <div class="sec">
+        <h3>Education</h3>
+        <ul class="rows">
+          <!--cv:begin education-->
+          <li><span class="when">2022</span><p><span class="role">Ph.D. in Computational Sciences</span>, University of Guelph</p><p class="what">Co-advisors: Dr. Daniel Gillis and Dr. Robert Hanner</p><p class="what">Advisory committee: Dr. Deborah Stacey and Dr. Graham Taylor</p><p class="what">Dissertation: <a href="https://atrium.lib.uoguelph.ca/items/8addfcc5-f21c-4691-89b7-c4db051892eb">A Novel Statistical Framework for Assessment of Intraspecific Haplotype Sampling Completeness: Implications for DNA Barcode Gap Estimation</a></p></li>
+          <li><span class="when">2014</span><p><span class="role">Master of Bioinformatics</span>, University of Guelph</p><p class="what">Co-advisors: Dr. Robert Hanner and Dr. Daniel Ashlock</p><p class="what">Major paper: Assessing DNA Barcode Haplotype Sampling Diversity in the Ray-finned Fishes (Chordata: Actinopterygii)</p></li>
+          <li><span class="when">2013</span><p><span class="role">BSc. (Hons.) in Biological Science</span>, University of Guelph</p><p class="what">Coursework in bioinformatics, ecology, evolutionary biology, comparative animal physiology, genetics, mathematics, and statistics</p></li>
+          <!--cv:end education-->
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================== NEWS ============================== -->
+    <section class="panel" id="news" data-title="News">
+      <h2 class="panel-title">News</h2>
+
+      <div class="yearblock">
+        <h3>2026</h3>
+        <ul class="newslist">
+          <li><time datetime="2026-08-17">17 Aug</time><p>My student, Richard Cui, gave a talk at the Applied Mathematics, Modelling, and Computational Science (AMMCS) conference in Waterloo, Ontario, Canada.</p></li>
+          <li><time datetime="2026-06-15">15 Jun</time><p>My student, Nikolett Toth, and I presented a poster and gave a talk, respectively, at the 3rd Pathway to Increase Standards and Competency in Environmental DNA Surveys (PISCeS) conference in Guelph, Ontario, Canada.</p></li>
+          <li><time datetime="2026-04-07">7 Apr</time><p>A paper with my student, Nikolett Toth, on association rule mining of eDNA datasets was accepted to the 39th annual Canadian Artificial Intelligence Conference in Vancouver, British Columbia, Canada.</p></li>
+          <li><time datetime="2026-02-23">23 Feb</time><p>My student, Richard Cui, was featured in a College of Computational, Mathematical, and Physical Sciences (CCMPS) Research Highlights article: <a href="https://www.uoguelph.ca/ccmps/news/2026/02/reeling-catch-modelling-dynamics-market-fraud-within-seafood-supply-chain">Reeling in the Catch: Modelling the Dynamics of Market Fraud Within the Seafood Supply Chain</a>.</p></li>
+          <li><time datetime="2026-02-23">23 Feb</time><p>I am serving on the Program Committee of the <a href="https://www.caiac.ca/en/conferences/canadianai-2026/home">39th Canadian Conference on Artificial Intelligence</a> as a paper reviewer.</p></li>
+        </ul>
+      </div>
+
+      <div class="yearblock">
+        <h3>2025</h3>
+        <ul class="newslist">
+          <li><span class="d">Fall</span><p>I taught CIS*1910 (Discrete Structures in Computing I).</p></li>
+        </ul>
+      </div>
+
+      <div class="yearblock">
+        <h3>2024</h3>
+        <ul class="newslist">
+          <li><time datetime="2024-07-31">31 Jul</time><p>My student, Nikolett Toth, was featured in a College of Engineering and Physical Sciences (CEPS) Research Highlights article: <a href="https://www.uoguelph.ca/ccmps/news/2024/07/edna-collection-gets-tech-upgrade">eDNA Collection Gets a Tech Upgrade</a>.</p></li>
+          <li><time datetime="2024-06-13">13 Jun</time><p>I received a $40,000 CAD Food from Thought Advancing Research Impact Fund (ARIF) Livestock Innovation grant to develop the Dynamic Population Model (DPM) as part of my work with GBADs.</p></li>
+          <li><time datetime="2024-04-30">30 Apr</time><p>Two book chapters on DNA barcoding for specimen identification and species delimitation were published online by Springer Nature.</p></li>
+          <li><span class="d">2024</span><p>A preprint on GBADs informatics strategy, data quality, and model interoperability became available. It has since been published in the <a href="https://pubmed.ncbi.nlm.nih.gov/39222107/">WOAH Scientific and Technical Review</a>.</p></li>
+          <li><time datetime="2024-02-08">8 Feb</time><p>My preprint on statistical modelling of seafood mislabelling in Canada is now on <a href="https://doi.org/10.1101/2024.02.05.578947">bioRxiv</a>.</p></li>
+        </ul>
+      </div>
+
+      <div class="yearblock">
+        <h3>2023</h3>
+        <ul class="newslist">
+          <li><time datetime="2023-12-11">11&ndash;15 Dec</time><p>I attended the GBADs Technical Workshop in Liverpool, England.</p></li>
+          <li><time datetime="2023-11-23">23 Nov</time><p>I was appointed Adjunct Professor in the School of Computer Science at the University of Guelph.</p></li>
+          <li><time datetime="2023-06-22">22 Jun</time><p>I joined the Global Burden of Animal Diseases (GBADs) Informatics team at the University of Guelph.</p></li>
+          <li><time datetime="2023-01-26">26 Jan</time><p>The VLF paper was published.</p></li>
+        </ul>
+      </div>
+
+      <div class="yearblock">
+        <h3>2022</h3>
+        <ul class="newslist">
+          <li><time datetime="2022-11-29">29 Nov</time><p>My paper introducing and outlining the VLF R package was accepted for publication in the <i>Biodiversity Data Journal</i>.</p></li>
+          <li><time datetime="2022-10-20">20 Oct</time><p>I received $30,000 CAD in funding from the Food from Thought Advancing Research Impact Fund (ARIF) to develop a Bayesian hierarchical binary logistic time-series regression model of seafood fraud in the Canadian supply chain.</p></li>
+          <li><time datetime="2022-08-15">15 Aug</time><p>My recent paper arguing a lack of statistical rigor in DNA barcoding was featured as a University of Guelph College of Engineering and Physical Sciences (CEPS) Research Highlights article: <a href="https://www.uoguelph.ca/ceps/news/2022/08/mind-gap-%E2%80%93-dna-barcode-gap">Mind the Gap &ndash; The DNA Barcode Gap, That Is</a>.</p></li>
+          <li><time datetime="2022-04-14">14 Apr</time><p>My opinion paper on statistical aspects of DNA barcoding and the DNA barcode gap was published in <i>Frontiers in Ecology and Evolution</i>.</p></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================== RESEARCH ============================== -->
+    <section class="panel" id="research" data-title="Research">
+      <h2 class="panel-title">Research</h2>
+
+      <div class="sec">
+        <h3>Current projects</h3>
+
+        <div class="project">
+          <h4>Agent-based, equation-based, and individual-based models for animal disease burden</h4>
+          <ul>
+            <li>Developing a deterministic discrete-time dynamical system of seafood fraud in the supply chain using Python.</li>
+            <li>Developing an age- and sex-structured compartmentalized equation-based model in R to assess disease burden in livestock species such as cattle, small ruminants (<i>e.g.</i>, sheep and goats), and poultry in developing countries like Ethiopia.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>Theoretical aspects of DNA-based taxon identification</h4>
+          <ul>
+            <li>Developing methods to estimate likely required specimen sample sizes for genetic diversity assessment within species using DNA barcoding.
+              <ul>
+                <li>Practical sample sizes for DNA barcoding typically range between 5 and 10 individuals per species, but required levels of sampling depth are highly dependent on the evolutionary history and ecology of the species under study, as well as species rarity and overall project costs.</li>
+                <li>I created <a href="https://cran.r-project.org/web/packages/HACSim/index.html">HACSim</a> (Haplotype Accumulation Curve Simulator), a novel nonparametric stochastic (Monte Carlo) local search optimization algorithm, to better estimate likely required specimen sample sizes based on asymptotic behaviour seen in species' haplotype accumulation curves.</li>
+                <li>HACSim has been shown to work well for a variety of species of socioeconomic relevance, such as fishes, insects and arachnids, based on extensive simulation studies.</li>
+                <li>The publication of HACSim in <i>PeerJ Computer Science</i> was one of the top 5 most viewed articles in the category &ldquo;Optimization Theory and Computation&rdquo;.</li>
+              </ul>
+            </li>
+            <li>Developing methods for better visualization and inference of the DNA barcode gap.
+              <ul>
+                <li>The DNA barcode gap, the difference between genetic variation observed within and among species, is most often visualized using histograms. These plots can be misleading because they depend on user-defined parameters, which greatly affect the overall shape of the probability distributions.</li>
+                <li>I propose that kernel density estimation provides a better path forward for establishing the efficacy of DNA barcoding as a molecular identification tool.</li>
+                <li>I also propose nonparametric bootstrapping, specifically the <i>m</i>-out-of-<i>n</i> bootstrap, to estimate the sampling distributions of quantities of interest in DNA barcoding. These include extreme order statistics like the minimum interspecific and maximum intraspecific genetic distances, in addition to the DNA barcode gap.</li>
+                <li>We are currently developing a population genetic model of the DNA barcode gap based on the multispecies coalescent (<a href="https://doi.org/10.22541/au.174073683.37707806/v1">preprint</a>).</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>Building the reference library of life</h4>
+          <ul>
+            <li>Constructing the largest DNA barcode reference sequence library for North American butterflies.
+              <ul>
+                <li>Butterflies are some of the most genetically and morphologically diverse insects on the planet. One aspect of my work involves generating a DNA barcode library for over 97% (more than 800 species) of known butterfly species found in North America (<a href="https://doi.org/10.7717/peerj.11157">D&rsquo;Ercole <i>et al.</i>, 2021</a>).</li>
+                <li>Current work using this dataset correlates species&rsquo; genetic diversity with geographical covariates (such as latitude and longitude) using semiparametric and nonparametric regression approaches, including Generalized Additive Models (GAMs) and Local Regression (LOESS).</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>R software packages and R Shiny web apps for molecular biodiversity assessment</h4>
+          <ul>
+            <li>HACSim, VLF and RulesTools are available through the Comprehensive R Archive Network (CRAN). See the <a href="#software">Software</a> tab for details and links.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <h4>Assessing R metadata reporting and standards in the ecological literature</h4>
+          <ul>
+            <li>Within many scientific publications that employ R, lack of proper citation of R versions and packages used in analyses is rampant.</li>
+            <li>We mine article metadata spanning five different ecological journals for publications appearing in 2019 and find significant variation in how R is currently reported.</li>
+            <li>We propose a simple way of standardizing reporting that will help mitigate biases in future studies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h3>Funding</h3>
+
+        <p class="subhead">Research grants</p>
+        <ul class="rows">
+          <!--cv:begin funding-grants-->
+          <li><span class="when">2024</span><p><span class="role">Food From Thought Advancing Research Impact (ARIF) Fund – Livestock Innovation Grant</span>, University of Guelph. $40,000 CAD</p><p class="what">A Modular Decision- and Policy-Making Tool for Global Livestock Disease Burden Assessment. Role: co-applicant.</p></li>
+          <li><span class="when">2023</span><p><span class="role">Food From Thought Advancing Research Impact (ARIF) Fund</span>, University of Guelph. $30,000 CAD</p><p class="what">Forecasting Seafood Fraud Occurrence in the Supply Chain Within Major Canadian Cities Using Bayesian Hierarchical Binary Logistic Time-Series Regression Modeling. Role: HQP.</p></li>
+          <!--cv:end funding-grants-->
+        </ul>
+
+        <p class="subhead">Scholarships, travel awards and assistantships</p>
+        <ul class="rows">
+          <!--cv:begin funding-awards-->
+          <li><span class="when">2019</span><p><span class="role">SoCS Travel Grant</span>, University of Guelph. $1,000 CAD</p></li>
+          <li><span class="when">2019</span><p><span class="role">Arthur D. Latornell Graduate Travel Grant</span>, University of Guelph. $500 CAD</p></li>
+          <li><span class="when">2016–2020</span><p><span class="role">Graduate Teaching Assistantships</span>, University of Guelph. $35,000 CAD</p></li>
+          <li><span class="when">2017–2019</span><p><span class="role">Graduate Research Assistantships</span>, University of Guelph. $11,000 CAD</p></li>
+          <li><span class="when">2017</span><p><span class="role">CPES Graduate Dean’s Scholarship</span>, University of Guelph. $3,500 CAD</p></li>
+          <li><span class="when">2016</span><p><span class="role">CPES Graduate Excellence Entrance (GEE) Scholarship</span>, University of Guelph. $30,000 CAD</p></li>
+          <!--cv:end funding-awards-->
+        </ul>
+
+        <div class="logos">
+          <img src="comb%20logos.png" width="500" height="100" alt="Logos of the organizations that fund this research">
+        </div>
+      </div>
+
+      <div class="sec">
+        <h3>Collaborators</h3>
+        <ul class="people-grid">
+          <li><span class="n">Dr. Daniel Gillis</span><span class="a">School of Computer Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Robert Hanner</span><span class="a">Biodiversity Institute of Ontario, Department of Integrative Biology, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Robert Young</span><span class="a">Department of Integrative Biology, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Jacopo D&rsquo;Ercole</span><span class="a">Centre for Biodiversity Genomics, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Cortland Griswold</span><span class="a">Department of Integrative Biology, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Nicolas Hubert</span><span class="a">Institut de Recherche pour le D&eacute;veloppement, Universit&eacute; de Montpellier, France</span></li>
+          <li><span class="n">Dr. Dirk Steinke</span><span class="a">Centre for Biodiversity Genomics and Department of Integrative Biology, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Luiza Antonie</span><span class="a">School of Computer Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Deborah Stacey</span><span class="a">School of Computer Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Theresa Bernardo</span><span class="a">Department of Population Medicine, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Kurtis Sobkowich</span><span class="a">Department of Population Medicine, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Le Nguyen</span><span class="a">School of Computer Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Mike Yodzis</span><span class="a">Department of Integrative Biology, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Ed Sykes</span><span class="a">School of Computer Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Elif Acar</span><span class="a">Department of Mathematics and Statistics, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Stefan Kremer</span><span class="a">School of Computer Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Graham Taylor</span><span class="a">School of Engineering, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Prasad Daggupati</span><span class="a">School of Engineering, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Zeny Feng</span><span class="a">Department of Mathematics and Statistics, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Allan Willms</span><span class="a">Department of Mathematics and Statistics, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Richard Heck</span><span class="a">School of Environmental Science, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Shoshanah Jacobs</span><span class="a">Biodiversity Institute of Ontario, Department of Integrative Biology, University of Guelph, Canada</span></li>
+          <li><span class="n">Dr. Aicheng Chen</span><span class="a">Department of Chemistry, University of Guelph, Canada</span></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================== PUBLICATIONS ============================== -->
+    <section class="panel" id="publications" data-title="Publications">
+      <h2 class="panel-title">Publications</h2>
+
+      <p class="pub-summary"><!--cv:begin publication-summary-->9 peer-reviewed journal articles (7 as first author), 2 book chapters, and 3 first-author manuscripts in preprint or to be submitted. I am senior (last) author on 2 student-led manuscripts. Citation counts are on <a href="https://scholar.google.ca/citations?user=2YE-Y4cAAAAJ&amp;hl=en">Google Scholar</a>.<!--cv:end publication-summary--></p>
+
+      <div class="chips" id="pubfilter" role="group" aria-label="Filter publications by type" hidden>
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="articles" aria-pressed="false">Journal articles</button>
+        <button class="chip" type="button" data-filter="manuscripts" aria-pressed="false">Preprints and manuscripts</button>
+        <button class="chip" type="button" data-filter="chapters" aria-pressed="false">Book chapters</button>
+        <button class="chip" type="button" data-filter="proceedings" aria-pressed="false">Proceedings and abstracts</button>
+        <button class="chip" type="button" data-filter="talks" aria-pressed="false">Talks and posters</button>
+        <button class="chip" type="button" data-filter="outreach" aria-pressed="false">Outreach and other writing</button>
+      </div>
+      <p class="legend"><!--cv:begin pub-legend-->* marks a student under my direct supervision.<!--cv:end pub-legend--></p>
+
+      <!-- Journal articles -->
+      <div class="pubgroup" data-kind="articles">
+        <h3>Journal articles</h3>
+        <ul class="rows pubs">
+          <!--cv:begin pubs-articles-->
+          <li><span class="when">2026</span><p><b>Phillips, J.D.</b> and *De Vuono-Fraser, F.A. (2026). Swimming in deep uncertainty: How proper statistical modelling can help expose seafood product mislabeling. <i>CHANCE</i>, 3. <a href="https://doi.org/10.1080/09332480.2026.2725526">DOI: 10.1080/09332480.2026.2725526</a></p></li>
+          <li class="has-fig"><span class="when">2026</span><p><b>Phillips, J.D.</b> and *De Vuono-Fraser, F.A. (2026). Statistical modelling of seafood fraud highlights uncertainties in products from Metro Vancouver, British Columbia, Canada: Revisiting Hu et al. (2018). <i>Journal of Food Science</i>, 91: e71201. <a href="https://doi.org/10.1111/1750-3841.71201">DOI: 10.1111/1750-3841.71201</a></p><figure class="pubfig"><a href="img/pubs/phillips-2026-mcmc-trace-plots.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Trace plots of four Markov chains for nine model coefficients (intercept, source, state, appearance, form and colour); the chains overlap and mix well across 1,000 iterations."><img src="img/pubs/phillips-2026-mcmc-trace-plots-thumb.jpg" width="320" height="160" alt="Trace plots of four Markov chains for nine model coefficients (intercept, source, state, appearance, form and colour); the chains overlap and mix well across 1,000 iterations." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2024</span><p>Raymond, K., Sobkowich, K.E., <b>Phillips, J.D.</b>, Nguyen, L., McKechnie, I., Mohideen, R.N., Fitzjohn, W., Szurkowski, M., Davidson, J., Rushton, J., Stacey, D.A., and Bernardo, T.M. (2024). GBADs informatics strategy: User-centric tools, data quality, and model interoperability. <i>WOAH Scientific and Technical Review</i>, 43: 96–107. <a href="https://doi.org/10.20506/rst.43.3522">DOI: 10.20506/rst.43.3522</a></p><figure class="pubfig"><a href="img/pubs/raymond-2024-gbads-tail.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Diagram of the GBADs TAIL search: a user types &#x27;Cows in Canada&#x27;, language processing recognises the terms, an ontology suggests related terms (cow, cattle, bovine, dairy) to refine, and the enriched search is run against a graph database and Semantic Scholar to return data and literature metadata."><img src="img/pubs/raymond-2024-gbads-tail-thumb.jpg" width="320" height="422" alt="Diagram of the GBADs TAIL search: a user types &#x27;Cows in Canada&#x27;, language processing recognises the terms, an ontology suggests related terms (cow, cattle, bovine, dairy) to refine, and the enriched search is run against a graph database and Semantic Scholar to return data and literature metadata." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2023</span><p><b>Phillips, J.D.</b>, Athey, T.B.T., McNicholas, P.D., and Hanner, R.H. (2023). VLF: An R package for the analysis of very low frequency variants in DNA sequences. <i>Biodiversity Data Journal</i>, e96480. <a href="https://doi.org/10.3897/BDJ.11.e96480">DOI: 10.3897/BDJ.11.e96480</a></p><figure class="pubfig"><a href="img/pubs/phillips-2023-vlf-sliding-window.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Line plot of very low frequency variants per position along a DNA barcode, in a sliding window: the blue line (single) starts above 3 at the start of the barcode, falls below 1 by about the 15th percentile and rises again at the very end; the red line (shared) stays between 0 and 1."><img src="img/pubs/phillips-2023-vlf-sliding-window-thumb.jpg" width="320" height="272" alt="Line plot of very low frequency variants per position along a DNA barcode, in a sliding window: the blue line (single) starts above 3 at the start of the barcode, falls below 1 by about the 15th percentile and rises again at the very end; the red line (shared) stays between 0 and 1." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2022</span><p><b>Phillips, J.D.</b>, Gillis, D.J., and Hanner, R.H. (2022). Lack of statistical rigor in DNA barcoding likely invalidates the presence of a true species’ barcode gap. <i>Frontiers in Ecology and Evolution</i>, 10: 859099. <a href="https://doi.org/10.3389/fevo.2022.859099">DOI: 10.3389/fevo.2022.859099</a></p><figure class="pubfig"><a href="img/pubs/phillips-2022-barcode-gap.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Scatter plot of each species&#x27; largest within-species distance against its distance to the nearest other species, with a red 1:1 line; nearly all points lie above the line."><img src="img/pubs/phillips-2022-barcode-gap-thumb.jpg" width="320" height="227" alt="Scatter plot of each species&#x27; largest within-species distance against its distance to the nearest other species, with a red 1:1 line; nearly all points lie above the line." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2021</span><p>D’Ercole, J., Dincă, V., Opler, P.A., Kondla, N.G., Schmidt, C.B., <b>Phillips, J.D.</b>, Robbins, R., Burns, J.M., Miller, S.E., Grishin, N., Zakharov, E.V., deWaard, J.R., Ratnasingham, S., and Hebert, P.D.N. (2021). A DNA barcode library for the butterflies of North America. <i>PeerJ</i>, 9: e11157. <a href="https://doi.org/10.7717/peerj.11157">DOI: 10.7717/peerj.11157</a></p><figure class="pubfig"><a href="img/pubs/dercole-2021-sampling-map.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Map of North America with circles showing where the butterfly specimens were collected; bigger circles mean more specimens."><img src="img/pubs/dercole-2021-sampling-map-thumb.jpg" width="320" height="279" alt="Map of North America with circles showing where the butterfly specimens were collected; bigger circles mean more specimens." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2020</span><p><b>Phillips, J.D.</b>, *French, S.H., Hanner, R.H., and Gillis, D.J. (2020). HACSim: An R package to estimate intraspecific sample sizes for genetic diversity assessment using haplotype accumulation curves. <i>PeerJ Computer Science</i>, 6(192): 1–37. <a href="https://doi.org/10.7717/peerj-cs.243">DOI: 10.7717/peerj-cs.243</a>. Top 5 most viewed article in the category “Optimization Theory and Computation”.</p><figure class="pubfig"><a href="img/pubs/phillips-2020-haplotype-network.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Haplotype network with haplotypes labelled 1 to 5 by frequency: a very large central haplotype (1) with many small haplotypes joined to it by short branches; haplotypes 2, 3 and 4 are a little larger."><img src="img/pubs/phillips-2020-haplotype-network-thumb.jpg" width="320" height="317" alt="Haplotype network with haplotypes labelled 1 to 5 by frequency: a very large central haplotype (1) with many small haplotypes joined to it by short branches; haplotypes 2, 3 and 4 are a little larger." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2019</span><p><b>Phillips, J.D.</b>, Gillis, D.J., and Hanner, R.H. (2019). Incomplete estimates of genetic diversity within species: Implications for DNA barcoding. <i>Ecology and Evolution</i>, 9(5): 2996–3010. <a href="https://doi.org/10.1002/ece3.4757">DOI: 10.1002/ece3.4757</a></p><figure class="pubfig"><a href="img/pubs/phillips-2019-haplotype-network.png" target="_blank" rel="noopener" aria-label="Enlarge figure: Starburst haplotype network: one very large central haplotype with many small haplotypes, each joined to it by a short branch."><img src="img/pubs/phillips-2019-haplotype-network-thumb.png" width="320" height="335" alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, each joined to it by a short branch." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li><span class="when">2015</span><p><b>Phillips, J.D.</b>, Gwiazdowski, R.A., Ashlock, D., and Hanner, R. (2015). An exploration of sufficient sampling effort to describe intraspecific DNA barcode haplotype diversity: examples from the ray-finned fishes (Chordata: Actinopterygii). <i>DNA Barcodes</i>, 3: 66–73. <a href="Phillips_et_al_2015.pdf">DOI: 10.1515/dna-2015-0008</a></p></li>
+          <!--cv:end pubs-articles-->
+        </ul>
+      </div>
+
+      <!-- Preprints and manuscripts -->
+      <div class="pubgroup" data-kind="manuscripts">
+        <h3>Preprints and manuscripts</h3>
+        <ul class="rows pubs">
+          <!--cv:begin pubs-manuscripts-->
+          <li><span class="when">2026</span><p>*Toth, N., Antonie, L., Hanner, R.H., Gillis, D.J., and <b>Phillips, J.D.</b> Mining association rules for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling. <i>bioRxiv</i>. <a href="https://www.biorxiv.org/content/10.64898/2026.09.16.752056v1">DOI: 10.64898/2026.09.16.752056</a>. <span class="tag">Submitted to <i>Oikos</i>.</span></p></li>
+          <li><span class="when">2025</span><p><b>Phillips, J.D.</b>, Hubert, N., and Hanner, R.H. (2025). A Bayesian coalescent model of the DNA barcode gap. <i>Authorea</i>. <a href="https://doi.org/10.22541/au.174073683.37707806/v1">DOI: 10.22541/au.174073683.37707806/v1</a></p></li>
+          <li><span class="when">2024</span><p><b>Phillips, J.D.</b> and *De Vuono-Fraser, F.A. (2024). Statistical modelling of seafood fraud in the Canadian supply chain. <i>bioRxiv</i>. <a href="https://doi.org/10.1101/2024.02.05.578947">DOI: 10.1101/2024.02.05.578947</a></p></li>
+          <li><span class="when">To submit</span><p><b>Phillips, J.D.</b>, Hubert, N., and Hanner, R.H. A Bayesian-informed coalescent model of the DNA barcode gap. <span class="tag">Targeted to <i>Methods in Ecology and Evolution</i>.</span></p></li>
+          <li><span class="when">In prep.</span><p>*Cui, R.C., Yodzis, M.P., and <b>Phillips, J.D.</b> The influence of wholesaler fraud and consumer perception on IUU fishing in a model of the seafood supply chain. <span class="tag">Targeted to <i>Proceedings of the National Academy of Sciences</i>.</span></p></li>
+          <li><span class="when">In prep.</span><p>Diao, J., Elliott, T.A., <b>Phillips, J.D.</b>, You, J., and Adamowicz, S.J. Benchmarking imputation methods for insect trait data across missingness mechanisms and trait types. <span class="tag">Targeted to <i>Methods in Ecology and Evolution</i>.</span></p></li>
+          <li><span class="when">In prep.</span><p>D’Ercole, J., Dapporto, L., <b>Phillips, J.D.</b>, Dincă, V.E., Vila, R., Talavera, G., and Hebert, P.D.N. Macrogenetics of North American butterflies: The impact of Quaternary climatic fluctuations. <span class="tag">Targeted to <i>Proceedings of the National Academy of Sciences</i>.</span></p></li>
+          <!--cv:end pubs-manuscripts-->
+        </ul>
+      </div>
+
+      <!-- Book chapters -->
+      <div class="pubgroup" data-kind="chapters">
+        <h3>Book chapters</h3>
+        <ul class="rows pubs">
+          <!--cv:begin pubs-chapters-->
+          <li class="has-fig"><span class="when">2024</span><p><b>Phillips, J.D.</b>, Griswold, C.K., Young, R.G., Hubert, N., and Hanner, R.H. (2024). A Measure of the DNA Barcode Gap for Applied and Basic Research. In: DeSalle, R. (ed.) <i>DNA Barcoding. Methods in Molecular Biology</i>, vol 2744. Humana, New York, NY. <a href="https://link.springer.com/protocol/10.1007/978-1-0716-3581-0_24">Springer</a></p><figure class="pubfig"><a href="img/pubs/phillips-2024-barcode-gap-overlap.png" target="_blank" rel="noopener" aria-label="Enlarge figure: Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and the between-species distances (yellow) mostly larger, with the shaded area where they overlap marked."><img src="img/pubs/phillips-2024-barcode-gap-overlap-thumb.png" width="320" height="119" alt="Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and the between-species distances (yellow) mostly larger, with the shaded area where they overlap marked." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li class="has-fig"><span class="when">2024</span><p>Hubert, N., <b>Phillips, J.D.</b>, and Hanner, R.H. (2024). Delimiting Species with Single-Locus DNA Sequences. In: DeSalle, R. (ed.) <i>DNA Barcoding. Methods in Molecular Biology</i>, vol 2744. Humana, New York, NY. <a href="https://link.springer.com/protocol/10.1007/978-1-0716-3581-0_3">Springer</a></p><figure class="pubfig"><a href="img/pubs/hubert-2024-species-delimitation.jpg" target="_blank" rel="noopener" aria-label="Enlarge figure: Workflow for delimiting species from single-locus DNA sequences: aligned sequences (or haplotypes) go through distance- and network-based methods (ABGD, ASAP, BOLD), tree-based Poisson tree process methods and generalized mixed Yule coalescent methods, and the results are combined into molecular operational taxonomic units (MOTUs) by majority-rule consensus."><img src="img/pubs/hubert-2024-species-delimitation-thumb.jpg" width="320" height="186" alt="Workflow for delimiting species from single-locus DNA sequences: aligned sequences (or haplotypes) go through distance- and network-based methods (ABGD, ASAP, BOLD), tree-based Poisson tree process methods and generalized mixed Yule coalescent methods, and the results are combined into molecular operational taxonomic units (MOTUs) by majority-rule consensus." loading="lazy" decoding="async" onerror="var g=this.closest('figure');g.parentNode.classList.remove('has-fig');g.remove()"></a></figure></li>
+          <li><span class="when">Submitted</span><p>*Cui, R.C., Yodzis, M.P., and <b>Phillips, J.D.</b> Modelling the Interplay between IUU Fishing, Wholesaler Fraud, and Consumer Awareness in the Seafood Supply Chain. <i>VII AMMCS International Conference</i>, Springer Nature.</p></li>
+          <!--cv:end pubs-chapters-->
+        </ul>
+      </div>
+
+      <!-- Conference proceedings and abstracts -->
+      <div class="pubgroup" data-kind="proceedings">
+        <h3>Proceedings and abstracts</h3>
+        <ul class="rows pubs">
+          <!--cv:begin pubs-proceedings-->
+          <li><span class="when">2026</span><p>*Toth, N., Antonie, M.L., and <b>Phillips, J.D.</b> To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets. <i>39th Canadian Conference on Artificial Intelligence</i>, 318: 1012–1019. Short paper and poster.</p></li>
+          <li><span class="when">2023</span><p>Morey, K., Loeza-Quintana, T., <b>Phillips, J.</b>, and Hanner, R. (2023). Haplotype diversity reveals challenges and opportunities for developing targeted detection assays for COI in Canadian freshwater fishes. <i>Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) Conference</i>. Poster.</p></li>
+          <li><span class="when">2019</span><p><b>Phillips, J.D.</b>, Gillis, D., and Hanner, R. (2019). HACSim: Iterative extrapolation of haplotype accumulation curves for assessment of intraspecific COI DNA barcode sampling completeness. Scientific abstracts from the 8th International Barcode of Life Conference, Trondheim, Norway (ed. Torbjørn Ekrem), <i>Genome</i>, 62(6): 349–453. Oral presentation.</p></li>
+          <li><span class="when">2017</span><p><b>Phillips, J.D.</b>, Gillis, D., and Hanner, R. (2017). Intraspecific sample size estimation for DNA barcoding: Are current sampling levels enough? Scientific abstracts from the 7th International Barcode of Life Conference, Johannesburg, South Africa (ed. M. van der Bank), <i>Genome</i>, 60(11): 881–1019. Oral presentation.</p></li>
+          <li><span class="when">2015</span><p><b>Phillips, J.D.</b>, Gwiazdowski, R.A., Ashlock, D., and Hanner, R. (2015). An exploration of sufficient sampling effort to describe intraspecific haplotype diversity in the ray-finned fishes (Chordata: Actinopterygii). Scientific abstracts from the 6th International Barcode of Life Conference, Guelph, ON, Canada (ed. S.J. Adamowicz), <i>Genome</i>, 58(5): 163–303. Poster.</p></li>
+          <!--cv:end pubs-proceedings-->
+        </ul>
+      </div>
+
+      <!-- Talks and posters -->
+      <div class="pubgroup" data-kind="talks">
+        <h3>Talks and posters</h3>
+        <ul class="rows pubs">
+          <!--cv:begin pubs-talks-->
+          <li><span class="when">2026</span><p>*Cui, R.C., Yodzis, M.P., and <b>Phillips, J.D.</b> Modelling the Interplay between IUU Fishing, Wholesaler Fraud, and Consumer Awareness in the Seafood Supply Chain.</p><p class="where">The VII AMMCS International Conference, Wilfrid Laurier University, Canada. Student oral presentation.</p></li>
+          <li><span class="when">2026</span><p><b>Phillips, J.D.</b> Association rule mining for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling.</p><p class="where">Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference, University of Guelph, Canada. Oral presentation.</p></li>
+          <li><span class="when">2026</span><p>*Toth, N., Antonie, M.L., and <b>Phillips, J.D.</b> To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets.</p><p class="where">PISCeS International Conference, University of Guelph, Canada. Student poster presentation.</p></li>
+          <li><span class="when">2026</span><p>*Toth, N., Antonie, M.L., and <b>Phillips, J.D.</b> To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets.</p><p class="where">39th Canadian Conference on Artificial Intelligence, Simon Fraser University, Canada. Short paper and student poster presentation.</p></li>
+          <li><span class="when">2025</span><p>*Cui, R.C., Yodzis, M.P., and <b>Phillips, J.D.</b> The Importance in Design as a Computer Scientist.</p><p class="where">SoCS Undergraduate Summer Project Show and Tell, University of Guelph, Canada. Student oral presentation.</p></li>
+          <li><span class="when">2024</span><p>*Toth, N. and <b>Phillips, J.D.</b> Association Rule Mining of eDNA Datasets.</p><p class="where">CEPS Undergraduate Student Poster Day, University of Guelph, Canada. Student poster presentation.</p></li>
+          <li><span class="when">2024</span><p>*Toth, N. and <b>Phillips, J.D.</b> Association Rule Mining of eDNA Datasets.</p><p class="where">CBS Undergraduate Poster Session, University of Guelph, Canada. Student poster presentation.</p></li>
+          <li><span class="when">2024</span><p><b>Phillips, J.D.</b> A Measure of the DNA Barcode Gap for Applied and Basic Research.</p><p class="where">9th International Barcode of Life Conference, Estação das Docas, Belém, Brazil. Poster presentation (abstract accepted, not attended).</p></li>
+          <li><span class="when">2023</span><p><b>Phillips, J.D.</b> The GBADs R Package (and Why We Need It!)</p><p class="where">GBADs Informatics Technical Workshop, University of Liverpool, England. Oral presentation.</p></li>
+          <li><span class="when">2023</span><p>*De Vuono-Fraser, F.A. and <b>Phillips, J.D.</b> Estimating Seafood Mislabelling Rates in Canada Using Bayesian Modelling.</p><p class="where">CEPS Student Research Day, University of Guelph, Canada. Student poster presentation.</p></li>
+          <li><span class="when">2023</span><p><b>Phillips, J.D.</b> Haplotype diversity reveals challenges and opportunities for developing targeted detection assays for COI in Canadian freshwater fishes.</p><p class="where">PISCeS International Conference, University of Guelph, Canada. Poster presentation.</p></li>
+          <li><span class="when">2019</span><p><b>Phillips, J.D.</b> HACSim: Iterative extrapolation of haplotype accumulation curves for assessment of intraspecific COI DNA barcode sampling completeness.</p><p class="where">8th International Barcode of Life Conference, NTNU University Museum and Norwegian Biodiversity Information Centre, Norway. Oral presentation.</p></li>
+          <li><span class="when">2019</span><p>Artificial Intelligence and Machine Learning in Biology.</p><p class="where">Guelph BioMathematics and Statistics (BioM&amp;S) Symposium, University of Guelph, Canada. Attended.</p></li>
+          <li><span class="when">2018</span><p>*French, S.H. and <b>Phillips, J.D.</b> Estimating Sampling Size Using Haplotype Accumulation Curves and Semiparametric Models.</p><p class="where">CEPS Undergraduate Student Poster Day, University of Guelph, Canada. Student poster presentation.</p></li>
+          <li><span class="when">2017</span><p><b>Phillips, J.D.</b> Intraspecific sample size estimation for DNA barcoding: Are current sampling levels enough?</p><p class="where">7th International Barcode of Life Conference, University of Johannesburg, South Africa. Oral presentation.</p></li>
+          <li><span class="when">2015</span><p><b>Phillips, J.D.</b> An exploration of sufficient sampling effort to describe intraspecific DNA barcode haplotype diversity: examples from the ray-finned fishes (Chordata: Actinopterygii).</p><p class="where">6th International Barcode of Life Conference, University of Guelph, Canada. Poster presentation.</p></li>
+          <!--cv:end pubs-talks-->
+        </ul>
+      </div>
+
+      <!-- Outreach and other writing -->
+      <div class="pubgroup" data-kind="outreach">
+        <h3>Outreach and other writing</h3>
+        <ul class="rows pubs">
+          <!--cv:begin pubs-outreach-->
+          <li><span class="when">2026</span><p>*Cui, R.C. and <b>Phillips, J.D.</b> (2026). Student-contributed poster for University of Guelph March Open House.</p></li>
+          <li><span class="when">2026</span><p>*Toth, N. and <b>Phillips, J.D.</b> (2026). Student-contributed poster for University of Guelph March Open House.</p></li>
+          <li><span class="when">2025</span><p>*Cui, R.C. and <b>Phillips, J.D.</b> (2025). The Importance in Design as a Computer Scientist. Student-contributed SoCS Show and Tell video. <a href="https://github.com/RichaCui70/Dynamics-between-Seafood-Fraudsters-and-Buyers/tree/main/misc_resources">Video</a></p></li>
+          <li><span class="when">2024</span><p><b>Phillips, J.D.</b>, *De Vuono-Fraser, F.A., Gillis, D.J., and Hanner, R.H. (2024). Statistical modelling of seafood fraud. Whiteboard explainer video. <a href="https://www.youtube.com/watch?v=4jU8cU8M70U">YouTube</a></p></li>
+          <li><span class="when">2024</span><p>*Toth, N. and <b>Phillips, J.D.</b> (2024). eDNA Collection Gets a Tech Update. Student-contributed CEPS Research Highlights article. <a href="https://www.uoguelph.ca/ceps/news/2024/07/edna-collection-gets-tech-upgrade">Article</a></p></li>
+          <li><span class="when">2024</span><p>*Toth, N. and <b>Phillips, J.D.</b> (2024). Unravelling eDNA with Association Rule Mining. Guest post on the Science Borealis-syndicated blog of Dr. Daniel Gillis. <a href="https://danielgillis.wordpress.com/2024/08/15/unravelling-edna-with-association-rule-mining/">Post</a></p></li>
+          <li><span class="when">2024</span><p><b>Phillips, J.D.</b> (2024). Summer URA Position. Guest post on the Science Borealis-syndicated blog of Dr. Daniel Gillis. <a href="https://danielgillis.wordpress.com/2024/02/07/summer-ura-position-2/">Post</a></p></li>
+          <li><span class="when">2022</span><p><b>Phillips, J.D.</b> (2022). Mind the Gap – The DNA Barcode Gap, That Is. CEPS Research Highlights article. <a href="https://www.uoguelph.ca/ceps/news/2022/08/mind-gap-%E2%80%93-dna-barcode-gap">Article</a></p></li>
+          <li><span class="when">2022</span><p><b>Phillips, J.D.</b> (2022). A Novel Statistical Framework for Assessment of Intraspecific Haplotype Sampling Completeness: Implications for DNA Barcode Gap Estimation. Ph.D. thesis, University of Guelph. <a href="https://atrium.lib.uoguelph.ca/items/8addfcc5-f21c-4691-89b7-c4db051892eb">Atrium</a></p></li>
+          <li><span class="when">2020</span><p><b>Phillips, J.D.</b> (2020). Barcode Cracking. CEPS Research Highlights article. <a href="https://www.uoguelph.ca/ceps/news/2020/02/barcode-cracking">Article</a></p></li>
+          <li><span class="when">2020</span><p><b>Phillips, J.D.</b> (2020). Protecting Biodiversity Through the Lens of Genetic Diversity. Guest post on the Science Borealis-syndicated blog of Dr. Daniel Gillis. <a href="https://danielgillis.wordpress.com/2020/01/30/protecting-biodiversity-through-the-lens-of-genetic-diversity/">Post</a></p></li>
+          <li><span class="when">2019</span><p><b>Phillips, J.D.</b> (2019). IBOL8 and the Midnight Sun. Guest post on the Science Borealis-syndicated blog of Dr. Daniel Gillis. <a href="https://danielgillis.wordpress.com/2019/07/02/reflections-ibol8-and-the-midnight-sun/">Post</a></p></li>
+          <li><span class="when">2017</span><p><b>Phillips, J.D.</b> (2017). The Big Five and IBOL7. Guest post on the Science Borealis-syndicated blog of Dr. Daniel Gillis. <a href="https://danielgillis.wordpress.com/2017/12/06/reflections-the-big-five-and-ibol7/">Post</a></p></li>
+          <li><span class="when">2016</span><p><b>Phillips, J.D.</b> (2016). Sample size estimation for DNA barcoding: Are current sampling levels enough? Guest post on the DNA Barcoding Blog of Dr. Dirk Steinke. <a href="http://dna-barcoding.blogspot.com/2016/01/guest-post-sample-size-estimation-for.html">Post</a></p></li>
+          <li><span class="when">2016</span><p><b>Phillips, J.D.</b> (2016). Sample size estimation for DNA barcoding of ray-finned fishes: Are current sampling levels enough? Newsletter article, <i>Barcode Bulletin</i>, 7(1). <a href="https://journal.lib.uoguelph.ca/index.php/ibol/issue/view/345">Issue</a></p></li>
+          <!--cv:end pubs-outreach-->
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================== SOFTWARE ============================== -->
+    <section class="panel" id="software" data-title="Software">
+      <h2 class="panel-title">Software</h2>
+
+      <p class="software-lead">My R packages have been downloaded more than <!--cv:begin software-total-->98,000<!--cv:end software-total--> times through the Comprehensive R Archive Network (CRAN).</p>
+
+      <div>
+        <article class="tool">
+          <div>
+            <h3>HACSim</h3>
+            <p class="kind">R package and R Shiny web application</p>
+          </div>
+          <div>
+            <p>Haplotype Accumulation Curve Simulator. Estimates how many specimens are likely needed to capture the genetic diversity within a species, based on the asymptotic behaviour of its haplotype accumulation curve.</p>
+            <ul class="links">
+              <li><a href="https://cran.r-project.org/web/packages/HACSim/index.html">CRAN</a></li>
+              <li><a href="https://jphill01.shinyapps.io/HACSim-RShiny-App/">Shiny app</a></li>
+              <li><a href="https://doi.org/10.7717/peerj-cs.243">Paper</a></li>
+            </ul>
+            <p class="dl"><!--cv:begin downloads-HACSim-->More than 50,000 downloads<!--cv:end downloads-HACSim--></p>
+          </div>
+        </article>
+
+        <article class="tool">
+          <div>
+            <h3>VLF</h3>
+            <p class="kind">R package</p>
+          </div>
+          <div>
+            <p>Very Low Frequency variants. Detects very low frequency variants, such as sequencing and PCR errors, and computes error rates at second codon positions in DNA sequences.</p>
+            <ul class="links">
+              <li><a href="https://cran.r-project.org/web/packages/VLF/index.html">CRAN</a></li>
+              <li><a href="https://doi.org/10.3897/BDJ.11.e96480">Paper</a></li>
+            </ul>
+            <p class="dl"><!--cv:begin downloads-VLF-->More than 40,000 downloads<!--cv:end downloads-VLF--></p>
+          </div>
+        </article>
+
+        <article class="tool">
+          <div>
+            <h3>RulesTools</h3>
+            <p class="kind">R package</p>
+          </div>
+          <div>
+            <p>Streamlines the preparation, analysis, and visualization of unsupervised association rules for eDNA data.</p>
+            <ul class="links">
+              <li><a href="https://cran.r-project.org/web/packages/RulesTools/index.html">CRAN</a></li>
+            </ul>
+            <p class="dl"><!--cv:begin downloads-RulesTools-->More than 3,000 downloads<!--cv:end downloads-RulesTools--></p>
+          </div>
+        </article>
+
+        <article class="tool">
+          <div>
+            <h3>GBADs ModelBuilder</h3>
+            <p class="kind">R Shiny web application</p>
+          </div>
+          <div>
+            <p>A prototype tool from the GBADs informatics team for building livestock population models and estimating disease burden.</p>
+            <ul class="links">
+              <li><a href="https://animalhealthmetrics.org/2025/10/14/introduction-to-gbads-new-model-builder-prototype/">Introduction</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tool">
+          <div>
+            <h3>Seafood Fraud Modelling App</h3>
+            <p class="kind">Python web application</p>
+          </div>
+          <div>
+            <p>An interactive model of the dynamics between seafood fraudsters and buyers in the supply chain.</p>
+            <ul class="links">
+              <li><a href="https://dynamics-between-seafood-fraudsters-and-buyers.streamlit.app">Open the app</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tool">
+          <div>
+            <h3>DNA barcode gap estimators</h3>
+            <p class="kind">R scripts</p>
+          </div>
+          <div>
+            <p>Frequentist and Bayesian, coalescent-informed estimators of the DNA barcode gap.</p>
+            <ul class="links">
+              <li><a href="https://doi.org/10.22541/au.174073683.37707806/v1">Preprint</a></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- CRAN downloads. Drawn in the browser from data/cran-downloads.json, which the "Update CRAN download data"
+           GitHub Action rewrites every day (.github/workflows). If that file is missing, the page asks the CRAN logs API directly. -->
+      <div class="sec usage" id="usage" aria-labelledby="usage-title">
+        <h3 id="usage-title">CRAN downloads</h3>
+        <p class="usage-lede">Daily and cumulative downloads of each package, refreshed every day. <span id="usage-through">Loading the latest counts&hellip;</span></p>
+        <noscript><p class="muted small">The plots need JavaScript. The same counts are on each package's CRAN page.</p></noscript>
+
+        <article class="ucard" data-pkg="HACSim">
+          <div class="ucard-head">
+            <h4><a href="https://cran.r-project.org/web/packages/HACSim/index.html">HACSim</a></h4>
+            <dl class="ustats">
+              <div><dt>Total</dt><dd data-stat="total">&nbsp;</dd></div>
+              <div><dt>Last 30 days</dt><dd data-stat="last30">&nbsp;</dd></div>
+              <div><dt>Latest day</dt><dd data-stat="latest">&nbsp;</dd></div>
+            </dl>
+          </div>
+          <div class="uplots">
+            <figure class="uplot"><figcaption>Daily count</figcaption><div class="uhost" data-kind="daily"></div></figure>
+            <figure class="uplot"><figcaption>Cumulative count</figcaption><div class="uhost" data-kind="cum"></div></figure>
+          </div>
+        </article>
+
+        <article class="ucard" data-pkg="VLF">
+          <div class="ucard-head">
+            <h4><a href="https://cran.r-project.org/web/packages/VLF/index.html">VLF</a></h4>
+            <dl class="ustats">
+              <div><dt>Total</dt><dd data-stat="total">&nbsp;</dd></div>
+              <div><dt>Last 30 days</dt><dd data-stat="last30">&nbsp;</dd></div>
+              <div><dt>Latest day</dt><dd data-stat="latest">&nbsp;</dd></div>
+            </dl>
+          </div>
+          <div class="uplots">
+            <figure class="uplot"><figcaption>Daily count</figcaption><div class="uhost" data-kind="daily"></div></figure>
+            <figure class="uplot"><figcaption>Cumulative count</figcaption><div class="uhost" data-kind="cum"></div></figure>
+          </div>
+        </article>
+
+        <article class="ucard" data-pkg="RulesTools">
+          <div class="ucard-head">
+            <h4><a href="https://cran.r-project.org/web/packages/RulesTools/index.html">RulesTools</a></h4>
+            <dl class="ustats">
+              <div><dt>Total</dt><dd data-stat="total">&nbsp;</dd></div>
+              <div><dt>Last 30 days</dt><dd data-stat="last30">&nbsp;</dd></div>
+              <div><dt>Latest day</dt><dd data-stat="latest">&nbsp;</dd></div>
+            </dl>
+          </div>
+          <div class="uplots">
+            <figure class="uplot"><figcaption>Daily count</figcaption><div class="uhost" data-kind="daily"></div></figure>
+            <figure class="uplot"><figcaption>Cumulative count</figcaption><div class="uhost" data-kind="cum"></div></figure>
+          </div>
+        </article>
+
+        <details class="usage-table" id="usage-table" hidden>
+          <summary>View yearly totals as a table</summary>
+          <div class="tablewrap"><table></table></div>
+        </details>
+
+        <p class="fig-note">Counts come from the download logs of the RStudio CRAN mirror, through the <a href="https://cranlogs.r-pkg.org">cranlogs</a> service that the R package packageRank also uses. They include automated downloads, such as package checks and mirrors.</p>
+      </div>
+    </section>
+
+
+    <!-- ============================== TEACHING & SERVICE ============================== -->
+    <section class="panel" id="teaching" data-title="Teaching &amp; service">
+      <h2 class="panel-title">Teaching &amp; service</h2>
+
+      <div class="sec">
+        <h3>Teaching</h3>
+        <ul class="rows">
+          <!--cv:begin teaching-->
+          <li><span class="when">2025</span><p><span class="role">Course Instructor</span>, University of Guelph</p><p class="what">CIS*1910 Discrete Structures in Computing I</p></li>
+          <li><span class="when">2016–2020</span><p><span class="role">Graduate Teaching Assistant (GTA)</span>, University of Guelph</p><p class="what">CIS*3130 System Modelling and Simulation (2020)<br>CIS*1910 Discrete Structures in Computing I (2017)<br>CIS*2460 Modelling of Computer Systems (2016–2019)</p></li>
+          <!--cv:end teaching-->
+        </ul>
+      </div>
+
+      <div class="sec">
+        <h3>Student supervision and mentorship</h3>
+        <p class="muted" style="max-width:38rem"><!--cv:begin supervision-intro-->I have mentored or co-supervised 18 undergraduate and graduate students across computer science, bioinformatics, statistics, and biology.<!--cv:end supervision-intro--></p>
+
+        <p class="subhead">Undergraduate</p>
+        <ul class="rows">
+          <!--cv:begin supervision-undergraduate-->
+          <li><span class="when">2025</span><p><span class="role">Brendan Carl Rosario</span></p><p class="what">Undergraduate Student Volunteer. Supervised Machine Learning for eDNA spatiotemporal sampling.</p></li>
+          <li><span class="when">2025</span><p><span class="role">Richard Cui</span></p><p class="what">Summer Undergraduate Research Assistant (URA). Dynamical modelling of seafood fraud in the supply chain.</p></li>
+          <li><span class="when">2024–2025</span><p><span class="role">Nikolett Toth</span></p><p class="what">CIS*4900/4910. Mining association rules for eDNA spatiotemporal sampling.</p></li>
+          <li><span class="when">2024</span><p><span class="role">Nikolett Toth</span></p><p class="what">Summer Undergraduate Research Assistant (URA). Mining association rules for eDNA spatiotemporal sampling.</p></li>
+          <li><span class="when">2024</span><p><span class="role">Fynn De Vuono-Fraser</span></p><p class="what">CIS*4900/4910. Bayesian modelling of seafood fraud in the Canadian supply chain.</p></li>
+          <li><span class="when">2023</span><p><span class="role">Zaid Al-Gayyali</span></p><p class="what">Summer Undergraduate Research Assistant (URA). Seafood Fraud Visualization Tool Shiny app.</p></li>
+          <li><span class="when">2023</span><p><span class="role">Fynn De Vuono-Fraser</span></p><p class="what">STAT*4600. Bayesian modelling of seafood fraud in the Canadian supply chain.</p></li>
+          <li><span class="when">2021</span><p><span class="role">Navdeep Singh</span></p><p class="what">CIS*4900. HACSim R Shiny web application.</p></li>
+          <li><span class="when">2020–2021</span><p><span class="role">Scarlett Bootsma</span></p><p class="what">CIS*4900/4910. HACSim simulation study.</p></li>
+          <li><span class="when">2020</span><p><span class="role">Maya Persram</span></p><p class="what">Hanner Lab volunteer. R reporting ecological meta-analysis.</p></li>
+          <li><span class="when">2020</span><p><span class="role">Ashley Chen</span></p><p class="what">Hanner Lab volunteer. R reporting ecological meta-analysis.</p></li>
+          <li><span class="when">2020</span><p><span class="role">Olivia Friesen Kroeker</span></p><p class="what">Hanner Lab volunteer. R reporting ecological meta-analysis.</p></li>
+          <li><span class="when">2018</span><p><span class="role">Steven French</span></p><p class="what">CIS*4900/4910. HACSim R package.</p></li>
+          <li><span class="when">2018–2019</span><p><span class="role">Julia Harvie</span></p><p class="what">MCB*4500/4510. Data mining GenBank and BOLD.</p></li>
+          <!--cv:end supervision-undergraduate-->
+        </ul>
+
+        <p class="subhead">Graduate</p>
+        <ul class="rows">
+          <!--cv:begin supervision-graduate-->
+          <li><span class="when">2024</span><p><span class="role">Nathan Zeinstra</span></p><p class="what">IBIO*6070. Bayesian habitat occupancy modelling for sea lamprey detection using eDNA.</p></li>
+          <li><span class="when">2022</span><p><span class="role">Amina Asif</span></p><p class="what">BINF*6999. DNA barcode gap analysis of Canadian disease vectors and agricultural pests.</p></li>
+          <li><span class="when">2018–2019</span><p><span class="role">Danielle St. Jean</span></p><p class="what">MSc. thesis (Mathematics), withdrawn. DNA barcode sequence classification with machine learning.</p></li>
+          <li><span class="when">2018–2019</span><p><span class="role">Christina Fragel</span></p><p class="what">BINF*6999. DNA barcode sequence classification with machine learning.</p></li>
+          <li><span class="when">2018–2019</span><p><span class="role">Jiaojia (Paula) Yu</span></p><p class="what">BINF*6999. MDMAPR R Shiny app.</p></li>
+          <li><span class="when">2018</span><p><span class="role">Ankita Bhanderi</span></p><p class="what">BINF*6999. Data mining GenBank and BOLD.</p></li>
+          <!--cv:end supervision-graduate-->
+        </ul>
+      </div>
+
+      <div class="sec">
+        <h3>Academic service</h3>
+        <ul class="rows">
+          <!--cv:begin service-->
+          <li><span class="when">2026</span><p><span class="role">Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) Conference</span>, University of Guelph</p><p class="what">Conference organizer and volunteer.</p></li>
+          <li><span class="when">2026</span><p><span class="role">39th Canadian Artificial Intelligence Conference</span>, Simon Fraser University</p><p class="what">Program committee reviewer for the Long and Short Papers Track.</p></li>
+          <li><span class="when">2023</span><p><span class="role">GBADs Informatics Technical Workshop</span>, University of Liverpool</p><p class="what">Workshop organizer.</p></li>
+          <li><span class="when">2023</span><p><span class="role">Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) Conference</span>, University of Guelph</p><p class="what">Conference organizer and volunteer.</p></li>
+          <li><span class="when">2018</span><p><span class="role">School of Computer Science (SoCS) Faculty Search Committee</span>, University of Guelph</p><p class="what">Member of the hiring panel for an Associate Professor in Cybersecurity.</p></li>
+          <li><span class="when">2017–2018</span><p><span class="role">School of Computer Science (SoCS) Faculty Search Committee</span>, University of Guelph</p><p class="what">Member of the hiring panel for a 2-year Contractually Limited Assistant Professor in Cybersecurity.</p></li>
+          <!--cv:end service-->
+        </ul>
+      </div>
+
+      <div class="sec">
+        <h3>Peer review</h3>
+        <p class="journals"><!--cv:begin peer-review-->I review manuscripts for <i>Ecology and Evolution</i>, <i>F1000 Research</i>, <i>Frontiers in Ecology and Evolution</i>, <i>Lifestyle Genomics</i>, <i>Mitochondrial DNA Part A</i>, <i>Molecular Ecology Resources</i>, <i>Molecular Biology Reports</i>, <i>Methods in Ecology and Evolution</i>, and <i>Nature Communications</i>.<!--cv:end peer-review--></p>
+      </div>
+
+      <div class="sec">
+        <h3>Volunteering</h3>
+        <ul class="rows">
+          <!--cv:begin volunteer-->
+          <li><span class="when">2025</span><p><span class="role">CEPS Student Research Connections Networking Night</span>, University of Guelph</p><p class="what">Connected with undergraduate students for summer URA project recruitment.</p></li>
+          <li><span class="when">2021–present</span><p><span class="role">CIS*3750 wireframing session</span>, University of Guelph</p><p class="what">Graded students on mobile app prototypes for various community partners using Qualtrics surveys.</p></li>
+          <!--cv:end volunteer-->
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================== CONTACT ============================== -->
+    <section class="panel" id="contact" data-title="Contact">
+      <h2 class="panel-title">Contact</h2>
+
+      <div class="sec">
+        <h3>Email</h3>
+        <ul class="contact-list">
+          <li><a href="mailto:jphill01@uoguelph.ca">jphill01@uoguelph.ca</a><span class="host">University of Guelph (GryphMail)</span></li>
+          <li><a href="mailto:phillipsjarrett1@gmail.com">phillipsjarrett1@gmail.com</a><span class="host">Gmail</span></li>
+        </ul>
+      </div>
+
+      <div class="sec">
+        <h3>Curriculum vitae</h3>
+        <p style="margin:0 0 1rem"><!--cv:begin cv-link--><a href="CV_October_2026_-_Phillips__Jarrett.pdf">Download my CV (PDF)</a>, last updated October 2026.<!--cv:end cv-link--></p>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+
+<script>
+/* ====================================================================
+   Tabs: static HTML works without JavaScript (every section is shown
+   and the tab bar scrolls to it). With JavaScript, one section shows at
+   a time, the URL hash tracks it (#news, #software ...), and the tabs
+   follow the WAI-ARIA tabs pattern (arrow keys, Home, End).
+   ==================================================================== */
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+
+  var list = document.getElementById('tablist');
+  var tabs = Array.prototype.slice.call(list.querySelectorAll('.tab'));
+  var main = document.getElementById('main');
+  var baseTitle = 'Jarrett D. Phillips | Computational molecular biodiversity science';
+  var names = tabs.map(function (t) { return t.getAttribute('href').slice(1); });
+
+  list.setAttribute('role', 'tablist');
+  tabs.forEach(function (tab, i) {
+    var panel = document.getElementById(names[i]);
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', names[i]);
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tab.id);
+  });
+
+  function activate(name, opts) {
+    opts = opts || {};
+    var idx = names.indexOf(name);
+    if (idx < 0) { idx = 0; name = names[0]; }
+    tabs.forEach(function (tab, i) {
+      var on = i === idx;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      document.getElementById(names[i]).hidden = !on;
+    });
+    var label = document.getElementById(name).getAttribute('data-title');
+    document.title = idx === 0 ? baseTitle : label + ' | Jarrett D. Phillips';
+    if (opts.focus) tabs[idx].focus();
+    // keep the active tab in view in the horizontally scrolling bar
+    var t = tabs[idx];
+    if (t.scrollIntoView && list.scrollWidth > list.clientWidth) {
+      list.scrollLeft = Math.max(0, t.offsetLeft - 24);
+    }
+    if (opts.scroll) {
+      var top = main.getBoundingClientRect().top + window.pageYOffset;
+      if (window.pageYOffset > top) window.scrollTo(0, top);
+    }
+  }
+
+  function fromHash() {
+    var h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    return names.indexOf(h) >= 0 ? h : names[0];
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (location.hash !== '#' + names[i]) history.pushState(null, '', '#' + names[i]);
+      activate(names[i], { scroll: true });
+    });
+  });
+
+  // Links elsewhere on the page that point at a tab, such as "See all publications"
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.classList.contains('tab')) return;
+    var name = a.getAttribute('href').slice(1);
+    if (names.indexOf(name) < 0) return;
+    e.preventDefault();
+    history.pushState(null, '', '#' + name);
+    activate(name, { scroll: true });
+  });
+
+  list.addEventListener('keydown', function (e) {
+    var i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var next = null;
+    if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = tabs.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    history.replaceState(null, '', '#' + names[next]);
+    activate(names[next], { focus: true });
+  });
+
+  window.addEventListener('popstate', function () { activate(fromHash()); });
+  window.addEventListener('hashchange', function () { activate(fromHash()); });
+
+  activate(fromHash());
+})();
+
+
+/* ====================================================================
+   Publications filter
+   ==================================================================== */
+(function () {
+  var bar = document.getElementById('pubfilter');
+  if (!bar) return;
+  bar.hidden = false;
+  var chips = Array.prototype.slice.call(bar.querySelectorAll('.chip'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('#publications .pubgroup'));
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-filter');
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      groups.forEach(function (g) { g.hidden = !(f === 'all' || g.getAttribute('data-kind') === f); });
+    });
+  });
+})();
+
+
+/* ====================================================================
+   Figure: the DNA barcode gap, drawn two ways at once.
+   Simulated within-species and between-species distances (fixed seed, so
+   everyone sees the same data). The bars change with the bin width an
+   analyst chooses; the density curves and the two extreme values do not.
+   ==================================================================== */
+(function () {
+  var host = document.getElementById('gapfig');
+  if (!host) return;
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var plot = host.querySelector('.fig-plot');
+  var slider = document.getElementById('gap-bw');
+  var outEl = document.getElementById('gap-bw-out');
+  var tbody = host.querySelector('tbody');
+
+  var WIDTHS = [0.25, 0.5, 1, 1.5, 2, 3];   // all divide the 0-18% axis evenly
+  var XMAX = 18, N_INTRA = 300, N_INTER = 500, SEED = 341;
+
+  /* ---- simulate ---- */
+  function rng(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  var rand = rng(SEED);
+  function norm() {
+    var u = 0, v = 0;
+    while (!u) u = rand();
+    while (!v) v = rand();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  var intra = [], inter = [], i;
+  for (i = 0; i < N_INTRA; i++) intra.push(Math.exp(Math.log(0.45) + 0.6 * norm()));
+  for (i = 0; i < N_INTER; i++) inter.push(Math.exp(Math.log(8) + 0.3 * norm()));
+
+  var maxIntra = Math.max.apply(null, intra);
+  var minInter = Math.min.apply(null, inter);
+  var gap = minInter - maxIntra;
+
+  function pct(v) { return v.toFixed(2) + '%'; }
+  document.getElementById('gap-max-intra').textContent = pct(maxIntra);
+  document.getElementById('gap-min-inter').textContent = pct(minInter);
+  document.getElementById('gap-size').textContent = pct(gap);
+
+  /* ---- statistics ---- */
+  function hist(data, bw) {
+    var n = Math.ceil(XMAX / bw), c = [], k;
+    for (k = 0; k < n; k++) c.push(0);
+    data.forEach(function (v) { var b = Math.floor(v / bw); if (b < n) c[b]++; });
+    return c;
+  }
+  function quantile(sorted, q) {
+    var pos = (sorted.length - 1) * q, lo = Math.floor(pos), hi = Math.ceil(pos);
+    return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
+  }
+  function silverman(data) {
+    var s = data.slice().sort(function (a, b) { return a - b; });
+    var mean = s.reduce(function (a, b) { return a + b; }, 0) / s.length;
+    var sd = Math.sqrt(s.reduce(function (a, b) { return a + (b - mean) * (b - mean); }, 0) / (s.length - 1));
+    var iqr = quantile(s, .75) - quantile(s, .25);
+    return 0.9 * Math.min(sd, iqr / 1.34) * Math.pow(s.length, -0.2);
+  }
+  function kde(data) {
+    var h = silverman(data), pts = [], x, d, s, j;
+    var c = 1 / (data.length * h * Math.sqrt(2 * Math.PI));
+    for (x = 0; x <= XMAX + 1e-9; x += 0.1) {
+      s = 0;
+      for (j = 0; j < data.length; j++) {
+        d = data[j];
+        // reflect at zero so the curve does not leak below a distance of 0
+        s += Math.exp(-0.5 * Math.pow((x - d) / h, 2)) + Math.exp(-0.5 * Math.pow((x + d) / h, 2));
+      }
+      pts.push([x, s * c]);
+    }
+    return pts;
+  }
+  var kdeA = kde(intra), kdeB = kde(inter);
+
+  // One fixed vertical scale per panel, so only the bars move as the slider moves
+  function panelMax(data, curve) {
+    var m = 0;
+    curve.forEach(function (p) { m = Math.max(m, p[1]); });
+    WIDTHS.forEach(function (bw) {
+      hist(data, bw).forEach(function (c) { m = Math.max(m, c / (data.length * bw)); });
+    });
+    return m * 1.06;
+  }
+  var maxA = panelMax(intra, kdeA), maxB = panelMax(inter, kdeB);
+
+  /* ---- drawing ---- */
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function topRounded(x, y, w, h, r) {
+    x = +x; y = +y; w = +w; h = +h;
+    r = Math.min(r, w / 2, h);
+    return 'M' + x + ',' + (y + h) + 'V' + (y + r) + 'Q' + x + ',' + y + ' ' + (x + r) + ',' + y +
+      'H' + (x + w - r) + 'Q' + (x + w) + ',' + y + ' ' + (x + w) + ',' + (y + r) + 'V' + (y + h) + 'Z';
+  }
+  function trim(n) { return String(+n.toFixed(2)); }
+
+  var tip = document.createElement('div');
+  tip.className = 'tip';
+  tip.hidden = true;
+  tip.setAttribute('aria-hidden', 'true');
+
+  function render() {
+    var bw = WIDTHS[+slider.value];
+    outEl.textContent = trim(bw) + '%';
+
+    var W = Math.max(280, Math.round(plot.clientWidth || 280));
+    var padL = 2, plotW = W - 4;
+    var topPad = 28, panelH = 116, between = 16;
+    var p1Base = topPad + panelH;
+    var p2Top = p1Base + between, p2Base = p2Top + panelH;
+    var H = p2Base + 54;
+    function X(v) { return padL + (v / XMAX) * plotW; }
+
+    var cA = hist(intra, bw), cB = hist(inter, bw);
+
+    plot.textContent = '';
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img' }, plot);
+    svg.setAttribute('aria-label',
+      'Two stacked histograms of simulated genetic distances with a bin width of ' + trim(bw) + ' percent. ' +
+      'The largest within-species distance is ' + pct(maxIntra) + ' and the smallest between-species distance is ' +
+      pct(minInter) + ', a gap of ' + pct(gap) + '.');
+
+    // highlighted bin (drawn first, sits behind everything)
+    var hl = el('rect', { 'class': 'hl', y: topPad, height: p2Base - topPad, width: 0, x: 0, visibility: 'hidden' }, svg);
+
+    // the gap itself, across both panels
+    var gx1 = X(maxIntra), gx2 = X(minInter);
+    el('rect', { 'class': 'band', x: gx1, y: topPad, width: gx2 - gx1, height: p2Base - topPad }, svg);
+    el('line', { 'class': 'bandline', x1: gx1, x2: gx1, y1: topPad, y2: p2Base }, svg);
+    el('line', { 'class': 'bandline', x1: gx2, x2: gx2, y1: topPad, y2: p2Base }, svg);
+    var gl = el('text', { 'class': 'glabel', x: Math.max(30, (gx1 + gx2) / 2), y: topPad - 9, 'text-anchor': 'middle' }, svg);
+    gl.textContent = pct(gap) + ' gap';
+
+    function bars(counts, n, base, maxD, cls) {
+      var g = el('g', {}, svg);
+      counts.forEach(function (c, k) {
+        if (!c) return;
+        var x0 = X(k * bw), x1 = X(Math.min(XMAX, (k + 1) * bw));
+        var h = Math.max(2.5, (c / (n * bw)) / maxD * (panelH - 8));   // a single distance still shows
+        var w = Math.max(1, x1 - x0 - 2);               // 2px of surface between neighbouring bars
+        el('path', { 'class': cls, d: topRounded(trim(x0 + 1), trim(base - h), trim(w), trim(h), 3) }, g);
+      });
+    }
+    function curve(pts, base, maxD, cls) {
+      // leave out the stretches where density is effectively zero, so the line
+      // does not run along the axis
+      var d = '', pen = false;
+      pts.forEach(function (p) {
+        if (p[1] / maxD < 0.012) { pen = false; return; }
+        d += (pen ? 'L' : 'M') + trim(X(p[0])) + ',' + trim(base - p[1] / maxD * (panelH - 8));
+        pen = true;
+      });
+      el('path', { 'class': cls, d: d }, svg);
+    }
+
+    bars(cA, N_INTRA, p1Base, maxA, 'bar-a');
+    bars(cB, N_INTER, p2Base, maxB, 'bar-b');
+    curve(kdeA, p1Base, maxA, 'kde-a');
+    curve(kdeB, p2Base, maxB, 'kde-b');
+
+    el('line', { 'class': 'axis', x1: padL, x2: padL + plotW, y1: p1Base, y2: p1Base }, svg);
+    el('line', { 'class': 'axis', x1: padL, x2: padL + plotW, y1: p2Base, y2: p2Base }, svg);
+
+    // panel titles act as the legend: a swatch of the series colour beside the label
+    function title(top, cls, name, count) {
+      el('rect', { 'class': cls, x: W - 14, y: top + 6, width: 10, height: 10, rx: 2 }, svg);
+      var t1 = el('text', { 'class': 'ptitle', x: W - 22, y: top + 15, 'text-anchor': 'end' }, svg);
+      t1.textContent = name;
+      var t2 = el('text', { x: W - 22, y: top + 31, 'text-anchor': 'end' }, svg);
+      t2.textContent = count;
+    }
+    title(topPad, 'a', 'Within species', N_INTRA + ' distances');
+    title(p2Top, 'b', 'Between species', N_INTER + ' distances');
+
+    // x axis
+    var step = plotW < 420 ? 3 : 2, v;
+    for (v = 0; v <= XMAX; v += step) {
+      el('line', { 'class': 'axis', x1: X(v), x2: X(v), y1: p2Base, y2: p2Base + 5 }, svg);
+      var tl = el('text', { x: X(v), y: p2Base + 20, 'text-anchor': v === 0 ? 'start' : (v === XMAX ? 'end' : 'middle') }, svg);
+      tl.textContent = v;
+    }
+    var at = el('text', { x: padL + plotW / 2, y: p2Base + 42, 'text-anchor': 'middle' }, svg);
+    at.textContent = 'Genetic distance between sequences (%)';
+
+    // hover: highlight the bin under the pointer and show its counts
+    var overlay = el('rect', { x: 0, y: topPad, width: W, height: p2Base - topPad, fill: 'transparent' }, svg);
+    plot.appendChild(tip);
+    function move(e) {
+      var box = svg.getBoundingClientRect();
+      var px = (e.clientX - box.left) * (W / box.width);
+      var val = (px - padL) / plotW * XMAX;
+      if (val < 0 || val >= XMAX) return leave();
+      var k = Math.floor(val / bw);
+      var x0 = X(k * bw), x1 = X(Math.min(XMAX, (k + 1) * bw));
+      hl.setAttribute('x', x0); hl.setAttribute('width', x1 - x0); hl.setAttribute('visibility', 'visible');
+      tip.textContent = '';
+      var s = document.createElement('strong');
+      s.textContent = trim(k * bw) + ' to ' + trim((k + 1) * bw) + '%';
+      tip.appendChild(s);
+      tip.appendChild(document.createElement('br'));
+      tip.appendChild(document.createTextNode((cA[k] || 0) + ' within species, ' + (cB[k] || 0) + ' between species'));
+      tip.hidden = false;
+      var pr = plot.getBoundingClientRect();
+      var left = e.clientX - pr.left + 14;
+      if (left + tip.offsetWidth > pr.width) left = e.clientX - pr.left - tip.offsetWidth - 14;
+      tip.style.left = Math.max(0, left) + 'px';
+      tip.style.top = Math.max(0, e.clientY - pr.top - 44) + 'px';
+    }
+    function leave() { hl.setAttribute('visibility', 'hidden'); tip.hidden = true; }
+    overlay.addEventListener('pointermove', move);
+    overlay.addEventListener('pointerleave', leave);
+
+    // table twin of the chart
+    tbody.textContent = '';
+    cA.forEach(function (c, k) {
+      if (!c && !cB[k]) return;
+      var tr = document.createElement('tr');
+      [trim(k * bw) + ' to ' + trim((k + 1) * bw), c, cB[k]].forEach(function (val) {
+        var td = document.createElement('td'); td.textContent = val; tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  slider.addEventListener('input', render);
+  var raf = 0, lastW = 0;
+  function onResize() {
+    var w = Math.round(plot.clientWidth);
+    if (!w || w === lastW) return;
+    lastW = w;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(render);
+  }
+  if (window.ResizeObserver) new ResizeObserver(onResize).observe(plot);
+  else window.addEventListener('resize', onResize);
+  render();
+})();
+
+/* ====================================================================
+   CRAN downloads (Software tab).
+   Reads data/cran-downloads.json, which the "Update CRAN download data"
+   GitHub Action rewrites every day, and draws two plots per package: the
+   daily count and the cumulative count. If that file is missing, it asks
+   the CRAN logs API directly. The plots always end on the newest day that
+   has data (the logs trail by a day or two).
+   ==================================================================== */
+(function () {
+  var root = document.getElementById('usage');
+  if (!root) return;
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var SNAPSHOT = 'data/cran-downloads.json';
+  var LIVE = 'https://cranlogs.r-pkg.org/downloads/daily/';
+  // first day to plot for each package (used only when asking the API directly)
+  var FIRST = { HACSim: '2019-05-09', VLF: '2013-11-19', RulesTools: '2025-01-28' };
+  var DAY = 86400000;
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var nf = new Intl.NumberFormat('en-CA');
+  var model = null;        // { through, pkgs: { name: { start, counts, cum } } }, days as whole days since 1970
+  var started = false;
+
+  /* ---- dates (all UTC, as in the CRAN logs) ---- */
+  function dayIndex(s) { var p = s.split('-'); return Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / DAY); }
+  function dayDate(i) { return new Date(i * DAY); }
+  function isoDay(i) { return dayDate(i).toISOString().slice(0, 10); }
+  function dayLabel(i) { var d = dayDate(i); return MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear(); }
+
+  /* ---- data ---- */
+  function names() {
+    return [].map.call(root.querySelectorAll('.ucard'), function (c) { return c.getAttribute('data-pkg'); });
+  }
+  function makePkg(startStr, counts) {
+    var cum = new Array(counts.length), s = 0, i;
+    for (i = 0; i < counts.length; i++) { s += counts[i]; cum[i] = s; }
+    return { start: dayIndex(startStr), counts: counts, cum: cum };
+  }
+  function finish(pkgs) {
+    var through = Infinity;
+    Object.keys(pkgs).forEach(function (k) {
+      through = Math.min(through, pkgs[k].start + pkgs[k].counts.length - 1);
+    });
+    Object.keys(pkgs).forEach(function (k) {         // every plot ends on the same day
+      var p = pkgs[k], n = through - p.start + 1;
+      p.counts = p.counts.slice(0, n); p.cum = p.cum.slice(0, n);
+    });
+    return { through: through, pkgs: pkgs };
+  }
+  function fromSnapshot(doc) {
+    var pkgs = {};
+    names().forEach(function (n) {
+      var p = doc && doc.packages && doc.packages[n];
+      if (!p || typeof p.from !== 'string' || !Array.isArray(p.counts) || !p.counts.length) throw new Error('bad snapshot');
+      pkgs[n] = makePkg(p.from, p.counts.map(Number));
+    });
+    return finish(pkgs);
+  }
+  function fromLive() {
+    return Promise.all(names().map(function (n) {
+      return fetch(LIVE + FIRST[n] + ':last-day/' + n).then(function (r) {
+        if (!r.ok) throw new Error('live ' + r.status);
+        return r.json();
+      }).then(function (arr) {
+        var rows = arr[0].downloads, by = {}, last = 0, counts = [], d;
+        rows.forEach(function (r) { by[r.day] = +r.downloads; last = Math.max(last, dayIndex(r.day)); });
+        for (d = dayIndex(FIRST[n]); d <= last; d++) counts.push(by[isoDay(d)] || 0);
+        return [n, makePkg(FIRST[n], counts)];
+      });
+    })).then(function (list) {
+      var pkgs = {};
+      list.forEach(function (x) { pkgs[x[0]] = x[1]; });
+      return finish(pkgs);
+    });
+  }
+  function load() {
+    return fetch(SNAPSHOT, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('snapshot ' + r.status); return r.json(); })
+      .then(fromSnapshot)
+      .catch(fromLive);
+  }
+
+  /* ---- numbers and text on the page ---- */
+  function fillStats() {
+    Object.keys(model.pkgs).forEach(function (n) {
+      var card = root.querySelector('.ucard[data-pkg="' + n + '"]'), p = model.pkgs[n];
+      var len = p.counts.length, last30 = 0, i;
+      for (i = Math.max(0, len - 30); i < len; i++) last30 += p.counts[i];
+      function set(key, v) { var e = card.querySelector('[data-stat="' + key + '"]'); if (e) e.textContent = nf.format(v); }
+      set('total', p.cum[len - 1]);
+      set('last30', last30);
+      set('latest', p.counts[len - 1]);
+    });
+    document.getElementById('usage-through').textContent =
+      'The plots run through ' + dayLabel(model.through) + ', the newest day in the CRAN logs.';
+  }
+  function fillTable() {
+    var box = document.getElementById('usage-table'), table = box.querySelector('table');
+    var list = Object.keys(model.pkgs), y1 = dayDate(model.through).getUTCFullYear(), y0 = y1;
+    var sums = {}, y, k, i;
+    list.forEach(function (n) {
+      var p = model.pkgs[n], s = {};
+      y0 = Math.min(y0, dayDate(p.start).getUTCFullYear());
+      for (i = 0; i < p.counts.length; i++) {
+        y = dayDate(p.start + i).getUTCFullYear();
+        s[y] = (s[y] || 0) + p.counts[i];
+      }
+      sums[n] = s;
+    });
+    function cell(tag, text, scope) {
+      var c = document.createElement(tag);
+      c.textContent = text;
+      if (scope) c.setAttribute('scope', scope);
+      return c;
+    }
+    table.textContent = '';
+    var thead = table.createTHead().insertRow();
+    thead.appendChild(cell('th', 'Year', 'col'));
+    list.forEach(function (n) { thead.appendChild(cell('th', n, 'col')); });
+    var tbody = table.createTBody();
+    for (y = y0; y <= y1; y++) {
+      var tr = tbody.insertRow();
+      tr.appendChild(cell('th', y === y1 ? y + ' (to ' + dayLabel(model.through).replace(/, \d+$/, '') + ')' : String(y), 'row'));
+      list.forEach(function (n) { tr.appendChild(cell('td', sums[n][y] === undefined ? '–' : nf.format(sums[n][y]))); });
+    }
+    var all = tbody.insertRow();
+    all.appendChild(cell('th', 'All years', 'row'));
+    list.forEach(function (n) { var p = model.pkgs[n]; all.appendChild(cell('td', nf.format(p.cum[p.cum.length - 1]))); });
+    box.hidden = false;
+  }
+
+  /* ---- drawing ---- */
+  function el(name, attrs, parent) {
+    var n = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  function niceStep(max, count) {
+    var raw = max / count, pow = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), f = raw / pow;
+    var m = f <= 1 ? 1 : f <= 2 ? 2 : (f <= 2.5 && pow >= 10) ? 2.5 : f <= 5 ? 5 : 10;
+    return Math.max(1, m * pow);
+  }
+  function tickText(v, big) {
+    if (v === 0 || !big) return nf.format(v);
+    var k = v / 1000;
+    return (k % 1 ? k.toFixed(1) : k) + 'k';
+  }
+  function xTicks(start, n, plotW) {
+    var months = n / 30.44, maxTicks = Math.max(2, Math.floor(plotW / 64));
+    var steps = [1, 2, 3, 6, 12, 24, 60], step = 60, i;
+    for (i = 0; i < steps.length; i++) if (months / steps[i] <= maxTicks) { step = steps[i]; break; }
+    var first = dayDate(start), idx = first.getUTCFullYear() * 12 + first.getUTCMonth(), end = start + n - 1, out = [];
+    for (; ; idx++) {
+      var yy = Math.floor(idx / 12), mm = idx % 12, di = Math.round(Date.UTC(yy, mm, 1) / DAY);
+      if (di > end) break;
+      if (di < start) continue;
+      if (step >= 12 ? (mm === 0 && yy % (step / 12) === 0) : (mm % step === 0)) {
+        out.push({ i: di - start, text: step >= 12 ? String(yy) : MONTHS[mm] + ' ' + yy });
+      }
+    }
+    return out;
+  }
+
+  function draw(host, name) {
+    var p = model && model.pkgs[name];
+    var kind = host.getAttribute('data-kind');
+    var W = Math.round(host.clientWidth);
+    if (!p || W < 120) return;                        // hidden tab or not loaded yet
+    var vals = kind === 'cum' ? p.cum : p.counts, n = vals.length;
+    var H = 216, L = 40, R = 8, T = 8, B = 26, plotW = W - L - R, plotH = H - T - B;
+    var max = 0, i;
+    for (i = 0; i < n; i++) if (vals[i] > max) max = vals[i];
+    var step = niceStep(max || 1, 4), yTop = Math.ceil((max || 1) / step) * step, big = yTop >= 10000;
+    function X(k) { return L + (n > 1 ? k / (n - 1) : 0) * plotW; }
+    function Y(v) { return T + (1 - v / yTop) * plotH; }
+
+    host.textContent = '';
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img' }, host);
+    var peak = 0, peakAt = 0;
+    for (i = 0; i < n; i++) if (vals[i] > peak) { peak = vals[i]; peakAt = i; }
+    svg.setAttribute('aria-label', name + (kind === 'cum' ? ', cumulative downloads' : ', daily downloads') +
+      ' from ' + dayLabel(p.start) + ' to ' + dayLabel(p.start + n - 1) + '. ' +
+      (kind === 'cum' ? 'The total reaches ' + nf.format(vals[n - 1]) + '.' :
+        'The busiest day was ' + dayLabel(p.start + peakAt) + ' with ' + nf.format(peak) + ' downloads.') +
+      ' The table below lists yearly totals.');
+
+    var v;
+    for (v = 0; v <= yTop + 1e-9; v += step) {
+      el('line', { 'class': v === 0 ? 'axis' : 'grid', x1: L, x2: L + plotW, y1: Y(v), y2: Y(v) }, svg);
+      el('text', { x: L - 6, y: Y(v), dy: '.32em', 'text-anchor': 'end' }, svg).textContent = tickText(v, big);
+    }
+    xTicks(p.start, n, plotW).forEach(function (t) {
+      var x = X(t.i);
+      if (x < L + 14 || x > L + plotW - 14) return;
+      el('line', { 'class': 'axis', x1: x, x2: x, y1: Y(0), y2: Y(0) + 4 }, svg);
+      el('text', { x: x, y: H - 6, 'text-anchor': 'middle' }, svg).textContent = t.text;
+    });
+
+    var d = new Array(n);
+    for (i = 0; i < n; i++) d[i] = (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(vals[i]).toFixed(1);
+    el('path', { 'class': 'line', d: d.join('') }, svg);
+
+    // hover: crosshair, dot and a tooltip with the date and the value
+    var cross = el('line', { 'class': 'cross', y1: T, y2: T + plotH, visibility: 'hidden' }, svg);
+    var dot = el('circle', { 'class': 'dot', r: 4, visibility: 'hidden' }, svg);
+    var hit = el('rect', { x: L, y: T, width: plotW, height: plotH, fill: 'transparent' }, svg);
+    var tip = document.createElement('div');
+    tip.className = 'tip'; tip.hidden = true; tip.setAttribute('aria-hidden', 'true');
+    host.appendChild(tip);
+
+    function show(ev) {
+      var r = svg.getBoundingClientRect(), k = Math.round(((ev.clientX - r.left) * (W / r.width) - L) / plotW * (n - 1));
+      k = Math.max(0, Math.min(n - 1, k));
+      var x = X(k), y = Y(vals[k]), sc = r.width / W;
+      cross.setAttribute('x1', x); cross.setAttribute('x2', x); cross.setAttribute('visibility', 'visible');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('visibility', 'visible');
+      tip.textContent = '';
+      tip.appendChild(document.createTextNode(dayLabel(p.start + k)));
+      tip.appendChild(document.createElement('br'));
+      var strong = document.createElement('strong');
+      strong.textContent = nf.format(vals[k]);
+      tip.appendChild(strong);
+      tip.appendChild(document.createTextNode(kind === 'cum' ? ' in total' : (vals[k] === 1 ? ' download' : ' downloads')));
+      tip.hidden = false;
+      var tx = x * sc + 12;
+      if (tx + tip.offsetWidth > host.clientWidth) tx = x * sc - 12 - tip.offsetWidth;
+      tip.style.left = Math.max(0, tx) + 'px';
+      tip.style.top = Math.max(0, y * sc - 44) + 'px';
+    }
+    function hide() { cross.setAttribute('visibility', 'hidden'); dot.setAttribute('visibility', 'hidden'); tip.hidden = true; }
+    hit.addEventListener('pointermove', show);
+    hit.addEventListener('pointerdown', show);
+    hit.addEventListener('pointerleave', hide);
+    hit.addEventListener('pointercancel', hide);
+  }
+
+  function hostName(host) { return host.closest('.ucard').getAttribute('data-pkg'); }
+  function drawAll() {
+    [].forEach.call(root.querySelectorAll('.uhost'), function (h) { draw(h, hostName(h)); });
+  }
+
+  /* ---- start when the Software tab is first shown ---- */
+  function start() {
+    if (started) return;
+    started = true;
+    load().then(function (m) {
+      model = m;
+      fillStats();
+      fillTable();
+      drawAll();
+    }).catch(function () {
+      root.classList.add('usage-failed');
+      document.getElementById('usage-through').textContent =
+        "The download counts couldn't be loaded just now. Each package's CRAN page has the latest numbers.";
+    });
+  }
+  if (window.ResizeObserver) {
+    var widths = new WeakMap();
+    // the section has a width only once the Software tab is showing: load the data then
+    new ResizeObserver(function (entries) {
+      if (entries.some(function (e) { return e.contentRect.width > 0; })) start();
+    }).observe(root);
+    // each plot host: draw when it first has a width, and redraw when the window is resized
+    var hostRO = new ResizeObserver(function (entries) {
+      entries.forEach(function (e) {
+        var w = Math.round(e.contentRect.width);
+        if (w && widths.get(e.target) !== w) { widths.set(e.target, w); draw(e.target, hostName(e.target)); }
+      });
+    });
+    [].forEach.call(root.querySelectorAll('.uhost'), function (h) { hostRO.observe(h); });
+  } else {
+    start();
+    window.addEventListener('resize', drawAll);
+    window.addEventListener('hashchange', function () { setTimeout(drawAll, 50); });
+  }
+})();
+
+/* ====================================================================
+   Word cloud (About tab). The picture itself is rebuilt by a GitHub Action
+   whenever index.html or the CV changes; the same run writes
+   data/wordcloud-terms.json. This keeps the table and the alt text in step
+   with the picture. If the file cannot be read, the static versions stay.
+   ==================================================================== */
+(function () {
+  var fig = document.getElementById('cloudfig');
+  if (!fig || !window.fetch) return;
+
+  function listOf(a) {
+    return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+  }
+  fetch('data/wordcloud-terms.json', { cache: 'no-cache' }).then(function (r) {
+    if (!r.ok) throw new Error('terms ' + r.status);
+    return r.json();
+  }).then(function (doc) {
+    var list = doc && doc.terms;
+    if (!Array.isArray(list) || !list.length) return;
+    var nf = new Intl.NumberFormat('en-CA');
+    var tbody = document.getElementById('cloud-rows');
+    if (tbody) {
+      tbody.textContent = '';
+      list.forEach(function (t) {
+        var tr = tbody.insertRow();
+        tr.insertCell().textContent = t.label;
+        tr.insertCell().textContent = nf.format(t.n);
+        tr.insertCell().textContent = t.type === 'tool' ? 'Software or tool' : 'Topic or method';
+      });
+    }
+    var topics = list.filter(function (t) { return t.type !== 'tool'; }).slice(0, 6).map(function (t) { return t.label; });
+    var tools = list.filter(function (t) { return t.type === 'tool'; }).slice(0, 4).map(function (t) { return t.label; });
+    var img = fig.querySelector('.cloud-img img');
+    if (img && topics.length) {
+      img.alt = 'Word cloud of research terms from this site and my CV. The largest are ' + listOf(topics) + '.' +
+        (tools.length ? ' Software and tools, such as ' + listOf(tools) + ', are set in orange bold type.' : '');
+    }
+  }).catch(function () { /* keep the static table and alt text */ });
+})();
+</script>
+</body>
+</html>
