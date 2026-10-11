@@ -78,7 +78,7 @@
  "funding": [
   {
    "group": "Completed",
-   "name": "Food From Thought Advancing Research Impact (ARIF) Fund – Livestock Innovation Grant",
+   "name": "Canada First Research Excellence Fund (CFREF) Food From Thought Advancing Research Impact (ARIF) Fund – Livestock Innovation Grant",
    "date": "2024",
    "institution": "University of Guelph",
    "amount": "$40,000 CAD",
@@ -87,66 +87,12 @@
   },
   {
    "group": "Completed",
-   "name": "Food From Thought Advancing Research Impact (ARIF) Fund",
+   "name": "Canada First Research Excellence Fund (CFREF) Food From Thought Advancing Research Impact (ARIF) Fund",
    "date": "2023",
    "institution": "University of Guelph",
    "amount": "$30,000 CAD",
    "title": "Forecasting Seafood Fraud Occurrence in the Supply Chain Within Major Canadian Cities Using Bayesian Hierarchical Binary Logistic Time-Series Regression Modeling",
    "role": "HQP"
-  },
-  {
-   "group": "Completed",
-   "name": "SoCS Travel Grant",
-   "date": "2019",
-   "institution": "University of Guelph",
-   "amount": "$1,000 CAD",
-   "title": "",
-   "role": ""
-  },
-  {
-   "group": "Completed",
-   "name": "Arthur D. Latornell Graduate Travel Grant",
-   "date": "2019",
-   "institution": "University of Guelph",
-   "amount": "$500 CAD",
-   "title": "",
-   "role": ""
-  },
-  {
-   "group": "Completed",
-   "name": "Graduate Teaching Assistantships",
-   "date": "2016–2020",
-   "institution": "University of Guelph",
-   "amount": "$35,000 CAD",
-   "title": "",
-   "role": ""
-  },
-  {
-   "group": "Completed",
-   "name": "Graduate Research Assistantships",
-   "date": "2017–2019",
-   "institution": "University of Guelph",
-   "amount": "$11,000 CAD",
-   "title": "",
-   "role": ""
-  },
-  {
-   "group": "Completed",
-   "name": "CPES Graduate Dean’s Scholarship",
-   "date": "2017",
-   "institution": "University of Guelph",
-   "amount": "$3,500 CAD",
-   "title": "",
-   "role": ""
-  },
-  {
-   "group": "Completed",
-   "name": "CPES Graduate Excellence Entrance (GEE) Scholarship",
-   "date": "2016",
-   "institution": "University of Guelph",
-   "amount": "$30,000 CAD",
-   "title": "",
-   "role": ""
   },
   {
    "group": "Submitted",
@@ -183,6 +129,60 @@
    "amount": "$20,000 CAD",
    "title": "GBADs ModelBuilder as a Tool to Teach Livestock Population Dynamics and Disease Burden Risk Estimation",
    "role": "Co-applicant"
+  },
+  {
+   "group": "Awards",
+   "name": "SoCS Travel Grant",
+   "date": "2019",
+   "institution": "University of Guelph",
+   "amount": "$1,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Awards",
+   "name": "Arthur D. Latornell Graduate Travel Grant",
+   "date": "2019",
+   "institution": "University of Guelph",
+   "amount": "$500 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Awards",
+   "name": "Graduate Teaching Assistantships",
+   "date": "2016–2020",
+   "institution": "University of Guelph",
+   "amount": "$35,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Awards",
+   "name": "Graduate Research Assistantships",
+   "date": "2017–2019",
+   "institution": "University of Guelph",
+   "amount": "$11,000 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Scholarships",
+   "name": "CPES Graduate Dean’s Scholarship",
+   "date": "2017",
+   "institution": "University of Guelph",
+   "amount": "$3,500 CAD",
+   "title": "",
+   "role": ""
+  },
+  {
+   "group": "Scholarships",
+   "name": "CPES Graduate Excellence Entrance (GEE) Scholarship",
+   "date": "2016",
+   "institution": "University of Guelph",
+   "amount": "$30,000 CAD",
+   "title": "",
+   "role": ""
   }
  ],
  "software": {
