@@ -7,67 +7,67 @@
   {
    "label": "sampling",
    "type": "topic",
-   "n": 51
+   "n": 59
   },
   {
    "label": "DNA barcoding",
    "type": "topic",
-   "n": 49
+   "n": 50
   },
   {
    "label": "seafood fraud",
    "type": "topic",
-   "n": 40
+   "n": 50
   },
   {
    "label": "modelling",
    "type": "topic",
-   "n": 37
+   "n": 47
   },
   {
    "label": "eDNA",
    "type": "topic",
-   "n": 34
-  },
-  {
-   "label": "DNA barcode gap",
-   "type": "topic",
-   "n": 29
-  },
-  {
-   "label": "R",
-   "type": "tool",
-   "n": 27
-  },
-  {
-   "label": "statistics",
-   "type": "topic",
-   "n": 27
-  },
-  {
-   "label": "association rules",
-   "type": "topic",
-   "n": 24
-  },
-  {
-   "label": "genetic diversity",
-   "type": "topic",
-   "n": 23
+   "n": 41
   },
   {
    "label": "species",
    "type": "topic",
-   "n": 23
+   "n": 33
+  },
+  {
+   "label": "DNA barcode gap",
+   "type": "topic",
+   "n": 32
+  },
+  {
+   "label": "association rules",
+   "type": "topic",
+   "n": 30
+  },
+  {
+   "label": "statistics",
+   "type": "topic",
+   "n": 30
+  },
+  {
+   "label": "R",
+   "type": "tool",
+   "n": 29
+  },
+  {
+   "label": "genetic diversity",
+   "type": "topic",
+   "n": 25
+  },
+  {
+   "label": "GBADs",
+   "type": "topic",
+   "n": 22
   },
   {
    "label": "intraspecific",
    "type": "topic",
    "n": 21
-  },
-  {
-   "label": "GBADs",
-   "type": "topic",
-   "n": 18
   },
   {
    "label": "biodiversity",
@@ -77,7 +77,17 @@
   {
    "label": "supply chain",
    "type": "topic",
+   "n": 17
+  },
+  {
+   "label": "Bayesian",
+   "type": "topic",
    "n": 16
+  },
+  {
+   "label": "ecology",
+   "type": "topic",
+   "n": 15
   },
   {
    "label": "fishes",
@@ -85,13 +95,23 @@
    "n": 15
   },
   {
-   "label": "Bayesian",
+   "label": "statistical modelling",
+   "type": "topic",
+   "n": 15
+  },
+  {
+   "label": "DNA sequences",
+   "type": "topic",
+   "n": 14
+  },
+  {
+   "label": "data mining",
    "type": "topic",
    "n": 13
   },
   {
-   "label": "ecology",
-   "type": "topic",
+   "label": "HACSim",
+   "type": "tool",
    "n": 13
   },
   {
@@ -100,28 +120,13 @@
    "n": 13
   },
   {
-   "label": "statistical modelling",
-   "type": "topic",
+   "label": "Shiny",
+   "type": "tool",
    "n": 13
   },
   {
-   "label": "DNA sequences",
+   "label": "machine learning",
    "type": "topic",
-   "n": 12
-  },
-  {
-   "label": "HACSim",
-   "type": "tool",
-   "n": 12
-  },
-  {
-   "label": "data mining",
-   "type": "topic",
-   "n": 11
-  },
-  {
-   "label": "Shiny",
-   "type": "tool",
    "n": 11
   },
   {
@@ -130,34 +135,39 @@
    "n": 11
   },
   {
-   "label": "machine learning",
+   "label": "simulation",
    "type": "topic",
+   "n": 10
+  },
+  {
+   "label": "web apps",
+   "type": "tool",
    "n": 10
   },
   {
    "label": "livestock",
    "type": "topic",
-   "n": 8
-  },
-  {
-   "label": "simulation",
-   "type": "topic",
-   "n": 8
+   "n": 9
   },
   {
    "label": "species identification",
    "type": "topic",
+   "n": 9
+  },
+  {
+   "label": "butterflies",
+   "type": "topic",
    "n": 8
   },
   {
-   "label": "web apps",
+   "label": "nonparametric",
+   "type": "topic",
+   "n": 8
+  },
+  {
+   "label": "VLF",
    "type": "tool",
    "n": 8
-  },
-  {
-   "label": "agent-based models",
-   "type": "topic",
-   "n": 7
   },
   {
    "label": "bioinformatics",
@@ -165,7 +175,7 @@
    "n": 7
   },
   {
-   "label": "butterflies",
+   "label": "classification",
    "type": "topic",
    "n": 7
   },
@@ -180,33 +190,38 @@
    "n": 7
   },
   {
-   "label": "nonparametric",
-   "type": "topic",
-   "n": 7
-  },
-  {
-   "label": "VLF",
-   "type": "tool",
-   "n": 7
-  },
-  {
-   "label": "classification",
-   "type": "topic",
-   "n": 6
-  },
-  {
    "label": "disease burden",
    "type": "topic",
-   "n": 6
+   "n": 7
   },
   {
    "label": "regression",
+   "type": "topic",
+   "n": 7
+  },
+  {
+   "label": "agent-based models",
    "type": "topic",
    "n": 6
   },
   {
    "label": "sequencing errors",
    "type": "topic",
+   "n": 6
+  },
+  {
+   "label": "metadata",
+   "type": "topic",
+   "n": 5
+  },
+  {
+   "label": "Python",
+   "type": "tool",
+   "n": 5
+  },
+  {
+   "label": "Stan",
+   "type": "tool",
    "n": 5
   },
   {
@@ -230,7 +245,7 @@
    "n": 4
   },
   {
-   "label": "Python",
+   "label": "RulesTools",
    "type": "tool",
    "n": 4
   },
@@ -250,23 +265,13 @@
    "n": 3
   },
   {
+   "label": "genetic algorithms",
+   "type": "topic",
+   "n": 3
+  },
+  {
    "label": "kernel density estimation",
    "type": "topic",
-   "n": 3
-  },
-  {
-   "label": "metadata",
-   "type": "topic",
-   "n": 3
-  },
-  {
-   "label": "RulesTools",
-   "type": "tool",
-   "n": 3
-  },
-  {
-   "label": "Stan",
-   "type": "tool",
    "n": 3
   },
   {
@@ -281,11 +286,6 @@
   },
   {
    "label": "generalized additive models",
-   "type": "topic",
-   "n": 2
-  },
-  {
-   "label": "genetic algorithms",
    "type": "topic",
    "n": 2
   }
