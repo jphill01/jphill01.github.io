@@ -107,6 +107,11 @@ PUB_FIGURES = {
         file="phillips-2019-haplotype-network.png", w=320, h=335,
         alt="Starburst haplotype network: one very large central haplotype with many small haplotypes, "
             "each joined to it by a short branch."),
+    "10.20506/rst.43.3522": dict(                    # Raymond et al. (2024), GBADs informatics, WOAH Sci. Tech. Rev.
+        file="raymond-2024-gbads-tail.jpg", w=320, h=422,
+        alt="Diagram of the GBADs TAIL search: a user types 'Cows in Canada', language processing recognises the "
+            "terms, an ontology suggests related terms (cow, cattle, bovine, dairy) to refine, and the enriched "
+            "search is run against a graph database and Semantic Scholar to return data and literature metadata."),
     "10.1007/978-1-0716-3581-0_24": dict(            # Phillips et al. (2024), "A Measure of the DNA Barcode Gap..."
         file="phillips-2024-barcode-gap-overlap.png", w=320, h=119,
         alt="Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and "
