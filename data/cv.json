@@ -538,7 +538,7 @@
    {
     "parent": "Journal Articles",
     "group": "Published or Accepted",
-    "text": "Phillips, J.D., Athey, T.B.T., Hanner, R.H., and McNicholas, P.D. (2023). VLF: An R package for the analysis of very low frequency variants in DNA sequences. Biodiversity Data Journal, e96480. DOI: 10.3897/BDJ.11.e96480."
+    "text": "Phillips, J.D., Athey, T.B.T., McNicholas, P.D., and Hanner, R.H. (2023). VLF: An R package for the analysis of very low frequency variants in DNA sequences. Biodiversity Data Journal, e96480. DOI: 10.3897/BDJ.11.e96480."
    },
    {
     "parent": "Journal Articles",
