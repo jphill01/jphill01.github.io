@@ -35,14 +35,14 @@
    "n": 29
   },
   {
-   "label": "statistics",
-   "type": "topic",
+   "label": "R",
+   "type": "tool",
    "n": 27
   },
   {
-   "label": "R",
-   "type": "tool",
-   "n": 26
+   "label": "statistics",
+   "type": "topic",
+   "n": 27
   },
   {
    "label": "association rules",
@@ -230,6 +230,11 @@
    "n": 4
   },
   {
+   "label": "Python",
+   "type": "tool",
+   "n": 4
+  },
+  {
    "label": "time series",
    "type": "topic",
    "n": 4
@@ -252,11 +257,6 @@
   {
    "label": "metadata",
    "type": "topic",
-   "n": 3
-  },
-  {
-   "label": "Python",
-   "type": "tool",
    "n": 3
   },
   {
