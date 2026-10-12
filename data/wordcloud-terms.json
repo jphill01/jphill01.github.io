@@ -7,12 +7,17 @@
   {
    "label": "sampling",
    "type": "topic",
-   "n": 53
+   "n": 59
+  },
+  {
+   "label": "DNA barcoding",
+   "type": "topic",
+   "n": 50
   },
   {
    "label": "seafood fraud",
    "type": "topic",
-   "n": 48
+   "n": 50
   },
   {
    "label": "modelling",
@@ -20,14 +25,9 @@
    "n": 47
   },
   {
-   "label": "DNA barcoding",
-   "type": "topic",
-   "n": 45
-  },
-  {
    "label": "eDNA",
    "type": "topic",
-   "n": 39
+   "n": 41
   },
   {
    "label": "species",
@@ -37,6 +37,16 @@
   {
    "label": "DNA barcode gap",
    "type": "topic",
+   "n": 32
+  },
+  {
+   "label": "association rules",
+   "type": "topic",
+   "n": 30
+  },
+  {
+   "label": "statistics",
+   "type": "topic",
    "n": 30
   },
   {
@@ -45,19 +55,9 @@
    "n": 29
   },
   {
-   "label": "statistics",
-   "type": "topic",
-   "n": 29
-  },
-  {
-   "label": "association rules",
-   "type": "topic",
-   "n": 28
-  },
-  {
    "label": "genetic diversity",
    "type": "topic",
-   "n": 24
+   "n": 25
   },
   {
    "label": "GBADs",
@@ -67,7 +67,12 @@
   {
    "label": "intraspecific",
    "type": "topic",
-   "n": 20
+   "n": 21
+  },
+  {
+   "label": "biodiversity",
+   "type": "topic",
+   "n": 17
   },
   {
    "label": "supply chain",
@@ -80,12 +85,17 @@
    "n": 16
   },
   {
-   "label": "biodiversity",
+   "label": "ecology",
    "type": "topic",
    "n": 15
   },
   {
-   "label": "ecology",
+   "label": "fishes",
+   "type": "topic",
+   "n": 15
+  },
+  {
+   "label": "statistical modelling",
    "type": "topic",
    "n": 15
   },
@@ -95,14 +105,9 @@
    "n": 14
   },
   {
-   "label": "fishes",
+   "label": "data mining",
    "type": "topic",
-   "n": 14
-  },
-  {
-   "label": "statistical modelling",
-   "type": "topic",
-   "n": 14
+   "n": 13
   },
   {
    "label": "HACSim",
@@ -118,11 +123,6 @@
    "label": "Shiny",
    "type": "tool",
    "n": 13
-  },
-  {
-   "label": "data mining",
-   "type": "topic",
-   "n": 12
   },
   {
    "label": "machine learning",
