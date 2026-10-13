@@ -190,17 +190,17 @@
    "n": 7
   },
   {
-   "label": "disease burden",
-   "type": "topic",
-   "n": 7
-  },
-  {
    "label": "regression",
    "type": "topic",
    "n": 7
   },
   {
    "label": "agent-based models",
+   "type": "topic",
+   "n": 6
+  },
+  {
+   "label": "disease burden",
    "type": "topic",
    "n": 6
   },
