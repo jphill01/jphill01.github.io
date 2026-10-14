@@ -143,9 +143,10 @@ PUB_FIGURES = {
         alt="Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and "
             "the between-species distances (yellow) mostly larger, with the shaded area where they overlap marked."),
     "10.7717/peerj-cs.243": dict(                    # Phillips et al. (2020), HACSim, PeerJ Computer Science
-        file="phillips-2020-haplotype-network.jpg", w=320, h=317,
-        alt="Haplotype network with haplotypes labelled 1 to 5 by frequency: a very large central haplotype (1) "
-            "with many small haplotypes joined to it by short branches; haplotypes 2, 3 and 4 are a little larger."),
+        file="phillips-2020-hacsim-flowchart.jpg", w=320, h=182,
+        alt="Flowchart of the HACSim algorithm: DNA sequences from a database (BOLD or GenBank) give a table of "
+            "sequence IDs and an array of randomly drawn haplotype IDs; the number of columns N* is recalculated "
+            "again and again until the proportion of unique haplotypes observed (R) reaches p, 0.95, and then it stops."),
     "10.3389/fevo.2022.859099": dict(
         file="phillips-2022-barcode-gap.jpg", w=320, h=227,
         alt="Scatter plot of each species' largest within-species distance against its distance to the nearest "
