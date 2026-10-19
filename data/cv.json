@@ -419,10 +419,10 @@
    "title": "Association rule mining for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling"
   },
   {
-   "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (student poster presentation)",
+   "event": "Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) International Conference (student poster presentation)",
    "date": "2026",
    "location": "University of Guelph, Canada",
-   "authors": "*Toth, N., Antonie, M.L., and Phillips, J.D. (2026).",
+   "authors": "*Toth, N., Antonie, M.L., and Phillips, J.D..",
    "title": "To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets"
   },
   {
@@ -475,7 +475,7 @@
    "title": "Estimating Seafood Mislabelling Rates in Canada Using Bayesian Modelling"
   },
   {
-   "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (poster presentation)",
+   "event": "Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) International Conference (poster presentation)",
    "date": "2023",
    "location": "University of Guelph, Canada",
    "authors": "Phillips, J.D.",
@@ -538,7 +538,7 @@
    {
     "parent": "Journal Articles",
     "group": "Published or Accepted",
-    "text": "Phillips, J.D., Athey, T.B.T., McNicholas, P.D., and Hanner, R.H. (2023). VLF: An R package for the analysis of very low frequency variants in DNA sequences. Biodiversity Data Journal, e96480. DOI: 10.3897/BDJ.11.e96480."
+    "text": "Phillips, J.D., Athey, T.B.T., McNicholas, P.D., and Hanner, R.H. (2023). VLF: An R package for the analysis of very low frequency variants in DNA sequences. Biodiversity Data Journal, 11: e96480. DOI: 10.3897/BDJ.11.e96480."
    },
    {
     "parent": "Journal Articles",
@@ -553,7 +553,7 @@
    {
     "parent": "Journal Articles",
     "group": "Published or Accepted",
-    "text": "Phillips, J.D., *French, S.H., Hanner, R.H., and Gillis, D.J. (2020). HACSim: An R package to estimate intraspecific sample sizes for genetic diversity assessment using haplotype accumulation curves. PeerJ Computer Science, 6(192): 1–37. DOI: 10.7717/peerj-cs.243. Top 5 most viewed article in category “Optimization Theory and Computation\"."
+    "text": "Phillips, J.D., *French, S.H., Hanner, R.H., and Gillis, D.J. (2020). HACSim: An R package to estimate intraspecific sample sizes for genetic diversity assessment using haplotype accumulation curves. PeerJ Computer Science, 6(192): 1–37. DOI: 10.7717/peerj-cs.243. Top 5 most viewed article in category \"Optimization Theory and Computation\"."
    },
    {
     "parent": "Journal Articles",
@@ -666,7 +666,7 @@
    "Phillips, J.D. (2016). Sample size estimation for DNA barcoding of ray-finned fishes: Are current sampling levels enough? Contributed newsletter article to the Barcode Bulletin, 7(1). URL: https://journal.lib.uoguelph.ca/index.php/ibol/issue/view/345"
   ]
  },
- "peer_review": "Ecology and Evolution, F1000 Research, Frontiers in Ecology and Evolution, Lifestyle Genomics, Methods in Ecology and Evolution, Mitochondrial DNA Part A, Molecular Biology Reports, Molecular Ecology Resources, Nature Communications",
+ "peer_review": "Ecology and Evolution, F1000Research, Frontiers in Ecology and Evolution, Lifestyle Genomics, Methods in Ecology and Evolution, Mitochondrial DNA Part A, Molecular Biology Reports, Molecular Ecology Resources, Nature Communications",
  "volunteer": [
   {
    "name": "CEPS Student Research Connections Networking Night",
