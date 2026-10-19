@@ -78,7 +78,7 @@
  "funding": [
   {
    "group": "Completed",
-   "name": "Canada First Research Excellence Fund (CFREF) Food From Thought Advancing Research Impact (ARIF) Fund – Livestock Innovation Grant",
+   "name": "Canada First Research Excellence Fund (CFREF) Food From Thought Advancing Research Impact Fund (ARIF) – Livestock Innovation Grant",
    "date": "2024",
    "institution": "University of Guelph",
    "amount": "$40,000 CAD",
@@ -117,7 +117,7 @@
    "name": "NSERC CREATE Grant",
    "date": "2026",
    "institution": "University of Guelph",
-   "amount": "$9.9 million CAD",
+   "amount": "$1.65 million CAD",
    "title": "AI-Driven Training of Next-Generation Conservation Scientists",
    "role": "Collaborator"
   },
@@ -363,7 +363,7 @@
    ]
   },
   {
-   "name": "39th Canadian Artificial Intelligence Conference",
+   "name": "39th Canadian Conference on Artificial Intelligence",
    "date": "2026",
    "institution": "Simon Fraser University",
    "bullets": [
@@ -412,7 +412,7 @@
    "title": "Modelling the Interplay between IUU Fishing, Wholesaler Fraud, and Consumer Awareness in the Seafood Supply Chain"
   },
   {
-   "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (oral presentation)",
+   "event": "Pathway to Increase Standards and Competency in eDNA Surveys (PISCeS) International Conference (oral presentation)",
    "date": "2026",
    "location": "University of Guelph, Canada",
    "authors": "Phillips, J.D.",
@@ -422,7 +422,7 @@
    "event": "Pathway to Increase Standards and Competency of eDNA Surveys (PISCeS) International Conference (student poster presentation)",
    "date": "2026",
    "location": "University of Guelph, Canada",
-   "authors": "*Toth, N., Antonie, M.L. and Phillips, J.D.",
+   "authors": "*Toth, N., Antonie, M.L., and Phillips, J.D. (2026).",
    "title": "To correct or not to correct?: Assessing the multiple comparisons problem for association rule mining of environmental DNA (eDNA) detection survey datasets"
   },
   {
@@ -456,7 +456,7 @@
   {
    "event": "9th International Barcode of Life Conference (poster presentation)",
    "date": "2024",
-   "location": "Estação das Docas, Belem, Brazil",
+   "location": "Estação das Docas, Belém, Brazil",
    "authors": "Phillips, J.D.",
    "title": "A Measure of the DNA Barcode Gap for Applied and Basic Research (abstract accepted, not attended)"
   },
@@ -533,7 +533,7 @@
    {
     "parent": "Journal Articles",
     "group": "Published or Accepted",
-    "text": "Raymond, K., Sobkowich, K.E., Phillips, J.D., Nguyen, L., McKechnie, I., Mohideen, R.N., Fitzjohn, W., Szurkowski, M., Davidson, J., Rushton, J., Stacey, D.A., and Bernardo T.M. (2024). GBADs informatics strategy: User-centric tools, data quality, and model interoperability. WOAH Scientific and Technical Review, 43: 96–107. DOI: 10.20506/rst.43.3522."
+    "text": "Raymond, K., Sobkowich, K.E., Phillips, J.D., Nguyen, L., McKechnie, I., Mohideen, R.N., Fitzjohn, W., Szurkowski, M., Davidson, J., Rushton, J., Stacey, D.A., and Bernardo, T.M. (2024). GBADs informatics strategy: User-centric tools, data quality, and model interoperability. WOAH Scientific and Technical Review, 43: 96–107. DOI: 10.20506/rst.43.3522."
    },
    {
     "parent": "Journal Articles",
@@ -553,7 +553,7 @@
    {
     "parent": "Journal Articles",
     "group": "Published or Accepted",
-    "text": "Phillips, J.D., *French, S.H., Hanner, R.H., and Gillis, D.J. (2020). HACSim: An R package to estimate intraspecific sample sizes for genetic diversity assessment using haplotype accumulation curves. PeerJ Computer Science, 6(192): 1–37. DOI: 10.7717/peerj-cs.243. Top 5 most viewed article in category “Optimzation Theory and Computation\"."
+    "text": "Phillips, J.D., *French, S.H., Hanner, R.H., and Gillis, D.J. (2020). HACSim: An R package to estimate intraspecific sample sizes for genetic diversity assessment using haplotype accumulation curves. PeerJ Computer Science, 6(192): 1–37. DOI: 10.7717/peerj-cs.243. Top 5 most viewed article in category “Optimization Theory and Computation\"."
    },
    {
     "parent": "Journal Articles",
@@ -568,7 +568,7 @@
    {
     "parent": "Journal Articles",
     "group": "Preprints",
-    "text": "*Toth, N., Antonie, L., Hanner, R.H., Gillis, D.J., and Phillips, J.D. Mining association rules for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling. bioRxiv. DOI: 10.64898/2026.09.16.752056."
+    "text": "*Toth, N., Antonie, L., Hanner, R.H., Gillis, D.J., and Phillips, J.D. (2026). Mining association rules for targeted spatiotemporal aquatic environmental DNA (eDNA) sampling. bioRxiv. DOI: 10.64898/2026.09.16.752056."
    },
    {
     "parent": "Journal Articles",
@@ -648,7 +648,7 @@
   ]
  },
  "nonref": {
-  "thesis": "Phillips, J.D. (2022). A Novel Statistical Framework for Assessment of Intraspecific Haplotype Sampling Sufficiency: Implications for DNA Barcode Gap Estimation Estimation. University of Guelph Atrium. URL: https://atrium.lib.uoguelph.ca/items/8addfcc5-f21c-4691-89b7-c4db051892eb",
+  "thesis": "Phillips, J.D. (2022). A Novel Statistical Framework for Assessment of Intraspecific Haplotype Sampling Sufficiency: Implications for DNA Barcode Gap Estimation. University of Guelph Atrium. URL: https://atrium.lib.uoguelph.ca/items/8addfcc5-f21c-4691-89b7-c4db051892eb",
   "entries": [
    "*Cui, R.C. and Phillips, J.D. (2026). Student-contributed poster for University of Guelph March Open House",
    "*Toth, N. and Phillips, J.D. (2026). Student-contributed poster for University of Guelph March Open House",
@@ -666,7 +666,7 @@
    "Phillips, J.D. (2016). Sample size estimation for DNA barcoding of ray-finned fishes: Are current sampling levels enough? Contributed newsletter article to the Barcode Bulletin, 7(1). URL: https://journal.lib.uoguelph.ca/index.php/ibol/issue/view/345"
   ]
  },
- "peer_review": "Ecology and Evolution, F1000 Research, Frontiers in Ecology and Evolution, Lifestyle Genomics, Mitochondrial DNA Part A, Molecular Ecology Resources, Molecular Biology Reports, Methods in Ecology and Evolution, Nature Communications",
+ "peer_review": "Ecology and Evolution, F1000 Research, Frontiers in Ecology and Evolution, Lifestyle Genomics, Methods in Ecology and Evolution, Mitochondrial DNA Part A, Molecular Biology Reports, Molecular Ecology Resources, Nature Communications",
  "volunteer": [
   {
    "name": "CEPS Student Research Connections Networking Night",

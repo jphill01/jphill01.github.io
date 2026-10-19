@@ -215,6 +215,11 @@
    "n": 5
   },
   {
+   "label": "optimization",
+   "type": "topic",
+   "n": 5
+  },
+  {
    "label": "Python",
    "type": "tool",
    "n": 5
@@ -236,11 +241,6 @@
   },
   {
    "label": "genomics",
-   "type": "topic",
-   "n": 4
-  },
-  {
-   "label": "optimization",
    "type": "topic",
    "n": 4
   },
