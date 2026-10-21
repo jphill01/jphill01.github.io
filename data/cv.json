@@ -669,6 +669,14 @@
  "peer_review": "Ecology and Evolution, F1000Research, Frontiers in Ecology and Evolution, Lifestyle Genomics, Methods in Ecology and Evolution, Mitochondrial DNA Part A, Molecular Biology Reports, Molecular Ecology Resources, Nature Communications",
  "volunteer": [
   {
+   "name": "CCMPS Research Day & Student Poster Presentations",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "bullets": [
+    "Served as judge for undergraduate and graduate student posters"
+   ]
+  },
+  {
    "name": "CEPS Student Research Connections Networking Night",
    "date": "2025",
    "institution": "University of Guelph",
@@ -711,7 +719,7 @@
   "talks": 16,
   "publications": 25,
   "outreach": 15,
-  "volunteer": 2,
+  "volunteer": 3,
   "peer_review_journals": 9
  }
 }
