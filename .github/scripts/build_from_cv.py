@@ -139,9 +139,11 @@ PUB_FIGURES = {
             "methods and generalized mixed Yule coalescent methods, and the results are combined into "
             "molecular operational taxonomic units (MOTUs) by majority-rule consensus."),
     "10.1007/978-1-0716-3581-0_24": dict(            # Phillips et al. (2024), "A Measure of the DNA Barcode Gap..."
-        file="phillips-2024-barcode-gap-overlap.png", w=320, h=119,
-        alt="Two overlapping curves of genetic distances: the within-species distances (red) are mostly small and "
-            "the between-species distances (yellow) mostly larger, with the shaded area where they overlap marked."),
+        file="phillips-2024-barcode-gap-estimates.jpg", w=320, h=212,
+        alt="Six scatter plots of Agabus species in two rows and three columns, one column each for the COI-5P, "
+            "COI-3P and CYTB data sets: the top row plots log10(q) against log10(p) and the bottom row log10(q') "
+            "against log10(p'). Each blue point is a species, a few are named, and in the COI plots most lie along "
+            "the right-hand edge where log10(p) is 0."),
     "10.7717/peerj-cs.243": dict(                    # Phillips et al. (2020), HACSim, PeerJ Computer Science
         file="phillips-2020-hacsim-flowchart.jpg", w=320, h=182,
         alt="Flowchart of the HACSim algorithm: DNA sequences from a database (BOLD or GenBank) give a table of "
