@@ -246,8 +246,21 @@ def pick_cv():
     return max(cands, key=key)
 
 
+def check_compiled(rows):
+    """A CV saved after a single LaTeX run still has unresolved totals: the footers read "Page 1 of ??" and the
+    numbered lists, which count down from a total kept in the .aux file, run 0, -1, -2 ... Say so plainly."""
+    bad_footer = any(re.search(r"Page \d+ of \?\?", r["right"] or "") for r in rows)
+    bad_numbers = sum(1 for r in rows if re.match(r"-\d{1,3}\.\s", r["text"])) >= 3
+    if bad_footer or bad_numbers:
+        fail("The CV PDF was saved after only one LaTeX run: its footers read 'Page 1 of ??' and its numbered lists "
+             "count 0, -1, -2 ... instead of from the highest number down to 1. Compile the CV one more time "
+             "(Overleaf: Recompile, or Menu > Compile > Recompile from scratch, then Recompile again), check that the "
+             "footer shows the real page count and the lists start at their highest number, then upload the PDF again.")
+
+
 def load(pdf):
     rows = pdf_rows(pdf)
+    check_compiled(rows)
     footer = [r for r in rows if re.search(r"Curriculum Vitae", r["text"]) and re.match(r"Page \d+ of \d+", r["right"])]
     body = [r for r in rows if r not in footer]
     date = None
