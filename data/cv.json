@@ -1,6 +1,6 @@
 {
- "date": "October 2026",
- "source": "CV_October_2026_-_Phillips__Jarrett.pdf",
+ "date": "November 2026",
+ "source": "CV_November_2026_-_Phillips__Jarrett.pdf",
  "research_areas": "Computational statistics · Data science · Machine learning · Statistical modelling · Biodiversity informatics · eDNA and DNA barcoding",
  "appointments": [
   {
@@ -322,6 +322,17 @@
   ]
  },
  "teaching": [
+  {
+   "title": "Guest Lecturer",
+   "date": "2026",
+   "institution": "University of Guelph",
+   "courses": [
+    {
+     "text": "CIS*4020 – Data Science",
+     "date": ""
+    }
+   ]
+  },
   {
    "title": "Course Instructor",
    "date": "2025",
@@ -714,7 +725,7 @@
   "education": 3,
   "funding": 12,
   "supervision": 20,
-  "teaching": 2,
+  "teaching": 3,
   "service": 6,
   "talks": 16,
   "publications": 25,
