@@ -1,7 +1,7 @@
 {
  "sources": {
   "site": "index.html",
-  "cv": "CV_October_2026_-_Phillips__Jarrett.pdf"
+  "cv": "CV_November_2026_-_Phillips__Jarrett.pdf"
  },
  "terms": [
   {
@@ -27,7 +27,7 @@
   {
    "label": "eDNA",
    "type": "topic",
-   "n": 41
+   "n": 42
   },
   {
    "label": "species",
@@ -42,7 +42,7 @@
   {
    "label": "association rules",
    "type": "topic",
-   "n": 30
+   "n": 31
   },
   {
    "label": "statistics",
