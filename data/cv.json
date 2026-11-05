@@ -663,6 +663,7 @@
   "entries": [
    "*Cui, R.C. and Phillips, J.D. (2026). Student-contributed poster for University of Guelph March Open House",
    "*Toth, N. and Phillips, J.D. (2026). Student-contributed poster for University of Guelph March Open House",
+   "*Cui, R.C., Yodzis, M.P., and Phillips, J.D. (2026). Reeling in the Catch: Modelling the Dynamics of Market Fraud Within the Seafood Supply Chain. Student-contributed CCMPS Research Highlights article. URL: https://www.uoguelph.ca/ccmps/news/2026/02/reeling-catch-modelling-dynamics-market-fraud-within-seafood-supply-chain",
    "*Cui, R.C. and Phillips, J.D. (2025). The Importance in Design as a Computer Scientist. Student-contributed SoCS Show and Tell video URL: https://github.com/RichaCui70/Dynamics-between-Seafood-Fraudsters-and-Buyers/tree/main/misc_resources",
    "Phillips, J.D., *De Vuono-Fraser, F.A., Gillis, D.J., and Hanner, R.H. (2024). Statistical modelling of seafood fraud. Whiteboard explainer video. URL: https://www.youtube.com/watch?v=4jU8cU8M70U",
    "*Toth, N. and Phillips, J.D. (2024). eDNA Collection Gets a Tech Update. Student-contributed CEPS Research Highlights article. URL: https://www.uoguelph.ca/ceps/news/2024/07/edna-collection-gets-tech-upgrade",
@@ -729,7 +730,7 @@
   "service": 6,
   "talks": 16,
   "publications": 25,
-  "outreach": 15,
+  "outreach": 16,
   "volunteer": 3,
   "peer_review_journals": 9
  }
