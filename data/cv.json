@@ -323,17 +323,6 @@
  },
  "teaching": [
   {
-   "title": "Guest Lecturer",
-   "date": "2026",
-   "institution": "University of Guelph",
-   "courses": [
-    {
-     "text": "CIS*4020 – Data Science",
-     "date": ""
-    }
-   ]
-  },
-  {
    "title": "Course Instructor",
    "date": "2025",
    "institution": "University of Guelph",
@@ -726,7 +715,7 @@
   "education": 3,
   "funding": 12,
   "supervision": 20,
-  "teaching": 3,
+  "teaching": 2,
   "service": 6,
   "talks": 16,
   "publications": 25,
