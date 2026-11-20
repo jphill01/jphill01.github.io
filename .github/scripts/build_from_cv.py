@@ -1174,6 +1174,8 @@ def read_cv(pdf):
     rows, date, left = load(pdf)
     secs, unknown = split_sections(rows, left)
     for u in unknown:
+        if re.fullmatch(r"REFERENCES?", u):   # referees' contact details stay in the CV; they are not put on the page
+            continue
         warn(f'CV section "{u}" is not used on the site (add it to SECTION_KEYS if it should be).')
     need = ["refereed", "nonref"]
     for k in need:
