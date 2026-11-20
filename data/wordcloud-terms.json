@@ -27,7 +27,7 @@
   {
    "label": "eDNA",
    "type": "topic",
-   "n": 41
+   "n": 42
   },
   {
    "label": "species",
@@ -42,12 +42,12 @@
   {
    "label": "association rules",
    "type": "topic",
-   "n": 30
+   "n": 31
   },
   {
    "label": "statistics",
    "type": "topic",
-   "n": 30
+   "n": 31
   },
   {
    "label": "R",
@@ -77,7 +77,7 @@
   {
    "label": "biodiversity",
    "type": "topic",
-   "n": 17
+   "n": 18
   },
   {
    "label": "Bayesian",
@@ -265,6 +265,11 @@
    "n": 3
   },
   {
+   "label": "conservation",
+   "type": "topic",
+   "n": 3
+  },
+  {
    "label": "genetic algorithms",
    "type": "topic",
    "n": 3
@@ -273,11 +278,6 @@
    "label": "kernel density estimation",
    "type": "topic",
    "n": 3
-  },
-  {
-   "label": "conservation",
-   "type": "topic",
-   "n": 2
   },
   {
    "label": "Gaussian processes",
